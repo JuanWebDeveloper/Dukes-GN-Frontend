@@ -10,6 +10,14 @@ const routes: Routes = [
         (routesPublic) => routesPublic.PublicRoutingModule
       ),
   },
+  // Routes for the private part of the application.
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./routes/private/private-routing.module').then(
+        (routesPrivate) => routesPrivate.PrivateRoutingModule
+      ),
+  },
 ];
 
 @NgModule({
