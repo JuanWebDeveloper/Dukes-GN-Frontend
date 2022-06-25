@@ -1,0 +1,54 @@
+@use "./break-points" as bkp;
+@use "./colors" as color;
+@use "./box" as box;
+@use "./function" as func;
+
+// Fonts import.
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+$weight-bold: 600;
+$weight-medium: 500;
+$weight-regular: 400;
+$weight-light: 300;
+
+@mixin title {
+  color: color.$blue;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: func.toRem(2);
+  font-weight: $weight-bold;
+  line-height: func.toRem(2.75);
+  margin: box.$mrg-base 0;
+
+  span {
+    color: color.$black;
+  }
+
+  @media (min-width: bkp.$desktop-w) {
+    font-size: func.toRem(2.6);
+  }
+}
+
+@mixin subtitle {
+  color: color.$blue;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: func.toRem(1.7);
+  font-weight: $weight-medium;
+  line-height: func.toRem(2.5);
+  margin: box.$mrg-half 0;
+
+  span {
+    color: color.$black;
+  }
+
+  @media (min-width: bkp.$desktop-w) {
+    font-size: func.toRem(2);
+  }
+}
+
+@mixin body {
+  color: color.$black;
+  font-family: "inter", sans-serif;
+  font-size: func.toRem(1.2);
+  font-weight: $weight-regular;
+}

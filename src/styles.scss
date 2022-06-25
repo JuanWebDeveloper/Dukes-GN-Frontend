@@ -1,1 +1,99 @@
+// Import of combinations, functions and general variables of the application.
+@use "./app/ui/styles/index.scss" as styles;
 
+// General styles.
+* {
+  box-sizing: border-box;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  @include styles.font-body;
+  background-color: styles.$color-primary;
+}
+
+h1,
+h2 {
+  @include styles.font-title;
+}
+
+h3,
+h4 {
+  @include styles.font-subtitle;
+}
+
+p {
+  margin-bottom: styles.$box-mrg-half;
+
+  span {
+    color: styles.$color-blue;
+  }
+
+  a {
+    color: styles.$color-blue;
+    font-weight: styles.$font-weight-medium;
+    text-decoration: none;
+    transition: styles.$animation-bezier;
+
+    &:hover {
+      color: styles.$color-blue-2;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+main {
+  padding-top: 60px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.btn-general {
+  background-color: styles.$color-blue-3;
+  border: none;
+  border-radius: 5px;
+  color: styles.$color-white;
+  cursor: pointer;
+  font-size: 1.25rem;
+  position: relative;
+  padding: styles.$box-pad-quarter styles.$box-pad-onehalf;
+  transition: styles.$animation-bezier;
+  z-index: styles.$box-z-5;
+
+  &::before {
+    border-radius: 5px;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: styles.$animation-bezier;
+    width: 100%;
+    z-index: -1;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+
+    &::before {
+      background-color: styles.$color-blue-2;
+      @include styles.animation-scale-in_X;
+    }
+  }
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}

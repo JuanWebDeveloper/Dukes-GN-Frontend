@@ -1,0 +1,77 @@
+@use "../../styles/index" as styles;
+
+.signin {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+
+  &-content {
+    background-color: styles.$color-tertiary;
+    box-shadow: styles.$color-box-shadow;
+    border-radius: 5px;
+    padding: styles.$box-pad-half;
+    width: 40%;
+
+    h2 {
+      text-align: center;
+    }
+
+    form {
+      .form-group {
+        margin-bottom: styles.$box-mrg-half;
+        position: relative;
+        width: 100%;
+
+        input {
+          background-color: styles.$color-secondary;
+          border-radius: 5px;
+          border: none;
+          font-size: 1.1rem;
+          outline: 2px solid transparent;
+          padding: styles.$box-pad-quarter styles.$box-pad-half;
+          transition: styles.$animation-bezier;
+          width: 100%;
+
+          &:hover,
+          &:focus {
+            outline-color: styles.$color-blue;
+          }
+
+          &.invalid {
+            outline-color: styles.$color-errors;
+          }
+
+          &.valid {
+            outline-color: styles.$color-success;
+          }
+        }
+
+        .message-error {
+          @include styles.animation-scale-in_XY;
+          background-color: styles.$color-errors;
+          border-radius: 5px;
+          color: styles.$color-white;
+          margin-top: styles.$box-mrg-quarter;
+          position: relative;
+          padding: styles.$box-pad-half;
+          text-align: center;
+          width: 100%;
+        }
+      }
+
+      button {
+        float: right;
+      }
+    }
+
+    @media (max-width: styles.$bkp-desktop-w) {
+      width: 50%;
+    }
+
+    @media (max-width: styles.$bkp-mobile-w) {
+      width: 90%;
+    }
+  }
+}

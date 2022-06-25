@@ -1,0 +1,41 @@
+$bezier: all 0.2s cubic-bezier(0.17, 0.67, 0.8, 0.62);
+$bezier-navbar: all 0.6s cubic-bezier(0.17, 0.67, 0.8, 0.62);
+
+@mixin scale-in_XY {
+  animation: scale-in_XY 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+@keyframes scale-in_XY {
+  0% {
+    transform: scaleX(0.1) scaleY(0.1);
+  }
+  100% {
+    transform: scaleX(1) scaleY(1);
+  }
+}
+
+@mixin scale-in_X {
+  animation: scale-in_X 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+@keyframes scale-in_X {
+  0% {
+    transform: scaleX(0.1);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@mixin loading-circle {
+  animation: loading-circle 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) infinite;
+}
+
+@keyframes loading-circle {
+  0% {
+    transform: rotate3d(0, 0, 25, 0deg);
+  }
+  100% {
+    transform: rotate3d(0, 10, 25, 360deg);
+  }
+}
