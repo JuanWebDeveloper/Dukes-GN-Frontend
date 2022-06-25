@@ -1,124 +1,126 @@
 @use "../../styles/index" as styles;
 
-.hidden {
-  display: none;
-}
-
-.footer-gray {
-  background-color: #efefef;
-  width: 100%;
-
-  position: relative;
+.footer {
+  background-color: styles.$color-secondary;
+  border-top: 5px solid styles.$color-blue;
   bottom: 0;
-}
+  position: absolute;
+  width: 100vw;
 
-.footer-custom {
-  color: #888;
-  font: normal normal 12px/1.4 "HelveticaNeue-Light", "Helvetica Neue Light",
-    "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  box-sizing: border-box;
-  padding: 24px;
-  position: relative;
-  margin: 0 auto;
-  align-items: center;
-  text-align: center;
-  width: 50%;
-  margin: 0 auto;
+  &-content {
+    position: relative;
+    width: 100%;
 
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  width: 50%;
-  text-align: center;
-}
+    &_logo {
+      height: 150px;
+      margin: 0 auto;
+      position: relative;
 
-.footer-lists {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  width: 100%;
-  text-align: center;
-}
+      img {
+        height: 100%;
+        width: 100%;
+      }
 
-.ftr-hdr {
-  color: #000;
-  font: 22px/1.4 "BebasNeueRegular", BebasNeue, "Bebas Neue", Arial, sans-serif;
-  margin: 1em 0 0;
-}
+      @media (max-width: styles.$bkp-tablet-w) {
+        height: 100px;
+      }
+    }
 
-@media only screen and (min-width: 768px) {
-  .ftr-hdr {
-    font-size: 18px;
-  }
-}
+    &_rows {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 0 auto;
+      position: relative;
+      width: 90%;
 
-.footer-list-wrap {
-  width: 30%;
-  box-sizing: border-box;
-}
+      h3 {
+        text-align: center;
+      }
 
-// @media only screen and (min-width: 568px) {
-//   .footer-list-wrap {
-//     width: 33.3333%;
-//   }
-// }
+      &-item {
+        position: relative;
+        width: 30%;
 
-// @media only screen and (min-width: 768px) {
-//   .footer-list-wrap {
-//     width: 25%;
-//   }
-// }
+        p {
+          text-align: justify;
+        }
 
-.ftr-links-sub {
-  padding: 0;
-  margin: 0;
-}
+        ul {
+          margin: 0;
+          padding: 0;
 
-.ftr-links-sub:after {
-  display: table;
-  clear: both;
-  content: "";
-}
+          li {
+            margin-bottom: styles.$box-mrg-quarter;
 
-.ftr-links-sub li {
-  display: block;
-  list-style-type: none;
-  margin: 0;
-  padding: 3px 0;
-  color: #888;
-  font: normal normal 12px "HelveticaNeue-Light", "Helvetica Neue Light",
-    "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  text-transform: uppercase;
-  /*width: 150px;*/
-}
+            &:last-child {
+              margin-bottom: 0;
+            }
 
-.footer-custom a,
-.footer-custom a:link,
-.footer-custom a:visited,
-.ftr-links-sub li .link {
-  text-decoration: none;
-  color: #888;
-  padding: 5px 0;
-  display: block;
-}
+            a {
+              color: styles.$color-black;
+              transform: styles.$animation-bezier;
+              text-decoration: none;
 
-.footer-custom .footer-legal a {
-  display: inline;
-}
+              &:hover {
+                color: styles.$color-blue-2;
+              }
+            }
+          }
+        }
 
-.footer-custom a:hover,
-.footer-custom a:active,
-.ftr-links-sub li .link:hover {
-  text-decoration: underline;
-  color: #888;
-  cursor: pointer;
-}
+        &_social-networks {
+          display: flex;
+          justify-content: center;
+          position: relative;
+          width: 100%;
 
-@media only screen and (min-width: 768px) {
-  .footer-custom a,
-  .footer-custom a:link,
-  .footer-custom a:visited,
-  .ftr-links-sub li .link {
-    padding: 0;
+          i {
+            color: #3b5998;
+            cursor: pointer;
+            font-size: 2.5rem;
+            margin-right: styles.$box-mrg-onehalf;
+            transition: styles.$animation-bezier;
+
+            &:first-child {
+              color: #222;
+            }
+
+            &:last-child {
+              margin-right: 0;
+              color: #e4405f;
+            }
+
+            &:hover {
+              opacity: 0.8;
+              transform: scale(1.1);
+            }
+          }
+        }
+      }
+
+      @media (max-width: styles.$bkp-desktop-w) {
+        &-item {
+          width: 100%;
+
+          h3 {
+            text-align: left;
+          }
+
+          &_social-networks {
+            justify-content: flex-start;
+          }
+        }
+      }
+    }
+
+    &_copy {
+      background-color: styles.$color-tertiary;
+      margin-top: styles.$box-mrg-half;
+      position: relative;
+      text-align: center;
+      width: 100%;
+    }
   }
 }
