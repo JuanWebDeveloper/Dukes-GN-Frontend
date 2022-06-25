@@ -8,9 +8,15 @@ import { FormsModule } from '@angular/forms';
 import { SigninComponent } from './components/signin/signin.component';
 import { LayoutComponent } from './layout/layout.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
-  declarations: [SigninComponent, LayoutComponent, NavbarComponent],
+  declarations: [
+    SigninComponent,
+    LayoutComponent,
+    NavbarComponent,
+    FooterComponent,
+  ],
   imports: [BrowserModule, CommonModule, RouterModule, FormsModule],
 })
 export class ComponentsModule {}

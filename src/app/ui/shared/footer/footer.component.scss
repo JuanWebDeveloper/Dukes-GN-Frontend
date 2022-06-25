@@ -1,0 +1,124 @@
+@use "../../styles/index" as styles;
+
+.hidden {
+  display: none;
+}
+
+.footer-gray {
+  background-color: #efefef;
+  width: 100%;
+
+  position: relative;
+  bottom: 0;
+}
+
+.footer-custom {
+  color: #888;
+  font: normal normal 12px/1.4 "HelveticaNeue-Light", "Helvetica Neue Light",
+    "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  box-sizing: border-box;
+  padding: 24px;
+  position: relative;
+  margin: 0 auto;
+  align-items: center;
+  text-align: center;
+  width: 50%;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 50%;
+  text-align: center;
+}
+
+.footer-lists {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.ftr-hdr {
+  color: #000;
+  font: 22px/1.4 "BebasNeueRegular", BebasNeue, "Bebas Neue", Arial, sans-serif;
+  margin: 1em 0 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .ftr-hdr {
+    font-size: 18px;
+  }
+}
+
+.footer-list-wrap {
+  width: 30%;
+  box-sizing: border-box;
+}
+
+// @media only screen and (min-width: 568px) {
+//   .footer-list-wrap {
+//     width: 33.3333%;
+//   }
+// }
+
+// @media only screen and (min-width: 768px) {
+//   .footer-list-wrap {
+//     width: 25%;
+//   }
+// }
+
+.ftr-links-sub {
+  padding: 0;
+  margin: 0;
+}
+
+.ftr-links-sub:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.ftr-links-sub li {
+  display: block;
+  list-style-type: none;
+  margin: 0;
+  padding: 3px 0;
+  color: #888;
+  font: normal normal 12px "HelveticaNeue-Light", "Helvetica Neue Light",
+    "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  text-transform: uppercase;
+  /*width: 150px;*/
+}
+
+.footer-custom a,
+.footer-custom a:link,
+.footer-custom a:visited,
+.ftr-links-sub li .link {
+  text-decoration: none;
+  color: #888;
+  padding: 5px 0;
+  display: block;
+}
+
+.footer-custom .footer-legal a {
+  display: inline;
+}
+
+.footer-custom a:hover,
+.footer-custom a:active,
+.ftr-links-sub li .link:hover {
+  text-decoration: underline;
+  color: #888;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) {
+  .footer-custom a,
+  .footer-custom a:link,
+  .footer-custom a:visited,
+  .ftr-links-sub li .link {
+    padding: 0;
+  }
+}
