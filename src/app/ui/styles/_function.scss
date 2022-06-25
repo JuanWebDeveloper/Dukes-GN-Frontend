@@ -1,0 +1,5 @@
+@use "./box" as box;
+
+@function toRem($value) {
+  @return $value * box.$pad-base;
+}
