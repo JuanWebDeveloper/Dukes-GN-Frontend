@@ -50,7 +50,10 @@ p {
 }
 
 main {
-  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 100vh;
 }
 
 ul {

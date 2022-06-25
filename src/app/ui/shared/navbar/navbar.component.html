@@ -1,0 +1,38 @@
+<div class="navbar-public">
+  <div class="navbar-public_logo" [routerLink]="['']">
+    <img src="./assets/logo.svg" alt="Logo de la aplicacion" />
+  </div>
+
+  <div class="navbar-public_bars" id="bars" (click)="showAndHide()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <ul class="navbar-public_navigation" id="navigation">
+    <div class="navbar-public_navigation-information">
+      <div class="photo">
+        <img src="./assets/ifuwp.jpg" alt="username" />
+      </div>
+      <span>Username</span> <span class="sp">|</span>
+      <span class="rol"
+        >Rol
+        <i class="fas fa-angle-down" (click)="showAndHideOptions($event)"></i
+      ></span>
+
+      <ul class="options" id="options">
+        <!-- User -->
+        <li><i class="fas fa-address-card"></i> Mi información</li>
+        <!-- User -->
+        <li><i class="fas fa-tasks"></i> Mi progreso</li>
+        <!-- Super -->
+        <li><i class="fas fa-users-cog"></i> Super admin</li>
+        <!-- Admin -->
+        <li><i class="fas fa-user-cog"></i> Admin</li>
+      </ul>
+    </div>
+    <li class="navbar-public_navigation-item" [routerLink]="['/auth/signin']">
+      Cerrar Sesión
+    </li>
+  </ul>
+</div>

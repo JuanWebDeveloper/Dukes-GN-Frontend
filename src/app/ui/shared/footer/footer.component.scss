@@ -1,0 +1,126 @@
+@use "../../styles/index" as styles;
+
+.footer {
+  background-color: styles.$color-secondary;
+  border-top: 5px solid styles.$color-blue;
+  bottom: 0;
+  position: absolute;
+  width: 100vw;
+
+  &-content {
+    position: relative;
+    width: 100%;
+
+    &_logo {
+      height: 150px;
+      margin: 0 auto;
+      position: relative;
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
+
+      @media (max-width: styles.$bkp-tablet-w) {
+        height: 100px;
+      }
+    }
+
+    &_rows {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 0 auto;
+      position: relative;
+      width: 90%;
+
+      h3 {
+        text-align: center;
+      }
+
+      &-item {
+        position: relative;
+        width: 30%;
+
+        p {
+          text-align: justify;
+        }
+
+        ul {
+          margin: 0;
+          padding: 0;
+
+          li {
+            margin-bottom: styles.$box-mrg-quarter;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+
+            a {
+              color: styles.$color-black;
+              transform: styles.$animation-bezier;
+              text-decoration: none;
+
+              &:hover {
+                color: styles.$color-blue-2;
+              }
+            }
+          }
+        }
+
+        &_social-networks {
+          display: flex;
+          justify-content: center;
+          position: relative;
+          width: 100%;
+
+          i {
+            color: #3b5998;
+            cursor: pointer;
+            font-size: 2.5rem;
+            margin-right: styles.$box-mrg-onehalf;
+            transition: styles.$animation-bezier;
+
+            &:first-child {
+              color: #222;
+            }
+
+            &:last-child {
+              margin-right: 0;
+              color: #e4405f;
+            }
+
+            &:hover {
+              opacity: 0.8;
+              transform: scale(1.1);
+            }
+          }
+        }
+      }
+
+      @media (max-width: styles.$bkp-desktop-w) {
+        &-item {
+          width: 100%;
+
+          h3 {
+            text-align: left;
+          }
+
+          &_social-networks {
+            justify-content: flex-start;
+          }
+        }
+      }
+    }
+
+    &_copy {
+      background-color: styles.$color-tertiary;
+      margin-top: styles.$box-mrg-half;
+      position: relative;
+      text-align: center;
+      width: 100%;
+    }
+  }
+}
