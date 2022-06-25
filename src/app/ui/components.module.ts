@@ -6,9 +6,10 @@ import { FormsModule } from '@angular/forms';
 
 // Import of the components used in the application.
 import { SigninComponent } from './components/signin/signin.component';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
-  declarations: [SigninComponent],
+  declarations: [SigninComponent, LayoutComponent],
   imports: [BrowserModule, CommonModule, RouterModule, FormsModule],
 })
 export class ComponentsModule {}
