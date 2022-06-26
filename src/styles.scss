@@ -53,6 +53,17 @@ main {
   position: relative;
   padding-top: 60px;
   min-height: 100vh;
+
+  &::after {
+    background: url("./assets/texture/dashboard.png");
+    background-size: contain;
+    content: "";
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    z-index: -1;
+  }
 }
 
 ul {
