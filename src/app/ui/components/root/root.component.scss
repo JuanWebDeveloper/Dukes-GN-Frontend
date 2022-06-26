@@ -41,15 +41,33 @@
             }
           }
         }
+
+        @media (max-width: styles.$bkp-tablet-w) {
+          flex-direction: column;
+
+          button {
+            margin-bottom: styles.$box-mrg-half;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+
+          .active {
+            transform: scale(1);
+          }
+        }
       }
 
       &-tab {
         @include styles.animation-scale-in_X;
+        background-color: rgba(styles.$color-secondary, 0.5);
+        backdrop-filter: brightness(90%);
         border-radius: 5px;
         box-shadow: styles.$color-box-shadow-secondary;
         margin-top: styles.$box-mrg-onehalf;
         position: relative;
-        padding: styles.$box-pad-half;
+        padding: styles.$box-pad-onehalf styles.$box-pad-half;
         width: 100%;
       }
     }

@@ -1,6 +1,6 @@
 <div class="create-user">
   <div class="create-user_content">
-    <form #signUpForm="ngForm">
+    <form #signUpForm="ngForm" autocomplete="off">
       <div class="form-group">
         <input
           type="text"
@@ -109,20 +109,32 @@
         </div>
       </div>
       <div class="form-group">
-        <select name="rol">
-          <option value="">Administrador</option>
-          <option value="">Usuario</option>
+        <select
+          name="rol"
+          required
+          ngModel
+          #rol="ngModel"
+          [class.invalid]="rol.invalid && rol.touched"
+          [class.valid]="rol.valid"
+        >
+          <option value="">Seleccione un rol</option>
+          <option value="admin">Administrador</option>
+          <option value="user">Usuario</option>
         </select>
+        <div class="message-error" *ngIf="!rol.value && rol.touched">
+          El rol de usuario es requerida.
+        </div>
       </div>
       <button
-        class="btn-general"
+        class="btn-general-form"
         type="submmit"
         [class.disabled]="
           name.invalid ||
           email.invalid ||
           passwordConfirmation.value !== password.value ||
           password.invalid ||
-          passwordConfirmation.invalid
+          passwordConfirmation.invalid ||
+          rol.invalid
         "
       >
         Crear
