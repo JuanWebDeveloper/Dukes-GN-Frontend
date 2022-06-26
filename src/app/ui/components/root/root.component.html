@@ -1,1 +1,33 @@
-<p>root works!</p>
+<div class="root">
+  <div class="root-content">
+    <h2>Panel De Usuario Root</h2>
+
+    <div class="root-content_tabs">
+      <div class="root-content_tabs-indicators">
+        <button
+          class="btn-general"
+          *ngFor="let indicator of indicators"
+          (click)="onTabChange(indicator)"
+          [ngClass]="{ active: selected === indicator }"
+        >
+          {{ indicator }}
+        </button>
+      </div>
+      <div
+        class="root-content_tabs-tab"
+        *ngIf="selected === 'Lista De Usuarios'"
+      >
+        <dukes-list-user></dukes-list-user>
+      </div>
+      <div class="root-content_tabs-tab" *ngIf="selected === 'Crear Usuario'">
+        <dukes-create-user></dukes-create-user>
+      </div>
+      <div
+        class="root-content_tabs-tab"
+        *ngIf="selected === 'Lista De Programas'"
+      >
+        <dukes-list-program></dukes-list-program>
+      </div>
+    </div>
+  </div>
+</div>

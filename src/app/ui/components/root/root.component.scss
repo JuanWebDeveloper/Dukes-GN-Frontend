@@ -1,0 +1,57 @@
+@use "../../styles/index" as styles;
+
+.root {
+  min-height: 100vh;
+  position: relative;
+  width: 100%;
+
+  &-content {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+
+    h2 {
+      text-align: center;
+    }
+
+    &_tabs {
+      position: relative;
+      margin-top: styles.$box-mrg-onehalf;
+      width: 100%;
+
+      &-indicators {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        width: 100%;
+
+        .active {
+          transform: scale(1.1);
+          box-shadow: styles.$color-box-shadow-tertiary;
+
+          &::before {
+            background-color: styles.$color-blue;
+          }
+
+          &:hover {
+            &::before {
+              animation: none;
+            }
+          }
+        }
+      }
+
+      &-tab {
+        @include styles.animation-scale-in_X;
+        border-radius: 5px;
+        box-shadow: styles.$color-box-shadow-secondary;
+        margin-top: styles.$box-mrg-onehalf;
+        position: relative;
+        padding: styles.$box-pad-half;
+        width: 100%;
+      }
+    }
+  }
+}

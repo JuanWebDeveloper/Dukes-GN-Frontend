@@ -90,7 +90,7 @@ ul {
     transform: scale(1.1);
 
     &::before {
-      background-color: styles.$color-blue-2;
+      background-color: styles.$color-blue;
       @include styles.animation-scale-in_X;
     }
   }

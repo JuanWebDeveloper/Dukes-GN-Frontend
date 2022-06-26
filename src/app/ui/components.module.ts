@@ -10,6 +10,9 @@ import { LayoutComponent } from './layout/layout.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { RootComponent } from './components/root/root.component';
+import { ListUserComponent } from './tabs/list-user/list-user.component';
+import { CreateUserComponent } from './tabs/create-user/create-user.component';
+import { ListProgramComponent } from './tabs/list-program/list-program.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { RootComponent } from './components/root/root.component';
     NavbarComponent,
     FooterComponent,
     RootComponent,
+    ListUserComponent,
+    CreateUserComponent,
+    ListProgramComponent,
   ],
   imports: [BrowserModule, CommonModule, RouterModule, FormsModule],
 })
