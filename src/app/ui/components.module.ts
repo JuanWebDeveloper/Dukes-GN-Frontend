@@ -9,6 +9,7 @@ import { SigninComponent } from './components/signin/signin.component';
 import { LayoutComponent } from './layout/layout.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { RootComponent } from './components/root/root.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FooterComponent } from './shared/footer/footer.component';
     LayoutComponent,
     NavbarComponent,
     FooterComponent,
+    RootComponent,
   ],
   imports: [BrowserModule, CommonModule, RouterModule, FormsModule],
 })

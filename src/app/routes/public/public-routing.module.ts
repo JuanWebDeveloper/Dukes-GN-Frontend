@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./singin/signin-routing.module').then(
+      import('./signin/signin-routing.module').then(
         (children) => children.SigninRoutingModule
       ),
   },
