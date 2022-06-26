@@ -16,7 +16,7 @@ export class RootComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.selected = this.indicators[0];
+    this.selected = this.indicators[1];
   }
 
   // Method to change the selected tab.

@@ -1,1 +1,132 @@
-<p>create-user works!</p>
+<div class="create-user">
+  <div class="create-user_content">
+    <form #signUpForm="ngForm">
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Nombre completo"
+          name="name"
+          pattern="^[a-zA-Z\s]{3,50}"
+          required
+          [ngModel]
+          #name="ngModel"
+          [class.invalid]="name.invalid && name.touched"
+          [class.valid]="name.valid"
+        />
+        <div class="message-error" *ngIf="!name.value && name.touched">
+          El nombre de usuario es requerido.
+        </div>
+        <div
+          class="message-error"
+          *ngIf="name.value && name.value.length < 3 && name.dirty"
+        >
+          El nombre de usuario debe tener al menos 3 caracteres.
+        </div>
+        <div
+          class="message-error"
+          *ngIf="name.value && name.value.length > 2 && name.invalid"
+        >
+          El nombre de usuario debe contener solo letras y espacios.
+        </div>
+      </div>
+      <div class="form-group">
+        <input
+          type="email"
+          placeholder="Correo"
+          name="email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+          required
+          ngModel
+          #email="ngModel"
+          [class.invalid]="email.invalid && email.touched"
+          [class.valid]="email.valid"
+        />
+        <div class="message-error" *ngIf="!email.value && email.touched">
+          El correo es requerido.
+        </div>
+        <div
+          class="message-error"
+          *ngIf="email.value && email.invalid && email.touched"
+        >
+          El correo es invalido
+        </div>
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          placeholder="Contraseña"
+          name="password"
+          minlength="6"
+          required
+          ngModel
+          #password="ngModel"
+          [class.invalid]="password.invalid && password.touched"
+          [class.valid]="password.valid"
+        />
+        <div class="message-error" *ngIf="!password.value && password.touched">
+          La contraseña es requerida.
+        </div>
+        <div
+          class="message-error"
+          *ngIf="password.value && password.invalid && password.touched"
+        >
+          La contraseña debe tener al menos 6 caracteres.
+        </div>
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          placeholder="Confirmar contraseña"
+          name="passwordConfirmation"
+          minlength="6"
+          required
+          ngModel
+          #passwordConfirmation="ngModel"
+          [class.invalid]="
+            (passwordConfirmation.invalid && passwordConfirmation.touched) ||
+            (passwordConfirmation.value !== password.value &&
+              passwordConfirmation.touched)
+          "
+          [class.valid]="
+            passwordConfirmation.valid &&
+            password.value === passwordConfirmation.value
+          "
+        />
+        <div
+          class="message-error"
+          *ngIf="!passwordConfirmation.value && passwordConfirmation.touched"
+        >
+          La confirmación de la contraseña es requerida.
+        </div>
+        <div
+          class="message-error"
+          *ngIf="
+            passwordConfirmation.value !== password.value &&
+            passwordConfirmation.value
+          "
+        >
+          La contraseñas no coinciden.
+        </div>
+      </div>
+      <div class="form-group">
+        <select name="rol">
+          <option value="">Administrador</option>
+          <option value="">Usuario</option>
+        </select>
+      </div>
+      <button
+        class="btn-general"
+        type="submmit"
+        [class.disabled]="
+          name.invalid ||
+          email.invalid ||
+          passwordConfirmation.value !== password.value ||
+          password.invalid ||
+          passwordConfirmation.invalid
+        "
+      >
+        Crear
+      </button>
+    </form>
+  </div>
+</div>

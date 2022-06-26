@@ -1,0 +1,74 @@
+@use "../../styles/index" as styles;
+
+.create-user {
+  position: relative;
+  width: 100%;
+
+  &_content {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
+    width: 40%;
+
+    form {
+      position: relative;
+      width: 100%;
+
+      .form-group {
+        margin-bottom: styles.$box-mrg-half;
+        position: relative;
+        width: 100%;
+
+        input,
+        select {
+          background-color: styles.$color-secondary;
+          border-radius: 5px;
+          border: none;
+          font-size: 1.1rem;
+          outline: 2px solid transparent;
+          padding: styles.$box-pad-quarter styles.$box-pad-half;
+          transition: styles.$animation-bezier;
+          width: 100%;
+
+          &:hover,
+          &:focus {
+            outline-color: styles.$color-blue;
+          }
+
+          &.invalid {
+            outline-color: styles.$color-errors;
+          }
+
+          &.valid {
+            outline-color: styles.$color-success;
+          }
+        }
+
+        .message-error {
+          @include styles.animation-scale-in_XY;
+          background-color: styles.$color-errors;
+          border-radius: 5px;
+          color: styles.$color-white;
+          margin-top: styles.$box-mrg-quarter;
+          position: relative;
+          padding: styles.$box-pad-half;
+          text-align: center;
+          width: 100%;
+        }
+      }
+
+      button {
+        float: right;
+      }
+    }
+
+    @media (max-width: styles.$bkp-desktop-w) {
+      width: 50%;
+    }
+
+    @media (max-width: styles.$bkp-mobile-w) {
+      width: 90%;
+    }
+  }
+}
