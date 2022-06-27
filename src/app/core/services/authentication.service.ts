@@ -28,4 +28,18 @@ export class AuthenticationService {
       (user) => user && user.sendEmailVerification()
     );
   }
+
+  // Service for the login of the users.
+  async login(email: string, password: string) {
+    const hash = SHA512(password).toString();
+
+    return await this.auth
+      .signInWithEmailAndPassword(email, hash)
+      .then((response: any) => {
+        return response;
+      })
+      .catch((error) => {
+        return error;
+      });
+  }
 }
