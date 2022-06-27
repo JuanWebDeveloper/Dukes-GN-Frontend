@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { ToastrService } from 'ngx-toastr';
-import { FirebaseCodeErrorService } from 'src/app/core/services/firebase-code-error.service'
+import { MessagesUtil } from 'src/app/core/utils/messages.util';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { FirebaseCodeErrorService } from 'src/app/core/services/firebase-code-er
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent {
-  constructor(private authenticationService: AuthenticationService, private toastr: ToastrService, private firebaseCodeErrorService: FirebaseCodeErrorService, private router: Router) { }
+  constructor(private authenticationService: AuthenticationService, private toastr: ToastrService, private router: Router) { }
 
   // Login the user.
   public async onSubmit(form: NgForm) {
@@ -27,7 +27,12 @@ export class SigninComponent {
           form.reset();
         } else {
           console.log(response)
-          this.toastr.error(this.firebaseCodeErrorService.codeError(response.code), "Error");
+          this.toastr.error(new MessagesUtil().getMessage(response.code), "Error", {
+            closeButton: true,
+            progressBar: true,
+            positionClass: 'toast-top-right',
+            timeOut: 3000,
+          });
         }
       })
 
