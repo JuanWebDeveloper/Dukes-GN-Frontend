@@ -9,6 +9,13 @@ const routes: Routes = [
         (routesRoot) => routesRoot.RootRoutingModule
       ),
   },
+  {
+    path: 'verification',
+    loadChildren: () =>
+      import('./verification/verification-routing.module').then(
+        (routesVerification) => routesVerification.VerificationRoutingModule
+      ),
+  },
 ];
 
 @NgModule({

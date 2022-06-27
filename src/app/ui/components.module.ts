@@ -13,6 +13,7 @@ import { RootComponent } from './components/root/root.component';
 import { ListUserComponent } from './tabs/list-user/list-user.component';
 import { CreateUserComponent } from './tabs/create-user/create-user.component';
 import { ListProgramComponent } from './tabs/list-program/list-program.component';
+import { VerificationComponent } from './components/verification/verification.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ListProgramComponent } from './tabs/list-program/list-program.component
     ListUserComponent,
     CreateUserComponent,
     ListProgramComponent,
+    VerificationComponent,
   ],
   imports: [BrowserModule, CommonModule, RouterModule, FormsModule],
 })
