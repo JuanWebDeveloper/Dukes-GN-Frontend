@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { ToastrService } from 'ngx-toastr';
+import { FirebaseCodeErrorService } from 'src/app/core/services/firebase-code-error.service'
+
 
 @Component({
   selector: 'dukes-signin',
@@ -9,7 +12,7 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent {
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(private authenticationService: AuthenticationService, private toastr: ToastrService, private firebaseCodeErrorService: FirebaseCodeErrorService) { }
 
   // Login the user.
   public async onSubmit(form: NgForm) {
@@ -20,10 +23,11 @@ export class SigninComponent {
       .then((response: any) => {
         if (response.user) {
           form.reset();
+        } else {
+          console.log(response)
+          this.toastr.error(this.firebaseCodeErrorService.codeError(response.code), "Error");
         }
       })
-      .catch((error) => {
-        console.log(error);
-      });
+
   }
 }
