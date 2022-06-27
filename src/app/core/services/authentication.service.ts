@@ -9,19 +9,13 @@ export class AuthenticationService {
   constructor(private auth: AngularFireAuth) {}
 
   // Service for the register of the users.
-  async register(name: string, email: string, password: string) {
+  async register(email: string, password: string) {
     const hash = SHA512(password).toString();
 
     return await this.auth
       .createUserWithEmailAndPassword(email, hash)
       .then((response: any) => {
-        if (response.user) {
-          response.user?.updateProfile({
-            displayName: name,
-          });
-
-          return response.user;
-        }
+        return response;
       })
       .catch((error) => {
         return error;

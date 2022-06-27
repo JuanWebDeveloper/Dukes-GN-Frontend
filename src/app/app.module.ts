@@ -8,6 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 // Environment variables
 import { environment } from '../environments/environment';
 
+// Services.
+import { AuthenticationService } from './core/services/authentication.service';
+
 // Components.
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './ui/components.module';
@@ -20,7 +23,7 @@ import { ComponentsModule } from './ui/components.module';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
