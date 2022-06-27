@@ -23,7 +23,7 @@ export class SigninComponent {
       .login(email, password)
       .then((response: any) => {
         if (response.user) {
-          this.router.navigate(['dashboard/root']);
+          this.router.navigate(['dashboard/verification']);
           form.reset();
         }
       })

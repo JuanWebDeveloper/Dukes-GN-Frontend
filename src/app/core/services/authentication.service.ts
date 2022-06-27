@@ -6,7 +6,16 @@ import { SHA512 } from 'crypto-js';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private auth: AngularFireAuth) {}
+  constructor(private auth: AngularFireAuth) {
+    this.auth.authState.subscribe((user) =>
+      user
+        ? localStorage.setItem(
+            'isVerificated',
+            JSON.stringify(user.emailVerified)
+          )
+        : localStorage.setItem('isVerificated', 'null')
+    );
+  }
 
   // Service for the register of the users.
   async register(email: string, password: string) {
@@ -51,5 +60,10 @@ export class AuthenticationService {
   // Service to obtain the information of the registered user.
   async getInfoUser(): Promise<any> {
     return await this.auth.currentUser.then((user: any) => user);
+  }
+
+  // Service to verify that the user's email is already verified.
+  get verifyEmail(): boolean {
+    return JSON.parse(localStorage.getItem('isVerificated')!);
   }
 }

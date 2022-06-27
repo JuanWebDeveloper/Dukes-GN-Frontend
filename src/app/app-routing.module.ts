@@ -7,7 +7,7 @@ import {
 } from '@angular/fire/compat/auth-guard';
 
 // Function to redirect the users with the active session to the private routes.
-const redirectLoggedUser = () => redirectLoggedInTo(['dashboard/root']);
+const redirectLoggedUser = () => redirectLoggedInTo(['dashboard/verification']);
 
 // Function to redirect users who are not logged in to the sign in route.
 const redirectNotLoggedUser = () => redirectUnauthorizedTo(['/']);
@@ -44,7 +44,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      relativeLinkResolution: 'corrected',
+      scrollPositionRestoration: 'top',
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

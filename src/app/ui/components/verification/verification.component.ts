@@ -28,10 +28,11 @@ export class VerificationComponent implements OnInit, OnDestroy {
   }
 
   public verify(): void {
-    window.location.href = 'authenticated/blog';
+    window.location.href = 'dashboard/root';
   }
 
   public logout(): void {
     this.authenticationService.logout();
+    window.location.href = '/';
   }
 }
