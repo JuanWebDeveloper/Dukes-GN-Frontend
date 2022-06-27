@@ -174,12 +174,12 @@ form {
 }
 
 .btn-general {
-  background-color: rgba(styles.$color-blue-3, 0.5);
+  background-color: rgba(styles.$color-blue-3, 0.9);
   backdrop-filter: brightness(90%);
 
   &:hover {
     &::before {
-      background-color: rgba(styles.$color-blue, 0.5);
+      background-color: rgba(styles.$color-blue, 0.9);
       backdrop-filter: brightness(90%);
     }
   }

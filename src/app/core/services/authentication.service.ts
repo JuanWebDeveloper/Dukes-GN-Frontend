@@ -47,4 +47,9 @@ export class AuthenticationService {
   async logout() {
     return await this.auth.signOut();
   }
+
+  // Service to obtain the information of the registered user.
+  async getInfoUser(): Promise<any> {
+    return await this.auth.currentUser.then((user: any) => user);
+  }
 }
