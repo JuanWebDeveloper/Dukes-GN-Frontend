@@ -10,9 +10,9 @@ export class AuthenticationService {
     this.auth.authState.subscribe((user) =>
       user
         ? localStorage.setItem(
-            'isVerificated',
-            JSON.stringify(user.emailVerified)
-          )
+          'isVerificated',
+          JSON.stringify(user.emailVerified)
+        )
         : localStorage.setItem('isVerificated', 'null')
     );
   }
