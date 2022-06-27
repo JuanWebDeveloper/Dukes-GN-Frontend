@@ -6,7 +6,7 @@ import { SHA512 } from 'crypto-js';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private auth: AngularFireAuth) {}
+  constructor(private auth: AngularFireAuth) { }
 
   // Service for the register of the users.
   async register(email: string, password: string) {

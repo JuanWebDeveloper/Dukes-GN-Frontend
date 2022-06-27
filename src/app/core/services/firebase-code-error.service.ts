@@ -14,7 +14,7 @@ export class FirebaseCodeErrorService {
         switch (code) {
             //El correo ya existe
             case FirebaseCodeErrorEnum.EmailAlreadyInUse:
-                return "El usuario ya existe";
+                return "El correo ya existe";
             // Contraseña debil
             case FirebaseCodeErrorEnum.WeakPassword:
                 return "La contraseña es muy debil";
@@ -26,10 +26,10 @@ export class FirebaseCodeErrorService {
                 return "Contraseña incorrecta"
             // El usuario no existe
             case FirebaseCodeErrorEnum.UserNotFound:
-                return "El usuario no existe"
+                return "El correo no existe"
             // Muchas peticiones de acceso denegados
             case FirebaseCodeErrorEnum.TooManyRequests:
-                return "Cuenta desabilitada por muchos intentos de ingreso"
+                return "Correo desabilitado por varios intentos de ingreso"
             default:
                 return "Error desconocido";
         }

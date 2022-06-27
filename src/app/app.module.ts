@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 // Routings.
 import { AppRoutingModule } from './app-routing.module';
@@ -22,8 +24,10 @@ import { ComponentsModule } from './ui/components.module';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
