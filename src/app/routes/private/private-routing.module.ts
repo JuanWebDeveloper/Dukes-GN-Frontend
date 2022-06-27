@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+// Guards.
+import { DashboardGuard } from '../../core/guards/dashboard.guard';
+import { VerificationGuard } from '../../core/guards/verification.guard';
+
 const routes: Routes = [
   {
     path: 'root',
@@ -8,6 +12,15 @@ const routes: Routes = [
       import('./root/root-routing.module').then(
         (routesRoot) => routesRoot.RootRoutingModule
       ),
+    canActivate: [DashboardGuard],
+  },
+  {
+    path: 'verification',
+    loadChildren: () =>
+      import('./verification/verification-routing.module').then(
+        (routesVerification) => routesVerification.VerificationRoutingModule
+      ),
+    canActivate: [VerificationGuard],
   },
 ];
 
