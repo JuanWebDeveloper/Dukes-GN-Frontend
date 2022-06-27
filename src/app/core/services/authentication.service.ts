@@ -42,4 +42,9 @@ export class AuthenticationService {
         return error;
       });
   }
+
+  // Service for the logout of the users.
+  async logout() {
+    return await this.auth.signOut();
+  }
 }
