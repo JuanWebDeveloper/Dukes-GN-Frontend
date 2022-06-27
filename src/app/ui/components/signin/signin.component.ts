@@ -1,15 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'dukes-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss']
+  styleUrls: ['./signin.component.scss'],
 })
-export class SigninComponent implements OnInit {
+export class SigninComponent {
+  constructor(private authenticationService: AuthenticationService) {}
 
-  constructor() { }
+  // Login the user.
+  async onSubmit(form: NgForm) {
+    const { email, password } = form.value;
 
-  ngOnInit(): void {
+    await this.authenticationService
+      .login(email, password)
+      .then((response: any) => {
+        if (response.user) {
+          form.reset();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
-
 }
