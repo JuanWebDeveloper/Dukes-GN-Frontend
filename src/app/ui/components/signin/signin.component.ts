@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
@@ -9,7 +10,10 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent {
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(
+    private authenticationService: AuthenticationService,
+    public router: Router
+  ) {}
 
   // Login the user.
   public async onSubmit(form: NgForm) {
@@ -19,6 +23,7 @@ export class SigninComponent {
       .login(email, password)
       .then((response: any) => {
         if (response.user) {
+          this.router.navigate(['dashboard/root']);
           form.reset();
         }
       })
