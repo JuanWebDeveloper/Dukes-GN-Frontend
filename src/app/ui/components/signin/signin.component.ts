@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
@@ -12,7 +13,7 @@ import { FirebaseCodeErrorService } from 'src/app/core/services/firebase-code-er
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent {
-  constructor(private authenticationService: AuthenticationService, private toastr: ToastrService, private firebaseCodeErrorService: FirebaseCodeErrorService) { }
+  constructor(private authenticationService: AuthenticationService, private toastr: ToastrService, private firebaseCodeErrorService: FirebaseCodeErrorService, private router: Router) { }
 
   // Login the user.
   public async onSubmit(form: NgForm) {
@@ -22,6 +23,7 @@ export class SigninComponent {
       .login(email, password)
       .then((response: any) => {
         if (response.user) {
+          this.router.navigate(['dashboard/verification']);
           form.reset();
         } else {
           console.log(response)
