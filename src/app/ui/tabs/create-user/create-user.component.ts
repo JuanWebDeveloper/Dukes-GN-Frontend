@@ -4,21 +4,25 @@ import { NgForm } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
-  selector: 'dukes-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss'],
+  selector: 'dukes-create-user',
+  templateUrl: './create-user.component.html',
+  styleUrls: ['./create-user.component.scss'],
 })
-export class SigninComponent {
+export class CreateUserComponent {
   constructor(private authenticationService: AuthenticationService) {}
 
-  // Login the user.
+  // Register the user.
   public async onSubmit(form: NgForm) {
-    const { email, password } = form.value;
+    const { name, email, password } = form.value;
 
     await this.authenticationService
-      .login(email, password)
+      .register(email, password)
       .then((response: any) => {
         if (response.user) {
+          response.user.updateProfile({
+            displayName: name,
+          });
+
           form.reset();
         }
       })

@@ -2,9 +2,12 @@
 
 .navbar-public {
   align-items: center;
-  background-color: styles.$color-secondary;
+  background-color: rgba(styles.$color-secondary, 0.5);
+  backdrop-filter: brightness(90%);
+  box-shadow: styles.$color-box-shadow;
   display: flex;
   height: 60px;
+  left: 0;
   justify-content: space-between;
   position: fixed;
   padding: 0 styles.$box-mrg-onehalf;
@@ -94,11 +97,17 @@
       }
 
       .rol {
-        i {
-          cursor: pointer;
-          transition: styles.$animation-bezier;
+        cursor: pointer;
 
-          &.show {
+        i {
+          pointer-events: none;
+          transition: styles.$animation-bezier;
+        }
+
+        &.show {
+          color: styles.$color-blue;
+
+          i {
             color: styles.$color-blue;
             transform: rotate(180deg);
           }
@@ -106,7 +115,8 @@
       }
 
       .options {
-        background-color: styles.$color-secondary;
+        background-color: rgba(styles.$color-tertiary, 0.5);
+        backdrop-filter: brightness(90%);
         box-shadow: styles.$color-box-shadow-secondary;
         border-radius: 5px;
         border-top: 3px solid styles.$color-blue;
@@ -154,7 +164,8 @@
 
             &::before {
               @include styles.animation-scale-in_XY;
-              background-color: styles.$color-blue;
+              background-color: rgba(styles.$color-blue, 0.8);
+              backdrop-filter: brightness(90%);
             }
           }
         }
@@ -224,14 +235,16 @@
 
         &::before {
           @include styles.animation-scale-in_XY;
-          background-color: styles.$color-blue;
+          background-color: rgba(styles.$color-blue, 0.8);
+          backdrop-filter: brightness(90%);
         }
       }
     }
 
     @media (max-width: styles.$bkp-tablet-w) {
       align-items: center;
-      background-color: styles.$color-secondary;
+      background-color: rgba(styles.$color-tertiary, 0.9);
+      backdrop-filter: brightness(95%);
       border-top: 2px solid styles.$color-blue;
       flex-direction: column;
       left: -100%;

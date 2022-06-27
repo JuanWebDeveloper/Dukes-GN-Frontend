@@ -2,7 +2,7 @@
   <div class="signin-content">
     <h2>Iniciar Sesión</h2>
 
-    <form>
+    <form #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm)">
       <div class="form-group">
         <input
           type="email"
@@ -48,7 +48,7 @@
         </div>
       </div>
       <button
-        class="btn-general"
+        class="btn-general-form"
         type="submit"
         [class.disabled]="email.invalid || password.invalid"
       >

@@ -15,9 +15,8 @@
         <img src="./assets/ifuwp.jpg" alt="username" />
       </div>
       <span>Username</span> <span class="sp">|</span>
-      <span class="rol"
-        >Rol
-        <i class="fas fa-angle-down" (click)="showAndHideOptions($event)"></i
+      <span class="rol" (click)="showAndHideOptions($event)"
+        >Rol <i class="fas fa-angle-down"></i
       ></span>
 
       <ul class="options" id="options">
@@ -31,7 +30,11 @@
         <li><i class="fas fa-user-cog"></i> Admin</li>
       </ul>
     </div>
-    <li class="navbar-public_navigation-item" [routerLink]="['/auth/signin']">
+    <li
+      class="navbar-public_navigation-item"
+      (click)="logout()"
+      [routerLink]="['/']"
+    >
       Cerrar Sesión
     </li>
   </ul>

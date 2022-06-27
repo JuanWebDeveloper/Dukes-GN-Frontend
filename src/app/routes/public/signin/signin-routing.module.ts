@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SigninComponent } from 'src/app/ui/components/signin/signin.component';
 
 const routes: Routes = [
   {
-    path: 'root',
-    loadChildren: () =>
-      import('./root/root-routing.module').then(
-        (routesRoot) => routesRoot.RootRoutingModule
-      ),
+    path: '',
+    component: SigninComponent,
   },
 ];
 
@@ -15,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PrivateRoutingModule {}
+export class SigninRoutingModule {}

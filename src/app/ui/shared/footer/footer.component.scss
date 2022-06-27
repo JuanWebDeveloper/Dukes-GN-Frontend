@@ -1,10 +1,12 @@
 @use "../../styles/index" as styles;
 
 .footer {
-  background-color: styles.$color-secondary;
+  background-color: rgba(styles.$color-secondary, 0.5);
+  backdrop-filter: brightness(90%);
   border-top: 5px solid styles.$color-blue;
   bottom: 0;
-  position: absolute;
+  margin-top: 60px;
+  position: relative;
   width: 100vw;
 
   &-content {
@@ -116,7 +118,8 @@
     }
 
     &_copy {
-      background-color: styles.$color-tertiary;
+      background-color: rgba(styles.$color-tertiary, 0.5);
+      backdrop-filter: brightness(90%);
       margin-top: styles.$box-mrg-half;
       position: relative;
       text-align: center;

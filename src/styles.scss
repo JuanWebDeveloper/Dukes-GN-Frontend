@@ -15,8 +15,8 @@ body {
 }
 
 body {
-  @include styles.font-body;
   background-color: styles.$color-primary;
+  @include styles.font-body;
 }
 
 h1,
@@ -50,10 +50,20 @@ p {
 }
 
 main {
-  display: flex;
-  flex-direction: column;
   position: relative;
+  padding-top: 60px;
   min-height: 100vh;
+
+  &::after {
+    background: url("./assets/texture/dashboard.png");
+    background-size: contain;
+    content: "";
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    z-index: -1;
+  }
 }
 
 ul {
@@ -62,8 +72,76 @@ ul {
   padding: 0;
 }
 
-.btn-general {
-  background-color: styles.$color-blue-3;
+form {
+  position: relative;
+  width: 100%;
+
+  .form-group {
+    margin-bottom: styles.$box-mrg-half;
+    position: relative;
+    width: 100%;
+
+    input,
+    select {
+      background-color: rgba(styles.$color-secondary, 0.5);
+      backdrop-filter: brightness(90%);
+      border-radius: 5px;
+      border: none;
+      font-size: 1.1rem;
+      outline: 2px solid transparent;
+      padding: styles.$box-pad-half;
+      transition: styles.$animation-bezier;
+      width: 100%;
+
+      &:hover,
+      &:focus {
+        outline-color: styles.$color-blue;
+      }
+
+      &.invalid {
+        outline-color: styles.$color-errors;
+      }
+
+      &.valid {
+        outline-color: styles.$color-success;
+      }
+    }
+
+    select {
+      appearance: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-position: right center;
+      background-repeat: no-repeat;
+      background-size: 1.5rem;
+      text-align: center;
+
+      option {
+        background-color: rgba(styles.$color-primary, 0.7);
+      }
+    }
+
+    .message-error {
+      @include styles.animation-scale-in_XY;
+      background-color: styles.$color-errors;
+      border-radius: 5px;
+      color: styles.$color-white;
+      margin-top: styles.$box-mrg-quarter;
+      position: relative;
+      padding: styles.$box-pad-half;
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  button {
+    float: right;
+  }
+}
+
+.btn-general,
+.btn-general-form {
   border: none;
   border-radius: 5px;
   color: styles.$color-white;
@@ -90,8 +168,29 @@ ul {
     transform: scale(1.1);
 
     &::before {
-      background-color: styles.$color-blue-2;
       @include styles.animation-scale-in_X;
+    }
+  }
+}
+
+.btn-general {
+  background-color: rgba(styles.$color-blue-3, 0.5);
+  backdrop-filter: brightness(90%);
+
+  &:hover {
+    &::before {
+      background-color: rgba(styles.$color-blue, 0.5);
+      backdrop-filter: brightness(90%);
+    }
+  }
+}
+
+.btn-general-form {
+  background-color: styles.$color-blue-3;
+
+  &:hover {
+    &::before {
+      background-color: styles.$color-blue;
     }
   }
 }

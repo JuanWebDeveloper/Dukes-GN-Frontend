@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
+
 @Component({
   selector: 'dukes-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor() {}
+  constructor(private authenticationService: AuthenticationService) {}
 
   ngOnInit(): void {}
 
@@ -34,5 +36,10 @@ export class NavbarComponent implements OnInit {
       options.classList.remove('hide');
       options.classList.add('show');
     }
+  }
+
+  // Method to logout the user.
+  public logout(): void {
+    this.authenticationService.logout();
   }
 }

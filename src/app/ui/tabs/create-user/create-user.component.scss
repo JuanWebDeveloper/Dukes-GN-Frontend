@@ -1,0 +1,22 @@
+@use "../../styles/index" as styles;
+
+.create-user {
+  position: relative;
+  width: 100%;
+
+  &_content {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
+    width: 40%;
+
+    @media (max-width: styles.$bkp-desktop-w) {
+      width: 50%;
+    }
+
+    @media (max-width: styles.$bkp-mobile-w) {
+      width: 90%;
+    }
+  }
+}
