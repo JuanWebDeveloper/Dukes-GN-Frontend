@@ -57,6 +57,18 @@ export class AuthenticationService {
     return await this.auth.signOut();
   }
 
+  // Service to reset the password.
+  async resetPassword(email: string) {
+    return await this.auth
+      .sendPasswordResetEmail(email)
+      .then((result) => {
+        return result;
+      })
+      .catch((error) => {
+        return error;
+      });
+  }
+
   // Service to obtain the information of the registered user.
   async getInfoUser(): Promise<any> {
     return await this.auth.currentUser.then((user: any) => user);

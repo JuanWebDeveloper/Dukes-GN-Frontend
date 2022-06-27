@@ -20,6 +20,29 @@
       text-align: center;
     }
 
+    .auth-footer {
+      margin-top: styles.$box-mrg-base;
+      text-align: center;
+
+      a {
+        color: styles.$color-blue-2;
+        cursor: pointer;
+        display: block;
+        margin-bottom: styles.$box-mrg-half;
+        text-decoration: none;
+        transition: styles.$animation-bezier;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &:hover {
+          color: styles.$color-blue;
+          letter-spacing: 1px;
+        }
+      }
+    }
+
     @media (max-width: styles.$bkp-desktop-w) {
       width: 50%;
     }
