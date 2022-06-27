@@ -15,6 +15,11 @@ import { MessagesUtil } from 'src/app/core/utils/messages.util';
 export class SigninComponent {
   constructor(private authenticationService: AuthenticationService, private toastr: ToastrService, private router: Router) { }
 
+  // redirect 
+  public redirect(url: string): void {
+    this.router.navigate([url]);
+  }
+
   // Login the user.
   public async onSubmit(form: NgForm) {
     const { email, password } = form.value;
@@ -28,10 +33,9 @@ export class SigninComponent {
         } else {
           console.log(response)
           this.toastr.error(new MessagesUtil().getMessage(response.code), "Error", {
-            closeButton: true,
             progressBar: true,
             positionClass: 'toast-top-right',
-            timeOut: 3000,
+            timeOut: 2000,
           });
         }
       })
