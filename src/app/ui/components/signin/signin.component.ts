@@ -12,7 +12,7 @@ export class SigninComponent {
   constructor(private authenticationService: AuthenticationService) {}
 
   // Login the user.
-  async onSubmit(form: NgForm) {
+  public async onSubmit(form: NgForm) {
     const { email, password } = form.value;
 
     await this.authenticationService

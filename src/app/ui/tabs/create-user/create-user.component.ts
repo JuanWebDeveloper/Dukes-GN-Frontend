@@ -12,7 +12,7 @@ export class CreateUserComponent {
   constructor(private authenticationService: AuthenticationService) {}
 
   // Register the user.
-  async onSubmit(form: NgForm) {
+  public async onSubmit(form: NgForm) {
     const { name, email, password } = form.value;
 
     await this.authenticationService
