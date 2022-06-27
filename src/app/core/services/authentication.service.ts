@@ -21,4 +21,11 @@ export class AuthenticationService {
         return error;
       });
   }
+
+  // Service to send an mail to authenticate the email.
+  async SendVerificationMail() {
+    return await this.auth.currentUser.then(
+      (user) => user && user.sendEmailVerification()
+    );
+  }
 }

@@ -22,6 +22,8 @@ export class CreateUserComponent {
           response.user.updateProfile({
             displayName: name,
           });
+
+          form.reset();
         }
       })
       .catch((error) => {
