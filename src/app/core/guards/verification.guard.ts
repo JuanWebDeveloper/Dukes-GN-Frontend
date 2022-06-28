@@ -32,7 +32,6 @@ export class VerificationGuard implements CanActivate {
       this.authenticationService.verifyEmail
         ? this.notApprovedVisit(observer)
         : this.approvedVisit(observer); //Si el correo está verificado, el usuario puede acceder al blog.
-
     });
   }
 
@@ -42,7 +41,7 @@ export class VerificationGuard implements CanActivate {
   }
 
   private notApprovedVisit(observer: Observer<boolean>): void {
-    this.router.navigate(['/dashboard/root']);
+    this.router.navigate(['/dashboard']);
     observer.next(false);
     observer.complete();
   }

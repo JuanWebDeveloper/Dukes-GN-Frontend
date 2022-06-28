@@ -15,6 +15,7 @@ import { CreateUserComponent } from './tabs/create-user/create-user.component';
 import { ListProgramComponent } from './tabs/list-program/list-program.component';
 import { VerificationComponent } from './components/verification/verification.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     ListProgramComponent,
     VerificationComponent,
     ForgotPasswordComponent,
+    HomeComponent,
   ],
   imports: [BrowserModule, CommonModule, RouterModule, FormsModule],
 })
