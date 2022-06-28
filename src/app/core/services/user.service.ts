@@ -2,13 +2,17 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 import { User } from '../models/User';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { FirestoreToUserMapper } from '../mappers/firestore-to-users.mapper';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private angularFirestore: AngularFirestore) {}
+  constructor(
+    private angularFirestore: AngularFirestore,
+    private firestoreToUserMapper: FirestoreToUserMapper
+  ) {}
 
   // Servicio para guardar la información de los usuario.
   async saveUser(user: User) {
@@ -21,14 +25,23 @@ export class UserService {
   getUser(userId: string): Observable<User> {
     const userRef = this.angularFirestore.collection('users');
 
-    return userRef.doc(userId).valueChanges() as Observable<User>;
+    return userRef
+      .doc(userId)
+      .valueChanges()
+      .pipe(
+        map((response: any) => this.firestoreToUserMapper.mapUser(response))
+      );
   }
 
   // Servicio para obtener la información de todos los usuario.
   getAllUsers(): Observable<User[]> {
     const userRef = this.angularFirestore.collection('users');
 
-    return userRef.valueChanges() as Observable<User[]>;
+    return userRef
+      .valueChanges()
+      .pipe(
+        map((response: any) => this.firestoreToUserMapper.mapUsers(response))
+      );
   }
 
   // Servicio para actualizar la información de los usuario.
