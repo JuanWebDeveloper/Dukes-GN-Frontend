@@ -1,3 +1,5 @@
+@use "../../styles/index.scss" as styles;
+
 .home {
   min-height: 100vh;
   position: relative;
@@ -9,6 +11,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
+    z-index: 1;
 
     h2 {
       text-align: center;

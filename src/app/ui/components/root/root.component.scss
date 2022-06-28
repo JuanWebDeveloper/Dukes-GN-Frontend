@@ -4,6 +4,9 @@
   min-height: 100vh;
   position: relative;
   width: 100%;
+  background-color: #f1f1f190;
+  backdrop-filter: brightness(50%);
+  @include styles.pat-root;
 
   &-content {
     left: 50%;

@@ -5,12 +5,13 @@
   backdrop-filter: brightness(90%);
   border-top: 5px solid styles.$color-blue;
   bottom: 0;
-  margin-top: 60px;
   position: relative;
   width: 100vw;
 
   &-content {
     position: relative;
+    background-color: rgba(styles.$color-tertiary, 0.5);
+    backdrop-filter: brightness(90%);
     width: 100%;
 
     &_logo {
