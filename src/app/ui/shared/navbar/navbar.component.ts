@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import firebase from "firebase/compat";
+import User = firebase.User;
 
 @Component({
   selector: 'dukes-navbar',
@@ -9,14 +11,28 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+
+  public userInfo: any | undefined;
+  public userPhoto: string | undefined;
+
   constructor(
     private authenticationService: AuthenticationService,
     public router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authenticationService.getInfoUser().then((user: User) => {
+      this.userInfo = user.displayName;
+      this.userPhoto = user.photoURL ? user.photoURL : './assets/ifuwp.jpg';
+    })
+  }
 
-  // Method to toggle the navbar.
+  ngOnDestroy(): void {
+    this.userPhoto = undefined;
+    this.userInfo = undefined;
+  }
+
+  // Método para alternar el navbar.
   public showAndHide(): void {
     const navigation: any = document.getElementById('navigation');
     const bars: any = document.getElementById('bars');
@@ -25,7 +41,7 @@ export class NavbarComponent implements OnInit {
     bars.classList.toggle('active');
   }
 
-  // Method to toggle the options navbar.
+  // Método para alternar las opciones del navbar.
   public showAndHideOptions($event: any): void {
     const options: any = document.getElementById('options');
 
@@ -42,7 +58,7 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  // Method to logout the user.
+  // Método para cerrar sesión de un usuario.
   public logout(): void {
     this.authenticationService.logout().then(() => {
       this.router.navigate(['/']);

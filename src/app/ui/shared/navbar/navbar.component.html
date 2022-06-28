@@ -12,11 +12,11 @@
   <ul class="navbar-public_navigation" id="navigation">
     <div class="navbar-public_navigation-information">
       <div class="photo">
-        <img src="./assets/ifuwp.jpg" alt="username" />
+        <img [src]="userPhoto" [alt]="userInfo" />
       </div>
-      <span>Username</span> <span class="sp">|</span>
+      <span>{{ userInfo }} </span><span class="sp">|</span>
       <span class="rol" (click)="showAndHideOptions($event)"
-        >Rol <i class="fas fa-angle-down"></i
+        > Rol <i class="fas fa-angle-down"></i
       ></span>
 
       <ul class="options" id="options">
