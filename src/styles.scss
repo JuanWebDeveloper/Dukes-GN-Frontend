@@ -54,6 +54,8 @@ main {
   padding-top: 60px;
   min-height: 100vh;
 
+  @include styles.animation-banner-slide;
+
   &::after {
     background: url("./assets/texture/dashboard.png");
     background-size: contain;
