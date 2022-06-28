@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
@@ -13,6 +14,7 @@ import { environment } from '../environments/environment';
 
 // Services.
 import { AuthenticationService } from './core/services/authentication.service';
+import { UserService } from './core/services/user.service';
 
 // Components.
 import { AppComponent } from './app.component';
@@ -25,11 +27,12 @@ import { ComponentsModule } from './ui/components.module';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
