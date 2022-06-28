@@ -23,6 +23,14 @@ const routes: Routes = [
     canActivate: [DashboardGuard],
   },
   {
+    path: 'my-information',
+    loadChildren: () =>
+      import('./my-information/my-information-routing.module').then(
+        (routesMyInformation) => routesMyInformation.MyInformationRoutingModule
+      ),
+    canActivate: [DashboardGuard],
+  },
+  {
     path: 'verification',
     loadChildren: () =>
       import('./verification/verification-routing.module').then(
@@ -36,4 +44,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PrivateRoutingModule {}
+export class PrivateRoutingModule { }
