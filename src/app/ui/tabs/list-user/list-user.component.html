@@ -1,1 +1,39 @@
-<p>list-user works!</p>
+<div class="list-users">
+  <div class="list-users_content">
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Verificación</th>
+          <th>Disponibilidad</th>
+          <th>Rol</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>
+            <span>NB</span>
+            {{ user.name }}
+          </td>
+          <td>
+            <span>CR</span>
+            {{ user.email }}
+          </td>
+          <td>
+            <span>VR</span>
+            <i [class]="showIcon(user.verification)"></i>
+          </td>
+          <td>
+            <span>DP</span>
+            <i [class]="showIcon(user.availability)"></i>
+          </td>
+          <td>
+            <span>Rol</span>
+            {{ user.rol }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

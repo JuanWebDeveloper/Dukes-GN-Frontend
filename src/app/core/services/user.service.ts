@@ -24,6 +24,13 @@ export class UserService {
     return userRef.doc(userId).valueChanges() as Observable<User>;
   }
 
+  // Servicio para obtener la información de todos los usuario.
+  getAllUsers(): Observable<User[]> {
+    const userRef = this.angularFirestore.collection('users');
+
+    return userRef.valueChanges() as Observable<User[]>;
+  }
+
   // Servicio para actualizar la información de los usuario.
   async updateUser(user: User) {
     const userRef = this.angularFirestore.collection('users');

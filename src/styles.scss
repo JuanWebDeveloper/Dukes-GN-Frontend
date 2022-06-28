@@ -242,14 +242,110 @@ form {
 
   &-tab {
     @include styles.animation-scale-in_X;
-    background-color: rgba(styles.$color-secondary, 0.5);
-    backdrop-filter: brightness(90%);
+    background-color: rgba(styles.$color-secondary, 0.6);
+    backdrop-filter: brightness(30%);
     border-radius: 5px;
     box-shadow: styles.$color-box-shadow-secondary;
     margin-top: styles.$box-mrg-onehalf;
     position: relative;
     padding: styles.$box-pad-onehalf styles.$box-pad-half;
     width: 100%;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+
+  thead {
+    tr {
+      th {
+        background-color: rgba(styles.$color-tertiary, 0.8);
+        backdrop-filter: brightness(30%);
+        border-right: 1px solid styles.$color-blue;
+        display: table-cell;
+        padding: 0.75rem;
+        font-weight: 600;
+        text-transform: capitalize;
+        text-align: center;
+
+        &:first-child {
+          border-left: 1px solid styles.$color-blue;
+        }
+
+        @media (max-width: styles.$bkp-desktop-w) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      background-color: rgba(styles.$color-tertiary, 0.9);
+      backdrop-filter: brightness(80%);
+      display: table-row;
+      transition: styles.$animation-bezier;
+      width: 100%;
+
+      &:hover {
+        background-color: rgba(styles.$color-tertiary, 0.5);
+        backdrop-filter: brightness(10%);
+      }
+
+      td {
+        display: table-cell;
+        position: static;
+        padding: styles.$box-pad-half;
+        text-align: center;
+        transition: styles.$animation-bezier;
+
+        .check {
+          color: styles.$color-success;
+        }
+
+        .times {
+          color: styles.$color-errors;
+        }
+
+        span {
+          align-items: center;
+          background-color: rgba(styles.$color-tertiary, 0.8);
+          backdrop-filter: brightness(30%);
+          display: none;
+          height: 100%;
+          justify-content: center;
+          left: 0px;
+          position: absolute;
+          text-transform: uppercase;
+          top: 0px;
+          width: 80px;
+        }
+
+        @media (max-width: styles.$bkp-desktop-w) {
+          border-bottom: 1px solid styles.$color-blue;
+          display: block;
+          position: relative;
+          padding-left: calc(styles.$box-pad-half + 5rem);
+          width: 100%;
+
+          span {
+            display: flex;
+          }
+        }
+      }
+
+      &:hover td {
+        color: styles.$color-white;
+      }
+
+      @media (max-width: styles.$bkp-desktop-w) {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: styles.$box-mrg-half;
+      }
+    }
   }
 }
 
