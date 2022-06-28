@@ -23,6 +23,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ScoreUserComponent } from './tabs/score-user/score-user.component';
 import { CreateProgramComponent } from './tabs/create-program/create-program.component';
 import { ProgramProgressComponent } from './tabs/program-progress/program-progress.component';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ProgramProgressComponent } from './tabs/program-progress/program-progre
     ScoreUserComponent,
     CreateProgramComponent,
     ProgramProgressComponent,
+    LoadingComponent,
   ],
   imports: [BrowserModule, CommonModule, RouterModule, FormsModule],
 })

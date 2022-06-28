@@ -1,0 +1,19 @@
+@use "../../styles/index" as styles;
+
+.loading {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  position: relative;
+
+  .loading-cricle {
+    @include styles.animation-loading-circle;
+    border: 7px solid rgba(styles.$color-black, 0.5);
+    border-top-color: styles.$color-blue-2;
+    border-radius: 50%;
+    height: 6rem;
+    width: 6rem;
+  }
+}
