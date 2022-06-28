@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
     "@firebase/auth": "^0.20.4",
+    "chart.js": "^3.8.0",
     "crypto-js": "^4.1.1",
     "firebase": "^9.8.4",
     "ngx-toastr": "^14.3.0",

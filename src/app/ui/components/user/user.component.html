@@ -1,0 +1,23 @@
+<div class="user">
+  <div class="user-content">
+    <h2>Panel Usuario - {{ userName }}</h2>
+    <div class="tabs">
+      <div class="tabs-indicators">
+        <button
+          class="btn-general"
+          *ngFor="let indicator of indicators"
+          (click)="onTabChange(indicator)"
+          [ngClass]="{ active: selected === indicator }"
+        >
+          {{ indicator }}
+        </button>
+      </div>
+      <div class="tabs-tab" *ngIf="selected === 'Gráfica'">
+        <dukes-graph-progress></dukes-graph-progress>
+      </div>
+      <div class="tabs-tab" *ngIf="selected === 'Tabla'">
+        <dukes-table-progress></dukes-table-progress>
+      </div>
+    </div>
+  </div>
+</div>
