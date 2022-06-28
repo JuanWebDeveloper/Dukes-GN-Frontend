@@ -133,6 +133,7 @@
           position: relative;
           padding: styles.$box-pad-half styles.$box-pad-base;
           text-transform: capitalize;
+          white-space: nowrap;
 
           i {
             color: styles.$color-blue;
