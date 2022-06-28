@@ -23,6 +23,14 @@ const routes: Routes = [
     canActivate: [DashboardGuard],
   },
   {
+    path: 'user',
+    loadChildren: () =>
+      import('./user/user-routing.module').then(
+        (routesUser) => routesUser.UserRoutingModule
+      ),
+    canActivate: [DashboardGuard],
+  },
+  {
     path: 'verification',
     loadChildren: () =>
       import('./verification/verification-routing.module').then(
