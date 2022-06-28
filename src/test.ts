@@ -14,13 +14,13 @@ declare const require: {
   };
 };
 
-// First, initialize the Angular testing environment.
+// En primer lugar, inicialice el entorno de pruebas de Angular.
 getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting(),
 );
 
-// Then we find all the tests.
+// Entonces encontramos todas las pruebas.
 const context = require.context('./', true, /\.spec\.ts$/);
-// And load the modules.
+// And se encuentran los módulos.
 context.keys().map(context);

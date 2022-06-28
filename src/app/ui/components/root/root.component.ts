@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RootComponent implements OnInit {
   public indicators = [
-    'Lista De Usuarios',
+    'Lista de Usuarios',
     'Crear Usuario',
-    'Lista De Programas',
+    'Lista de Programas',
   ];
   public selected: string | undefined;
 
@@ -19,7 +19,7 @@ export class RootComponent implements OnInit {
     this.selected = this.indicators[1];
   }
 
-  // Method to change the selected tab.
+  //Método para cargar la pestaña seleccionada.
   public onTabChange(indicator: string): void {
     this.selected = indicator;
   }
