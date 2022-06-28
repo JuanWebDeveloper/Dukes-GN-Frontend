@@ -35,12 +35,21 @@ export class CreateUserComponent {
           response.user.updateProfile({
             displayName: name,
           });
+
           form.reset();
+
           this.toastr.success(
             `El usuario se ha creado con éxito.`,
             'Operación exitosa',
             this.notificationSettings
           );
+
+          this.authenticationService.logout().then(() => {
+            this.authenticationService.login(
+              'juandeveloper19@gmail.com',
+              '123456'
+            );
+          });
         } else {
           this.toastr.error(
             this.messagesUtil.getMessage(response.code),
