@@ -7,6 +7,14 @@ import { VerificationGuard } from '../../core/guards/verification.guard';
 
 const routes: Routes = [
   {
+    path: '',
+    loadChildren: () =>
+      import('./home/home-routing.module').then(
+        (routesHome) => routesHome.HomeRoutingModule
+      ),
+    canActivate: [DashboardGuard],
+  },
+  {
     path: 'root',
     loadChildren: () =>
       import('./root/root-routing.module').then(

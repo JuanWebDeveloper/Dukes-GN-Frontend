@@ -2,8 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
-import firebase from "firebase/compat";
-import User = firebase.User;
 
 @Component({
   selector: 'dukes-verification',
@@ -19,7 +17,7 @@ export class VerificationComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.authenticationService.getInfoUser().then((user: User) => {
+    this.authenticationService.getInfoUser().then((user: any) => {
       this.userInfo = user.displayName;
     });
   }
@@ -44,7 +42,7 @@ export class VerificationComponent implements OnInit, OnDestroy {
   }
 
   public verify(): void {
-    window.location.href = 'dashboard/root';
+    window.location.href = 'dashboard';
   }
 
   public logout(): void {
