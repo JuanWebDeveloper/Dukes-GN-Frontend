@@ -29,7 +29,6 @@ export class DashboardGuard implements CanActivate {
     | boolean
     | UrlTree {
     return new Observable((observer: Observer<boolean>) => {
-      console.log(this.authenticationService.verifyEmail);
       this.authenticationService.verifyEmail
         ? this.approvedVisit(observer)
         : this.notApprovedVisit(observer); // If the email is not verified, the user cannot access the blog.

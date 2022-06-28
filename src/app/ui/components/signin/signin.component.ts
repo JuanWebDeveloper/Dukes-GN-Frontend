@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
-import { ToastrService } from 'ngx-toastr';
 import { MessagesUtil } from 'src/app/core/utils/messages.util';
-
 
 @Component({
   selector: 'dukes-signin',
@@ -13,12 +12,19 @@ import { MessagesUtil } from 'src/app/core/utils/messages.util';
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent {
-  constructor(private authenticationService: AuthenticationService, private toastr: ToastrService, private router: Router) { }
+  private messagesUtil = new MessagesUtil();
+  private notificationSettings = {
+    progressBar: true,
+    positionClass: 'toast-top-right',
+    timeOut: 3000,
+    enableHtml: true,
+  };
 
-  // redirect 
-  public redirect(url: string): void {
-    this.router.navigate([url]);
-  }
+  constructor(
+    private authenticationService: AuthenticationService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
 
   // Login the user.
   public async onSubmit(form: NgForm) {
@@ -28,17 +34,24 @@ export class SigninComponent {
       .login(email, password)
       .then((response: any) => {
         if (response.user) {
-          this.router.navigate(['dashboard/verification']);
-          form.reset();
-        } else {
-          console.log(response)
-          this.toastr.error(new MessagesUtil().getMessage(response.code), "Error", {
-            progressBar: true,
-            positionClass: 'toast-top-right',
-            timeOut: 2000,
-          });
-        }
-      })
+          this.toastr.success(
+            `Bienvenido <span class="capitalize">${response.user.displayName}</span> <br /> Redireccionando...`,
+            'Inicio de sesión exitoso',
+            this.notificationSettings
+          );
 
+          setTimeout(() => {
+            this.router.navigate(['dashboard/verification']);
+            this.toastr.clear();
+            form.reset();
+          }, 3000);
+        } else {
+          this.toastr.error(
+            this.messagesUtil.getMessage(response.code),
+            'Error',
+            this.notificationSettings
+          );
+        }
+      });
   }
 }

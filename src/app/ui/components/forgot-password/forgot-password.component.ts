@@ -1,54 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { MessagesUtil } from 'src/app/core/utils/messages.util';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'sofkianos-forgot-password',
   templateUrl: './forgot-password.component.html',
   styleUrls: ['../signin/signin.component.scss'],
 })
-export class ForgotPasswordComponent implements OnInit {
+export class ForgotPasswordComponent {
+  private messagesUtil = new MessagesUtil();
+  private notificationSettings = {
+    progressBar: true,
+    positionClass: 'toast-top-right',
+    timeOut: 3000,
+    enableHtml: true,
+  };
 
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
     private toastr: ToastrService
-  ) { }
-
-  ngOnInit(): void { }
+  ) {}
 
   // Method to send email to user with a link to reset password.
-  public sendEmail(forgotPasswordForm: NgForm): void {
-
-    this.authenticationService
+  public async onSubmit(forgotPasswordForm: NgForm) {
+    await this.authenticationService
       .resetPassword(forgotPasswordForm.value.email)
       .then((response) => {
         if (response) {
-          this.toastr.error(new MessagesUtil().getMessage(response.code), 'Error', {
-            progressBar: true,
-            positionClass: 'toast-top-right',
-            timeOut: 2000,
-          });
-
+          this.toastr.error(
+            this.messagesUtil.getMessage(response.code),
+            'Error',
+            this.notificationSettings
+          );
         } else {
-          this.toastr.success('El correo se ha sido enviado con éxito, Redireccionando...', '', {
-            progressBar: true,
-            positionClass: 'toast-top-right',
-            timeOut: 2000,
-          });
+          this.toastr.success(
+            'Se ha enviado un correo a su cuenta de correo electrónico con un enlace para restablecer la contraseña. <br /> Redireccionando...',
+            'Correo enviado',
+            this.notificationSettings
+          );
 
           setTimeout(() => {
-            this.router.navigate(['']);
+            this.router.navigate(['/']);
+            this.toastr.clear();
           }, 3000);
         }
       });
-  }
-
-  redirect(url: string): void {
-    this.router.navigate([url]);
   }
 }

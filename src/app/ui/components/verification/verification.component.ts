@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
@@ -10,7 +11,10 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 export class VerificationComponent implements OnInit, OnDestroy {
   public userInfo: any;
 
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(
+    private authenticationService: AuthenticationService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.authenticationService.getInfoUser().then((user: any) => {
@@ -25,6 +29,16 @@ export class VerificationComponent implements OnInit, OnDestroy {
   // Methods.
   public sendMail(): void {
     this.authenticationService.SendVerificationMail();
+    this.toastr.success(
+      'Se ha enviado un correo para verificar su cuenta.',
+      'Correo enviado',
+      {
+        progressBar: true,
+        positionClass: 'toast-top-right',
+        timeOut: 3000,
+        enableHtml: true,
+      }
+    );
   }
 
   public verify(): void {

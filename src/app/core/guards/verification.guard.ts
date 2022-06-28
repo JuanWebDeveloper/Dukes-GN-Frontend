@@ -29,8 +29,6 @@ export class VerificationGuard implements CanActivate {
     | boolean
     | UrlTree {
     return new Observable((observer: Observer<boolean>) => {
-      console.log(this.authenticationService.verifyEmail);
-
       this.authenticationService.verifyEmail
         ? this.notApprovedVisit(observer)
         : this.approvedVisit(observer); // If the email is verified, the user can access the blog.
