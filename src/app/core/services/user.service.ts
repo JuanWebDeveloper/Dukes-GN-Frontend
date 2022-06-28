@@ -27,10 +27,8 @@ export class UserService {
 
     return userRef
       .doc(userId)
-      .valueChanges()
-      .pipe(
-        map((response: any) => this.firestoreToUserMapper.mapUser(response))
-      );
+      .valueChanges() as Observable<User>
+      
   }
 
   // Servicio para obtener la información de todos los usuario.

@@ -24,6 +24,7 @@ export class AuthenticationService {
     return await this.auth
       .createUserWithEmailAndPassword(email, hash)
       .then((response: any) => {
+        this.SendVerificationMail();
         return response;
       })
       .catch((error) => {
