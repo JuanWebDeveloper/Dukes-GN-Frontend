@@ -1,0 +1,27 @@
+<div class="admin">
+  <div class="admin-content">
+    <h2>Panel Usuario Admin</h2>
+
+    <div class="tabs">
+      <div class="tabs-indicators">
+        <button
+          class="btn-general"
+          *ngFor="let indicator of indicators"
+          (click)="onTabChange(indicator)"
+          [ngClass]="{ active: selected === indicator }"
+        >
+          {{ indicator }}
+        </button>
+      </div>
+      <div class="tabs-tab" *ngIf="selected === 'Asignar Notas'">
+        <dukes-score-user></dukes-score-user>
+      </div>
+      <div class="tabs-tab" *ngIf="selected === 'Crear Programa'">
+        <dukes-create-program></dukes-create-program>
+      </div>
+      <div class="tabs-tab" *ngIf="selected === 'Progreso Programa'">
+        <dukes-program-progress></dukes-program-progress>
+      </div>
+    </div>
+  </div>
+</div>

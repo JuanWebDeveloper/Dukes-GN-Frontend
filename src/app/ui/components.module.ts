@@ -19,6 +19,10 @@ import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './components/user/user.component';
 import { GraphProgressComponent } from './tabs/graph-progress/graph-progress.component';
 import { TableProgressComponent } from './tabs/table-progress/table-progress.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { ScoreUserComponent } from './tabs/score-user/score-user.component';
+import { CreateProgramComponent } from './tabs/create-program/create-program.component';
+import { ProgramProgressComponent } from './tabs/program-progress/program-progress.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +40,10 @@ import { TableProgressComponent } from './tabs/table-progress/table-progress.com
     UserComponent,
     GraphProgressComponent,
     TableProgressComponent,
+    AdminComponent,
+    ScoreUserComponent,
+    CreateProgramComponent,
+    ProgramProgressComponent,
   ],
   imports: [BrowserModule, CommonModule, RouterModule, FormsModule],
 })
