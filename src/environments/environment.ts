@@ -1,5 +1,6 @@
 export const environment = {
   production: false,
+  //Credenciales Firebase.
   firebaseConfig: {
     apiKey: 'AIzaSyDmi1G2K7mLdmaNnD_RNbPHEz5CbU5mZAA',
     authDomain: 'dukes-9be6f.firebaseapp.com',

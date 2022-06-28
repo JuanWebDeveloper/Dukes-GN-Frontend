@@ -30,7 +30,7 @@
           class="message-error"
           *ngIf="name.value && name.value.length > 2 && name.invalid"
         >
-          El nombre de usuario debe contener solo letras y espacios.
+          El nombre de usuario debe contener sólo letras y espacios.
         </div>
       </div>
       <div class="form-group">
@@ -52,7 +52,7 @@
           class="message-error"
           *ngIf="email.value && email.invalid && email.touched"
         >
-          El correo es invalido
+          El correo es inválido.
         </div>
       </div>
       <div class="form-group">
@@ -109,7 +109,7 @@
             passwordConfirmation.value
           "
         >
-          La contraseñas no coinciden.
+          Las contraseñas no coinciden.
         </div>
       </div>
       <div class="form-group">
@@ -126,7 +126,7 @@
           <option value="user">Usuario</option>
         </select>
         <div class="message-error" *ngIf="!rol.value && rol.touched">
-          El rol de usuario es requerida.
+          El rol de usuario es requerido.
         </div>
       </div>
       <button

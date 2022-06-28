@@ -7,7 +7,7 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 import { MessagesUtil } from 'src/app/core/utils/messages.util';
 
 @Component({
-  selector: 'sofkianos-forgot-password',
+  selector: 'dukes-forgot-password',
   templateUrl: './forgot-password.component.html',
   styleUrls: ['../signin/signin.component.scss'],
 })
@@ -26,7 +26,7 @@ export class ForgotPasswordComponent {
     private toastr: ToastrService
   ) {}
 
-  // Method to send email to user with a link to reset password.
+  //Método para enviar correo al usuario con el enlace para restablecer contraseña.
   public async onSubmit(forgotPasswordForm: NgForm) {
     await this.authenticationService
       .resetPassword(forgotPasswordForm.value.email)

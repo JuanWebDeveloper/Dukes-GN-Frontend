@@ -26,7 +26,7 @@ export class SigninComponent {
     private router: Router
   ) {}
 
-  // Login the user.
+  // Inicio de sesión del usuario.
   public async onSubmit(form: NgForm) {
     const { email, password } = form.value;
 

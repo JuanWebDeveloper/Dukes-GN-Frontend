@@ -4,16 +4,16 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
-// Routings.
+// Rutas.
 import { AppRoutingModule } from './app-routing.module';
 
-// Environment variables
+// Variables de Entorno
 import { environment } from '../environments/environment';
 
-// Services.
+// Servicios.
 import { AuthenticationService } from './core/services/authentication.service';
 
-// Components.
+// Componentes.
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './ui/components.module';
 
