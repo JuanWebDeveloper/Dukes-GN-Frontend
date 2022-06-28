@@ -17,7 +17,7 @@ export class AuthenticationService {
     );
   }
 
-  // Service for the register of the users.
+  // Servicio para el registro de usuarios.
   async register(email: string, password: string) {
     const hash = SHA512(password).toString();
 
@@ -31,14 +31,14 @@ export class AuthenticationService {
       });
   }
 
-  // Service to send an mail to authenticate the email.
+  //Servicio para enviar el correo de autenticación al correo registrado.
   async SendVerificationMail() {
     return await this.auth.currentUser.then(
       (user) => user && user.sendEmailVerification()
     );
   }
 
-  // Service for the login of the users.
+  // Servicio para el inicio de sesión del usuario.
   async login(email: string, password: string) {
     const hash = SHA512(password).toString();
 
@@ -52,12 +52,12 @@ export class AuthenticationService {
       });
   }
 
-  // Service for the logout of the users.
+  // Servicio para el cierre de sesión del usuario.
   async logout() {
     return await this.auth.signOut();
   }
 
-  // Service to reset the password.
+  // Servicio para restablecer la contraseña.
   async resetPassword(email: string) {
     return await this.auth
       .sendPasswordResetEmail(email)
@@ -69,12 +69,12 @@ export class AuthenticationService {
       });
   }
 
-  // Service to obtain the information of the registered user.
+  // Servicio para obtener la información de un usuario registrado.
   async getInfoUser(): Promise<any> {
     return await this.auth.currentUser.then((user: any) => user);
   }
 
-  // Service to verify that the user's email is already verified.
+  //Servicio para verificar que el correo del usuario está verificado.
   get verifyEmail(): boolean {
     return JSON.parse(localStorage.getItem('isVerificated')!);
   }

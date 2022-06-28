@@ -8,7 +8,7 @@ import {
 } from '@angular/router';
 import { Observable, Observer } from 'rxjs';
 
-// Service to verify that the user email is already verified.
+//Servicio para verificar que el correo del usuario está verificado.
 import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable({
@@ -31,7 +31,7 @@ export class DashboardGuard implements CanActivate {
     return new Observable((observer: Observer<boolean>) => {
       this.authenticationService.verifyEmail
         ? this.approvedVisit(observer)
-        : this.notApprovedVisit(observer); // If the email is not verified, the user cannot access the blog.
+        : this.notApprovedVisit(observer); //Si el correo no está verificado, el usuario no puede acceder al blog.
     });
   }
 

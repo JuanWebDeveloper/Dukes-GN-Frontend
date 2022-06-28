@@ -8,7 +8,7 @@ import {
 } from '@angular/router';
 import { Observable, Observer } from 'rxjs';
 
-// Service to verify that the user email is already verified.
+//Servicio para verificar que el correo del usuario está verificado.
 import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable({
@@ -31,7 +31,8 @@ export class VerificationGuard implements CanActivate {
     return new Observable((observer: Observer<boolean>) => {
       this.authenticationService.verifyEmail
         ? this.notApprovedVisit(observer)
-        : this.approvedVisit(observer); // If the email is verified, the user can access the blog.
+        : this.approvedVisit(observer); //Si el correo está verificado, el usuario puede acceder al blog.
+
     });
   }
 

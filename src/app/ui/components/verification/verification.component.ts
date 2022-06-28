@@ -28,7 +28,7 @@ export class VerificationComponent implements OnInit, OnDestroy {
     this.userInfo = undefined;
   }
 
-  // Methods.
+  // Métodos.
   public sendMail(): void {
     this.authenticationService.SendVerificationMail();
     this.toastr.success(

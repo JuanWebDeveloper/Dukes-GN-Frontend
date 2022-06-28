@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit {
     this.userInfo = undefined;
   }
 
-  // Método para alternar el navbar.
+  // Método para mostrar/esconder el navbar.
   public showAndHide(): void {
     const navigation: any = document.getElementById('navigation');
     const bars: any = document.getElementById('bars');
@@ -41,7 +41,7 @@ export class NavbarComponent implements OnInit {
     bars.classList.toggle('active');
   }
 
-  // Método para alternar las opciones del navbar.
+  // Método para mostrar/esconder las opciones del navbar.
   public showAndHideOptions($event: any): void {
     const options: any = document.getElementById('options');
 
