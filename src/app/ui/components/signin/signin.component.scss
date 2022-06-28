@@ -13,28 +13,29 @@
     backdrop-filter: brightness(90%);
     box-shadow: styles.$color-box-shadow;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
     padding: styles.$box-pad-half;
     width: 40%;
 
-    h2 {
+    h2,
+    p {
       text-align: center;
     }
 
-    .auth-footer {
-      margin-top: styles.$box-mrg-base;
+    .form-footer {
+      margin: styles.$box-mrg-quarter 0;
       text-align: center;
+
+      p {
+        margin-bottom: styles.$box-mrg-quarter;
+      }
 
       a {
         color: styles.$color-blue-2;
         cursor: pointer;
-        display: block;
-        margin-bottom: styles.$box-mrg-half;
         text-decoration: none;
         transition: styles.$animation-bezier;
-
-        &:last-child {
-          margin-bottom: 0;
-        }
 
         &:hover {
           color: styles.$color-blue;
