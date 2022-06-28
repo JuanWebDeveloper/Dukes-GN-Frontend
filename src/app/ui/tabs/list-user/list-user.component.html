@@ -1,5 +1,6 @@
 <div class="list-users">
-  <div class="list-users_content">
+  <dukes-loading *ngIf="loading"></dukes-loading>
+  <div class="list-users_content" *ngIf="!loading">
     <table>
       <thead>
         <tr>
