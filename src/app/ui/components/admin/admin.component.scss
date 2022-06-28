@@ -1,0 +1,22 @@
+@use "../../styles/index" as styles;
+
+.admin {
+  min-height: 100vh;
+  position: relative;
+  width: 100%;
+  background-color: #f1f1f190;
+  backdrop-filter: brightness(50%);
+  @include styles.pat-admin;
+
+  &-content {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+
+    h2 {
+      text-align: center;
+    }
+  }
+}
