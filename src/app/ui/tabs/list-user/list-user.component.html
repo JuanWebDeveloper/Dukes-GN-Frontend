@@ -11,26 +11,26 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let user of users">
           <td>
             <span>NB</span>
-            Username
+            {{ user.name }}
           </td>
           <td>
             <span>CR</span>
-            Email
+            {{ user.email }}
           </td>
           <td>
             <span>VR</span>
-            <i class="fas fa-check-circle check"></i>
+            <i [class]="showIcon(user.verification)"></i>
           </td>
           <td>
             <span>DP</span>
-            <i class="fas fa-times-circle times"></i>
+            <i [class]="showIcon(user.availability)"></i>
           </td>
           <td>
             <span>Rol</span>
-            User rol
+            {{ user.rol }}
           </td>
         </tr>
       </tbody>
