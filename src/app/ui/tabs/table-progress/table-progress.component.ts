@@ -25,7 +25,7 @@ export class TableProgressComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    Chart.register(...registerables);
+    //Chart.register(...registerables);
   }
 
 }

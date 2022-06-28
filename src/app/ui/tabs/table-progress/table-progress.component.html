@@ -1,15 +1,15 @@
 <h3>Este es tu progreso: </h3>
 <div class="container">
-  <div >
+
     <table class="table-progress">
       <tr>
         <th *ngFor="let label of labels">{{ label }}</th>
       </tr>
-      <tr *ngFor="let d of data">
+      <tr style="align-content: center; justify-content: center">
         <td *ngFor="let label of labels; let i = index">
           {{ data[i] }}
         </td>
       </tr>
     </table>
-  </div>
+
 </div>
