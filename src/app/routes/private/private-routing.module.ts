@@ -31,6 +31,14 @@ const routes: Routes = [
     canActivate: [DashboardGuard],
   },
   {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin-routing.module').then(
+        (routesUser) => routesUser.AdminRoutingModule
+      ),
+    canActivate: [DashboardGuard],
+  },
+  {
     path: 'verification',
     loadChildren: () =>
       import('./verification/verification-routing.module').then(
