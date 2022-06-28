@@ -16,6 +16,9 @@ import { ListProgramComponent } from './tabs/list-program/list-program.component
 import { VerificationComponent } from './components/verification/verification.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { HomeComponent } from './components/home/home.component';
+import { UserComponent } from './components/user/user.component';
+import { GraphProgressComponent } from './tabs/graph-progress/graph-progress.component';
+import { TableProgressComponent } from './tabs/table-progress/table-progress.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { HomeComponent } from './components/home/home.component';
     VerificationComponent,
     ForgotPasswordComponent,
     HomeComponent,
+    UserComponent,
+    GraphProgressComponent,
+    TableProgressComponent,
   ],
   imports: [BrowserModule, CommonModule, RouterModule, FormsModule],
 })
