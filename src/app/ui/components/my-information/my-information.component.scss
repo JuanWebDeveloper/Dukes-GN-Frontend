@@ -1,0 +1,46 @@
+@use "../../styles/index" as styles;
+
+.my-information {
+  position: relative;
+  width: 100%;
+
+  &_content {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
+    width: 40%;
+
+    @media (max-width: styles.$bkp-desktop-w) {
+      width: 50%;
+    }
+
+    @media (max-width: styles.$bkp-mobile-w) {
+      width: 90%;
+    }
+  }
+}
+
+.create-user {
+  width: 800px;
+  height: 600px;
+  margin: 0 auto;
+}
+.right {
+  float: right;
+  width: 50%;
+  margin-left: 20px;
+  transform: translateY(25px);
+}
+
+.left {
+  float: left;
+  width: 40%;
+  text-align: center;
+  transform: translateY(-10px);
+}
+
+.editarImagen {
+  font-size: 14px;
+  color: #1192ee;
+}

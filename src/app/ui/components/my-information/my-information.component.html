@@ -1,0 +1,109 @@
+<h1 style="text-align: center; margin-top: 1cm">Información Personal</h1>
+<br />
+<br />
+<br />
+
+<div class="create-user">
+  <div class="left">
+    <div center="center">
+      <h4>Foto de perfil</h4>
+      <img
+        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.YfgUTn_N-nKcwnprxcuCCQHaGe%26pid%3DApi&f=1"
+        alt="Aleq"
+        width="300"
+        height="285"
+      />
+    </div>
+    <a class="editarImagen">editar</a>
+  </div>
+
+  <div class="right">
+    <div class="create-user_content">
+      <form autocomplete="off" #signUpForm="ngForm">
+        <div class="form-group">
+          <input
+            type="text"
+            placeholder="Nombres"
+            name="name"
+            pattern="^[a-zA-Z\s]{3,50}"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            placeholder="Apellidos"
+            name="name"
+            pattern="^[a-zA-Z\s]{3,50}"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            placeholder="Edad"
+            name="name"
+            pattern="^[a-zA-Z\s]{3,50}"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="email"
+            placeholder="Celular"
+            name="email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="email"
+            placeholder="Correo electrónico"
+            name="email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            placeholder="Dirección"
+            name="password"
+            minlength="6"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            placeholder="RH+"
+            name="passwordConfirmation"
+            minlength="6"
+          />
+        </div>
+        <button class="btn-general-form" type="submmit">Editar</button>
+
+        <!-- <div class="row g-2">
+          <div class="col-md">
+            <div class="form-floating">
+              <input
+                type="email"
+                class="form-control"
+                id="floatingInputGrid"
+                placeholder="name@example.com"
+                value="mdo@example.com"
+              />
+              <label for="floatingInputGrid">Email address</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating">
+              <select class="form-select" id="floatingSelectGrid">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+              <label for="floatingSelectGrid">Works with selects</label>
+            </div>
+          </div>
+        </div> -->
+      </form>
+    </div>
+  </div>
+</div>

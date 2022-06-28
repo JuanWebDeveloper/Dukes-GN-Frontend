@@ -16,6 +16,7 @@ import { ListProgramComponent } from './tabs/list-program/list-program.component
 import { VerificationComponent } from './components/verification/verification.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { HomeComponent } from './components/home/home.component';
+import { MyInformationComponent } from './components/my-information/my-information.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { HomeComponent } from './components/home/home.component';
     VerificationComponent,
     ForgotPasswordComponent,
     HomeComponent,
+    MyInformationComponent,
   ],
   imports: [BrowserModule, CommonModule, RouterModule, FormsModule],
 })
