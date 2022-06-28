@@ -7,16 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RootComponent implements OnInit {
   public indicators = [
-    'Lista de Usuarios',
+    'Lista De Usuarios',
     'Crear Usuario',
-    'Lista de Programas',
+    'Lista De Programas',
   ];
   public selected: string | undefined;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.selected = this.indicators[1];
+    this.selected = this.indicators[0];
   }
 
   //Método para cargar la pestaña seleccionada.
