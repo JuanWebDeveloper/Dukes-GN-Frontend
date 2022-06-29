@@ -15,4 +15,6 @@ export const environment = {
     email: 'dukes.ng.root@gmail.com',
     password: 'rootdukes7',
   },
+  // Url de la API.
+  baseURL: 'https://dukes-gn-backend.herokuapp.com/api/',
 };

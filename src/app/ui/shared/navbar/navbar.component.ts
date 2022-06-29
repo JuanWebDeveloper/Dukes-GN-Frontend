@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import firebase from 'firebase/compat';
-import User = firebase.User;
+import { User } from '@firebase/auth';
 
 /**
  * Servicio para obtener la informacion de usuario
@@ -34,9 +32,7 @@ export class NavbarComponent implements OnInit {
     this.authenticationService.getInfoUser().then((user: User) => {
       this.userInfo = user.displayName;
       this.userPhoto = user.photoURL ? user.photoURL : './assets/ifuwp.jpg';
-      this.rol = this.userService.retrieveRol; 
-
-
+      this.rol = this.userService.retrieveRol;
     });
   }
 
