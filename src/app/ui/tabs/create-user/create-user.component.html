@@ -132,14 +132,7 @@
       <button
         class="btn-general-form"
         type="submmit"
-        [class.disabled]="
-          name.invalid ||
-          email.invalid ||
-          passwordConfirmation.value !== password.value ||
-          password.invalid ||
-          passwordConfirmation.invalid ||
-          rol.invalid
-        "
+        [class.disabled]="signUpForm.invalid"
       >
         Crear
       </button>

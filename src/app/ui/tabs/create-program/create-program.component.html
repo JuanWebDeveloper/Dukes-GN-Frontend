@@ -1,1 +1,122 @@
-<p>create-program works!</p>
+<div class="create-program">
+  <div class="create-program_content">
+    <form
+      autocomplete="off"
+      #programForm="ngForm"
+      (ngSubmit)="onSubmit(programForm)"
+    >
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Nombre del programa"
+          name="name"
+          pattern="[A-Za-z0-9\s]{3,50}"
+          required
+          [ngModel]
+          #name="ngModel"
+          [class.invalid]="name.invalid && name.touched"
+          [class.valid]="name.valid"
+        />
+        <div class="message-error" *ngIf="!name.value && name.touched">
+          El nombre del programa es requerido.
+        </div>
+        <div
+          class="message-error"
+          *ngIf="name.value && name.value.length < 3 && name.dirty"
+        >
+          El nombre del programa debe tener al menos 3 caracteres.
+        </div>
+        <div
+          class="message-error"
+          *ngIf="name.value && name.value.length > 2 && name.invalid"
+        >
+          No se permiten caracteres especiales.
+        </div>
+      </div>
+      <div class="form-group" *ngFor="let course of courses; let ic = index">
+        <input
+          type="text"
+          placeholder="Nombre del curso {{ ic + 1 }}"
+          name="course{{ ic }}"
+          pattern="[A-Za-z0-9\s]{3,50}"
+          required
+          [ngModel]
+          #cours="ngModel"
+          [class.invalid]="cours.invalid && cours.touched"
+          [class.valid]="cours.valid"
+        />
+
+        <div class="message-error" *ngIf="!cours.value && cours.touched">
+          El nombre del curso es requerido.
+        </div>
+        <div
+          class="message-error"
+          *ngIf="cours.value && cours.value.length < 3 && cours.dirty"
+        >
+          El nombre del curso debe tener al menos 3 caracteres.
+        </div>
+        <div
+          class="message-error"
+          *ngIf="cours.value && cours.value.length > 2 && cours.invalid"
+        >
+          No se permiten caracteres especiales.
+        </div>
+        <div
+          class="form-group_child"
+          *ngFor="let module of modules; let im = index"
+        >
+          <input
+            type="text"
+            placeholder="Nombre del modulo {{ im + 1 }}"
+            name="course{{ ic }}-module{{ im }}"
+            pattern="[A-Za-z0-9\s]{3,50}"
+            class="w-50"
+            required
+            [ngModel]
+            #modul="ngModel"
+            [class.invalid]="modul.invalid && modul.touched"
+            [class.valid]="modul.valid"
+          />
+          <div class="message-error" *ngIf="!modul.value && modul.touched">
+            El nombre del modulo es requerido.
+          </div>
+          <div
+            class="message-error"
+            *ngIf="modul.value && modul.value.length < 3 && modul.dirty"
+          >
+            El nombre del modulo debe tener al menos 3 caracteres.
+          </div>
+          <div
+            class="message-error"
+            *ngIf="modul.value && modul.value.length > 2 && modul.invalid"
+          >
+            No se permiten caracteres especiales.
+          </div>
+          <select class="w-50">
+            <option value="">Seleccione una opción</option>
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
+            <option value="">4</option>
+            <option value="">5</option>
+          </select>
+        </div>
+        <button (click)="addModule()" class="btn-general btn-module">
+          Agregar otro modulo
+        </button>
+      </div>
+      <div class="program-footer">
+        <button (click)="addCourse()" class="btn-general">
+          Agregar otro curso
+        </button>
+        <button
+          type="submit"
+          class="btn-general"
+          [class.disabled]="programForm.invalid"
+        >
+          Crear programa
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

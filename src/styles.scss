@@ -78,7 +78,8 @@ form {
   position: relative;
   width: 100%;
 
-  .form-group {
+  .form-group,
+  .form-group_child {
     margin-bottom: styles.$box-mrg-half;
     position: relative;
     width: 100%;
@@ -124,6 +125,16 @@ form {
       }
     }
 
+    .w-50 {
+      width: 45%;
+      margin: 0 styles.$box-mrg-half;
+
+      @media (max-width: styles.$bkp-tablet-w) {
+        width: 100%;
+        margin: styles.$box-mrg-quarter 0;
+      }
+    }
+
     .message-error {
       @include styles.animation-scale-in_XY;
       background-color: styles.$color-errors;
@@ -134,6 +145,17 @@ form {
       padding: styles.$box-pad-half;
       text-align: center;
       width: 100%;
+    }
+  }
+
+  .form-group_child {
+    margin: 0 auto;
+    margin-top: styles.$box-mrg-half;
+    width: 95%;
+
+    input {
+      background-color: rgba(styles.$color-tertiary, 0.5);
+      backdrop-filter: brightness(70%);
     }
   }
 

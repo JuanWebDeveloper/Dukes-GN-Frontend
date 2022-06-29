@@ -1,0 +1,56 @@
+@use "../../styles/index" as styles;
+
+.create-program {
+  position: relative;
+  width: 100%;
+
+  &_content {
+    max-height: 70vh;
+    margin: 0 auto;
+    overflow: hidden;
+    overflow-y: scroll;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+
+    @media (max-width: styles.$bkp-desktop-w) {
+      width: 50%;
+    }
+
+    @media (max-width: styles.$bkp-mobile-w) {
+      max-height: 55vh;
+      width: 90%;
+    }
+
+    .btn-module {
+      margin: styles.$box-mrg-half 0;
+    }
+
+    .program-footer {
+      margin: styles.$box-mrg-onehalf 0;
+      display: flex;
+      justify-content: space-around;
+      position: relative;
+      width: 100%;
+
+      @media (max-width: styles.$bkp-tablet-w) {
+        flex-direction: column;
+        margin: 0;
+        margin-top: styles.$box-mrg-onehalf;
+
+        button {
+          margin-bottom: styles.$box-mrg-half;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}
