@@ -5,6 +5,7 @@ import { LayoutComponent } from '../../../ui/layout/layout.component';
 import { NavbarComponent } from '../../../ui/shared/navbar/navbar.component';
 import { RootComponent } from '../../../ui/components/root/root.component';
 import { FooterComponent } from '../../../ui/shared/footer/footer.component';
+import { RootGuard } from 'src/app/core/guards/root.guard';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
       { path: '', component: RootComponent },
       { path: '', component: FooterComponent, outlet: 'footer' },
     ],
+    canActivate: [RootGuard],
   },
 ];
 

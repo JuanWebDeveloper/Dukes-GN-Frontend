@@ -5,6 +5,7 @@ import { LayoutComponent } from '../../../ui/layout/layout.component';
 import { NavbarComponent } from '../../../ui/shared/navbar/navbar.component';
 import { UserComponent } from '../../../ui/components/user/user.component';
 import { FooterComponent } from '../../../ui/shared/footer/footer.component';
+import { UserGuard } from 'src/app/core/guards/user.guard';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
       { path: '', component: UserComponent },
       { path: '', component: FooterComponent, outlet: 'footer' },
     ],
+    canActivate:[UserGuard]
   },
 ];
 

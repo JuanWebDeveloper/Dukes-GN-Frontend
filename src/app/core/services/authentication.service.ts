@@ -2,19 +2,32 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { SHA512 } from 'crypto-js';
 
+
+/**
+ * Servicio que nos permite obtener el rol del usuario
+ */
+import { UserService } from './user.service';
+import { User } from '../models/User';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private auth: AngularFireAuth) {
-    this.auth.authState.subscribe((user) =>
-      user
-        ? localStorage.setItem(
+  constructor(private auth: AngularFireAuth, private userService: UserService) {
+    this.auth.authState.subscribe((currentUser) => {
+      if (currentUser) {
+        this.userService.getUser(currentUser.uid).subscribe((user: User) => {
+          localStorage.setItem('rol', JSON.stringify(user.rol));
+          localStorage.setItem(
             'isVerificated',
-            JSON.stringify(user.emailVerified)
-          )
-        : localStorage.setItem('isVerificated', 'null')
-    );
+            JSON.stringify(currentUser.emailVerified)
+          );
+        });
+      } else {
+        localStorage.setItem('isVerificated', 'null');
+        localStorage.setItem('rol', 'null');
+      }
+    });
   }
 
   // Servicio para el registro de usuarios.
@@ -24,6 +37,7 @@ export class AuthenticationService {
     return await this.auth
       .createUserWithEmailAndPassword(email, hash)
       .then((response: any) => {
+        this.SendVerificationMail();
         return response;
       })
       .catch((error) => {
