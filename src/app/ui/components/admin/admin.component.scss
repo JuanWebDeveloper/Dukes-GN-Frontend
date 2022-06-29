@@ -6,7 +6,6 @@
   width: 100%;
   background-color: #f1f1f190;
   backdrop-filter: brightness(50%);
-  @include styles.pat-admin;
 
   &-content {
     left: 50%;
@@ -14,6 +13,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
+    z-index: 1;
 
     h2 {
       text-align: center;
