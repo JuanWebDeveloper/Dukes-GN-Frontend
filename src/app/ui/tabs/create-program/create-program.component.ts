@@ -6,12 +6,14 @@ import { NgForm } from '@angular/forms';
  **/
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { ProgramService } from 'src/app/core/services/program.service';
+import { CourseService } from 'src/app/core/services/course.service';
 
 /**
  * Interfaces.
  **/
 import { User } from '@firebase/auth';
 import { Program } from '../../../core/models/Program';
+import { Course } from '../../../core/models/Course';
 
 @Component({
   selector: 'dukes-create-program',
@@ -52,10 +54,12 @@ export class CreateProgramComponent implements OnInit {
   ];
   private userInfo: User | any;
   private programInfo: Program | any;
+  private coursesInfo: Course[] = [];
 
   constructor(
     private authenticationService: AuthenticationService,
-    private programService: ProgramService
+    private programService: ProgramService,
+    private courseService: CourseService
   ) {}
 
   ngOnInit(): void {
@@ -101,12 +105,21 @@ export class CreateProgramComponent implements OnInit {
     this.programService
       .createProgram(this.programInfo)
       .subscribe((response: Program) => {
-        console.log(response);
+        this.coursesInfo = this.listCourses(form, response.id_program);
+
+        this.coursesInfo.forEach((course: Course) => {
+          this.courseService
+            .createCourse(course)
+            .subscribe((courses: Course) => {
+              console.log(courses);
+            });
+        });
       });
   }
 
   /**
    * Calcular el total de dias de un programa.
+   * @param form
    */
   private totalDays({ value }: NgForm): number {
     let totalDays = 0;
@@ -117,5 +130,23 @@ export class CreateProgramComponent implements OnInit {
     }
 
     return totalDays;
+  }
+
+  /**
+   * Crear la lista de cursos.
+   * @param form
+   * @param idProgram
+   */
+  private listCourses({ value }: NgForm, idProgram: string): Course[] {
+    let courses: Course[] = [];
+
+    for (let i = 0; i < this.courses.length; i++) {
+      courses.push({
+        id_program: idProgram,
+        name: value[`course${i + 1}`],
+      });
+    }
+
+    return courses;
   }
 }
