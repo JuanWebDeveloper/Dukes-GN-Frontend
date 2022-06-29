@@ -93,17 +93,32 @@
             No se permiten caracteres especiales.
           </div>
           <select class="w-50">
-            <option value="">Seleccione una opción</option>
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-            <option value="">4</option>
-            <option value="">5</option>
+            <option value="">Duraccion en dias del modulo {{ im + 1 }}</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="5">5</option>
           </select>
         </div>
         <button (click)="addModule()" class="btn-general btn-module">
           Agregar otro modulo
         </button>
+      </div>
+      <div class="form-group">
+        <input
+          type="date"
+          name="date"
+          required
+          [ngModel]
+          #date="ngModel"
+          [class.invalid]="date.invalid && date.touched"
+          [class.valid]="date.valid"
+        />
+        <div class="message-error" *ngIf="!date.value && date.touched">
+          La fecha de inicio del programa es requerida.
+        </div>
       </div>
       <div class="program-footer">
         <button (click)="addCourse()" class="btn-general">
