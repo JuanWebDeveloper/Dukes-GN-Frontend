@@ -6,18 +6,26 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 
-// Rutas.
+/**
+ * Rutas.
+ */
 import { AppRoutingModule } from './app-routing.module';
 
-// Variables de Entorno
+/**
+ * Variables de Entorno.
+ */
 import { environment } from '../environments/environment';
 
-// Servicios.
+/**
+ * Servicios.
+ */
 import { AuthenticationService } from './core/services/authentication.service';
 import { UserService } from './core/services/user.service';
 import { ProgramService } from './core/services/program.service';
 
-// Componentes.
+/**
+ * Componentes.
+ */
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './ui/components.module';
 

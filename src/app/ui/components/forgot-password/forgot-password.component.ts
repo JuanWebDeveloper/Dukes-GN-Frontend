@@ -26,7 +26,10 @@ export class ForgotPasswordComponent {
     private toastr: ToastrService
   ) {}
 
-  //Método para enviar correo al usuario con el enlace para restablecer contraseña.
+  /**
+   * Método para enviar correo al usuario con el enlace para restablecer contraseña.
+   * @param forgotPasswordForm
+   */
   public async onSubmit(forgotPasswordForm: NgForm) {
     await this.authenticationService
       .resetPassword(forgotPasswordForm.value.email)
