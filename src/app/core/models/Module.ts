@@ -1,7 +1,7 @@
 export interface Module {
-  id: string;
-  courseId: string;
+  id_module?: string;
+  id_course: string;
   name: string;
-  percentage: number;
+  percentage?: number;
   duration: number;
 }

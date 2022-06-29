@@ -15,6 +15,7 @@ export class ApiToCourseMapper {
       id_course: course.id_course,
       id_program: course.id_program,
       name: course.name,
+      percentage: course.percentage,
     };
 
     return courseMapped;

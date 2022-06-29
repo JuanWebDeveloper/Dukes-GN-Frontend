@@ -6,4 +6,6 @@ export interface Program {
   id_coach: string;
   name_coach: string;
   duration_day: number;
+  course_amount: number;
+  course_percentage: number;
 }

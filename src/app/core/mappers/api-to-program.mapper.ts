@@ -19,6 +19,8 @@ export class ApiToProgramMapper {
       id_coach: program.id_coach,
       name_coach: program.name_coach,
       duration_day: program.duration_day,
+      course_amount: program.course_amount,
+      course_percentage: program.course_percentage,
     };
 
     return programMapped;
