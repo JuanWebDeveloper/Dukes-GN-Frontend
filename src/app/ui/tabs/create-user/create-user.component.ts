@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
+import { environment } from 'src/environments/environment';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { User } from 'src/app/core/models/User';
@@ -54,8 +55,8 @@ export class CreateUserComponent {
             .then(() => {
               this.authenticationService.logout().then(() => {
                 this.authenticationService.login(
-                  'juandeveloper19@gmail.com',
-                  '123456'
+                  environment.superAdmin.email,
+                  environment.superAdmin.password
                 );
               });
             })
