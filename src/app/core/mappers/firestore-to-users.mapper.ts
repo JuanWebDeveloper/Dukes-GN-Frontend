@@ -5,7 +5,11 @@ import { User } from '../models/User';
   providedIn: 'root',
 })
 export class FirestoreToUserMapper {
-  // Mapea un objeto de Firestore a un objeto de tipo User.
+
+  /**
+   * Mapea un objeto de Firestore a un objeto de tipo User.
+   * @param user
+   */
   public mapUser(user: any): User {
     const userMapped: User = {
       userId: user.userId,
@@ -20,7 +24,10 @@ export class FirestoreToUserMapper {
     return userMapped;
   }
 
-  // Mapea un array de objetos de Firestore a un array de objetos de tipo User.
+  /**
+   * Mapea un array de objetos de Firestore a un array de objetos de tipo User.
+   * @param users
+   */
   public mapUsers(users: any[]): User[] {
     return users.map((user: any) => this.mapUser(user));
   }

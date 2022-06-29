@@ -8,7 +8,9 @@ import {
 } from '@angular/router';
 import { Observable, Observer } from 'rxjs';
 
-//Servicio para verificar que el correo del usuario está verificado.
+/**
+ * Servicio para verificar que el correo del usuario está verificado.
+ */
 import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable({

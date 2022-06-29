@@ -10,7 +10,7 @@ export class MessagesUtil {
       case 'auth/wrong-password':
         return 'Contraseña incorrecta. Intente nuevamente.';
       case 'auth/user-not-found':
-        return 'El correo no existe. Por favor registrese.';
+        return 'El correo no existe. Por favor regístrese.';
       case 'auth/too-many-requests':
         return 'Acceso Denegado. Superaste la cantidad máxima de ingresos. Solicita recuperación de contraseña.';
       default:

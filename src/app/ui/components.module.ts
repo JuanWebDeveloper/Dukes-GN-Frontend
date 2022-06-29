@@ -4,7 +4,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
-// Importación de los componentes usados en la aplicación.
+/**
+ * Importación de los componentes usados en la aplicación.
+ */
 import { SigninComponent } from './components/signin/signin.component';
 import { LayoutComponent } from './layout/layout.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';

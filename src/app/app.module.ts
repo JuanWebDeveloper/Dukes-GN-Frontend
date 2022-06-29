@@ -5,17 +5,25 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
-// Rutas.
+/**
+ * Rutas.
+ */
 import { AppRoutingModule } from './app-routing.module';
 
-// Variables de Entorno
+/**
+ * Variables de Entorno.
+ */
 import { environment } from '../environments/environment';
 
-// Servicios.
+/**
+ * Servicios.
+ */
 import { AuthenticationService } from './core/services/authentication.service';
 import { UserService } from './core/services/user.service';
 
-// Componentes.
+/**
+ * Componentes.
+ */
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './ui/components.module';
 

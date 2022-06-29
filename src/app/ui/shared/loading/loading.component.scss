@@ -8,7 +8,7 @@
   justify-content: center;
   position: relative;
 
-  .loading-cricle {
+  .loading-circle {
     @include styles.animation-loading-circle;
     border: 7px solid rgba(styles.$color-black, 0.5);
     border-top-color: styles.$color-blue-2;
