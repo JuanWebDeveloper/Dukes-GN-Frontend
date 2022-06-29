@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-
-import { User } from '../models/User';
 import { map, Observable } from 'rxjs';
+
 import { FirestoreToUserMapper } from '../mappers/firestore-to-users.mapper';
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root',
@@ -25,10 +25,7 @@ export class UserService {
   getUser(userId: string): Observable<User> {
     const userRef = this.angularFirestore.collection('users');
 
-    return userRef
-      .doc(userId)
-      .valueChanges() as Observable<User>
-      
+    return userRef.doc(userId).valueChanges() as Observable<User>;
   }
 
   // Servicio para obtener la información de todos los usuario.
@@ -47,5 +44,14 @@ export class UserService {
     const userRef = this.angularFirestore.collection('users');
 
     return await userRef.doc(user.userId).update(user);
+  }
+
+  /**
+   * Servicio para obtener el rol del usuario
+   *
+   */
+
+  get retrieveRol(): string {
+    return JSON.parse(localStorage.getItem('rol')!);
   }
 }
