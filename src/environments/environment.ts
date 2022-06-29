@@ -10,4 +10,9 @@ export const environment = {
     appId: '1:976937121962:web:4cd99331b95b33f1adf8d3',
     measurementId: 'G-HZGHT38MH2',
   },
+  // Credenciales del super administrador.
+  superAdmin: {
+    email: 'dukes.ng.root@gmail.com',
+    password: 'rootdukes7',
+  },
 };
