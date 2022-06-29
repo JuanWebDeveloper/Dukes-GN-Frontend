@@ -6,14 +6,21 @@ import {
   redirectUnauthorizedTo,
 } from '@angular/fire/compat/auth-guard';
 
-//Función para redireccionar a los usuarios con la sesión activa a las rutas privadas.
+/**
+ * Función para redireccionar a los usuarios con la sesión activa a las rutas privadas.
+ */
 const redirectLoggedUser = () => redirectLoggedInTo(['dashboard/verification']);
 
-//Función para redireccionar a los usuarios que no estén logueados a la ruta de inicio de sesión.
+/**
+ * Función para redireccionar a los usuarios que no estén logueados a la ruta de inicio de sesión.
+ */
 const redirectNotLoggedUser = () => redirectUnauthorizedTo(['/']);
 
 const routes: Routes = [
-  // Rutas de la sección pública de la aplicación.
+
+  /**
+   * Rutas de la sección pública de la aplicación.
+   */
   {
     path: '',
     loadChildren: () =>
@@ -25,7 +32,10 @@ const routes: Routes = [
       authGuardPipe: redirectLoggedUser,
     },
   },
-  // Rutas de la sección privada de la aplicación.
+
+  /**
+   * Rutas de la sección privada de la aplicación.
+   */
   {
     path: 'dashboard',
     loadChildren: () =>

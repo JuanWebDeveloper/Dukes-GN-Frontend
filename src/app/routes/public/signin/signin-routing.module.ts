@@ -11,7 +11,9 @@ const routes: Routes = [
     component: SigninComponent,
   },
 
-  //Configuración de la ruta para la página de recuperación de la contraseña.
+  /**
+   * Configuración de la ruta para la página de recuperación de la contraseña.
+   */
   {
     path: 'forgot-password',
     component: ForgotPasswordComponent,

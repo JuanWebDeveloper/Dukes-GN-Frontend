@@ -26,12 +26,14 @@ export class VerificationComponent implements OnInit, OnDestroy {
     this.userInfo = undefined;
   }
 
-  // Métodos.
+  /**
+   * Métodos: Enviar email, Verificar, Cerrar Sesión.
+   */
   public sendMail(): void {
     this.authenticationService.SendVerificationMail();
     this.toastr.success(
       'Se ha enviado un correo para verificar su cuenta.',
-      'Correo enviado',
+      'Correo enviado.',
       {
         progressBar: true,
         positionClass: 'toast-top-right',

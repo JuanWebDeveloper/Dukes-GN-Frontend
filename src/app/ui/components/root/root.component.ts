@@ -19,7 +19,10 @@ export class RootComponent implements OnInit {
     this.selected = this.indicators[0];
   }
 
-  //Método para cargar la pestaña seleccionada.
+  /**
+   * Método para cargar la pestaña seleccionada.
+   * @param indicator
+   */
   public onTabChange(indicator: string): void {
     this.selected = indicator;
   }

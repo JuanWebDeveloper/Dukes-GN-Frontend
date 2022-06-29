@@ -28,7 +28,10 @@ export class UserComponent implements OnInit {
     this.userName = undefined;
   }
 
-  //Método para cargar la pestaña seleccionada.
+  /**
+   * Método para cargar la pestaña seleccionada.
+   * @param indicator
+   */
   public onTabChange(indicator: string): void {
     this.selected = indicator;
   }

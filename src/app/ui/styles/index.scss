@@ -1,5 +1,7 @@
-//La regla @forward carga una hoja de estilo Sass y hace que sus uniones, funciones y variables estén
-// disponibles cuando su hoja de estilo se carga con la regla @use.
+/**
+ * La regla @forward carga una hoja de estilo Sass y hace que sus uniones, funciones y variables estén
+ * disponibles cuando su hoja de estilo se carga con la regla @use.
+ */
 @forward "./animations" as animation-*;
 @forward "./box" as box-*;
 @forward "./break-points" as bkp-*;
