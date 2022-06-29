@@ -1,8 +1,9 @@
 export interface Program {
-  id: string;
-  adminId: string;
+  id_program: string;
   name: string;
-  adminName: string;
-  startDate: string;
-  endDate: string;
+  start_date: string;
+  final_date: string;
+  id_coach: string;
+  name_coach: string;
+  duration_day: number;
 }

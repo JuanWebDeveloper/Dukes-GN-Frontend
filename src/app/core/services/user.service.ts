@@ -48,9 +48,7 @@ export class UserService {
 
   /**
    * Servicio para obtener el rol del usuario
-   *
-   */
-
+   **/
   get retrieveRol(): string {
     return JSON.parse(localStorage.getItem('rol')!);
   }

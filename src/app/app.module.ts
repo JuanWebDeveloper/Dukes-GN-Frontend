@@ -4,6 +4,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
 
 // Rutas.
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +15,7 @@ import { environment } from '../environments/environment';
 // Servicios.
 import { AuthenticationService } from './core/services/authentication.service';
 import { UserService } from './core/services/user.service';
+import { ProgramService } from './core/services/program.service';
 
 // Componentes.
 import { AppComponent } from './app.component';
@@ -29,8 +31,14 @@ import { ComponentsModule } from './ui/components.module';
     AngularFirestoreModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    HttpClientModule,
   ],
-  providers: [AuthenticationService, UserService],
+  providers: [
+    AuthenticationService,
+    UserService,
+    ProgramService,
+    HttpClientModule,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
