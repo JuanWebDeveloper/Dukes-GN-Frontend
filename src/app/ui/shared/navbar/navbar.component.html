@@ -23,7 +23,7 @@
         <!-- Usuario -->
         <li><i class="fas fa-address-card"></i> Mi información</li>
         <!-- Usuario -->
-        <li><i class="fas fa-tasks"></i> Mi progreso</li>
+        <li *ngIf="rol === 'user'" [routerLink]="['/dashboard/user']"><i class="fas fa-tasks"></i> Mi progreso</li>
         <!-- Super Admin - Root -->
         <li *ngIf="rol === 'root'" [routerLink]="['/dashboard/root']"><i class="fas fa-users-cog"></i> Super Admin</li>
         <!-- Admin -->
