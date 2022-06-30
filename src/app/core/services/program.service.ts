@@ -34,4 +34,18 @@ export class ProgramService {
         map((response: Program) => this.apiToProgramMapper.mapProgram(response))
       );
   }
+
+  /**
+   * Servicio para obtener un programa
+   * @param id
+   **/
+  public getProgram(coachId: string): Observable<Program> {
+    return this.http
+      .get<Program>(`${environment.baseURL}program/coach/${coachId}`, {
+        headers: this.headers,
+      })
+      .pipe(
+        map((response: Program) => this.apiToProgramMapper.mapProgram(response))
+      );
+  }
 }
