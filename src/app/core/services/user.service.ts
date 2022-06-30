@@ -14,21 +14,32 @@ export class UserService {
     private firestoreToUserMapper: FirestoreToUserMapper
   ) {}
 
-  // Servicio para guardar la información de los usuario.
+  /**
+   * Servicio para guardar la información de los usuario.
+   * @param user
+   * @returns
+   */
   async saveUser(user: User) {
     const userRef = this.angularFirestore.collection('users');
 
     return await userRef.doc(user.userId).set(user);
   }
 
-  // Servicio para obtener la información de los usuario.
+  /**
+   * Servicio para obtener la información de los usuario.
+   * @param userId
+   * @returns
+   */
   getUser(userId: string): Observable<User> {
     const userRef = this.angularFirestore.collection('users');
 
     return userRef.doc(userId).valueChanges() as Observable<User>;
   }
 
-  // Servicio para obtener la información de todos los usuario.
+  /**
+   * Servicio para obtener la información de todos los usuario.
+   * @returns
+   */
   getAllUsers(): Observable<User[]> {
     const userRef = this.angularFirestore.collection('users');
 
@@ -39,7 +50,11 @@ export class UserService {
       );
   }
 
-  // Servicio para actualizar la información de los usuario.
+  /**
+   * Servicio para actualizar la información de los usuario.
+   * @param user
+   * @returns
+   */
   async updateUser(user: User) {
     const userRef = this.angularFirestore.collection('users');
 
@@ -47,7 +62,7 @@ export class UserService {
   }
 
   /**
-   * Servicio para obtener el rol del usuario
+   * Servicio para obtener el rol del usuario.
    **/
   get retrieveRol(): string {
     return JSON.parse(localStorage.getItem('rol')!);

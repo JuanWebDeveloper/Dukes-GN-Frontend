@@ -22,7 +22,7 @@ export class ModuleService {
   }
 
   /**
-   * Servicio para crear un módulo
+   * Servicio para crear un módulo.
    * @param module
    **/
   public createModule(module: Module): Observable<Module> {
@@ -32,6 +32,20 @@ export class ModuleService {
       })
       .pipe(
         map((response: Module) => this.apiToModuleMapper.mapModule(response))
+      );
+  }
+
+  /**
+   * Servicio para obtener los módulos de un curso.
+   * @param courseId
+   */
+  public getModule(courseId: string): Observable<Module[]> {
+    return this.http
+      .get<Module[]>(`${environment.baseURL}module/course/${courseId}`, {
+        headers: this.headers,
+      })
+      .pipe(
+        map((response: Module[]) => this.apiToModuleMapper.mapModules(response))
       );
   }
 }

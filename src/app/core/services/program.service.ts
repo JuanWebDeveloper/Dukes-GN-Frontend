@@ -22,7 +22,7 @@ export class ProgramService {
   }
 
   /**
-   * Servicio para crear un programa
+   * Servicio para crear un programa.
    * @param program
    **/
   public createProgram(program: Program): Observable<Program> {
@@ -36,7 +36,7 @@ export class ProgramService {
   }
 
   /**
-   * Servicio para obtener un programa
+   * Servicio para obtener un programa.
    * @param id
    **/
   public getProgram(coachId: string): Observable<Program> {

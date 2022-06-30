@@ -22,7 +22,7 @@ export class CourseService {
   }
 
   /**
-   * Servicio para crear un curso
+   * Servicio para crear un curso.
    * @param course
    */
   public createCourse(course: Course): Observable<Course> {
@@ -36,7 +36,7 @@ export class CourseService {
   }
 
   /**
-   * Servicio para obtener un curso
+   * Servicio para obtener los cursos de un programa.
    * @param programId
    **/
   public getCourse(programId: string): Observable<Course[]> {
