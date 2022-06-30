@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { SHA512 } from 'crypto-js';
-
 
 /**
  * Servicio que nos permite obtener el rol del usuario
@@ -32,10 +30,8 @@ export class AuthenticationService {
 
   // Servicio para el registro de usuarios.
   async register(email: string, password: string) {
-    const hash = SHA512(password).toString();
-
     return await this.auth
-      .createUserWithEmailAndPassword(email, hash)
+      .createUserWithEmailAndPassword(email, password)
       .then((response: any) => {
         this.SendVerificationMail();
         return response;
@@ -54,10 +50,8 @@ export class AuthenticationService {
 
   // Servicio para el inicio de sesión del usuario.
   async login(email: string, password: string) {
-    const hash = SHA512(password).toString();
-
     return await this.auth
-      .signInWithEmailAndPassword(email, hash)
+      .signInWithEmailAndPassword(email, password)
       .then((response: any) => {
         return response;
       })

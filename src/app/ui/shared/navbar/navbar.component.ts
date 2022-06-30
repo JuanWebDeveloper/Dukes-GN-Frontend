@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '@firebase/auth';
+import { User as UserF } from '@firebase/auth';
 
 /**
  * Servicio para obtener la informacion de usuario
@@ -11,6 +11,7 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
  * Servicio para recuperar el rol del usuario
  */
 import { UserService } from 'src/app/core/services/user.service';
+import { User } from 'src/app/core/models/User';
 
 @Component({
   selector: 'dukes-navbar',
@@ -26,16 +27,18 @@ export class NavbarComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private router: Router,
     private userService: UserService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.authenticationService.getInfoUser().then((currentUser: User) => {
-      this.userService.getUser(currentUser.uid).subscribe(user => {
+    this.authenticationService.getInfoUser().then((currentUser: UserF) => {
+      this.userService.getUser(currentUser.uid).subscribe((user: User) => {
         this.userInfo = user.name;
-        this.userPhoto = user.imageBase64 == undefined ? './assets/Default-Profile.png' : user.imageBase64;
+        this.userPhoto =
+          user.imageBase64 == undefined
+            ? './assets/Default-Profile.png'
+            : user.imageBase64;
         this.rol = this.userService.retrieveRol;
-      })
-
+      });
     });
   }
 
