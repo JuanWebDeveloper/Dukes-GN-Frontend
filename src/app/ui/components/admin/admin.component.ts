@@ -101,8 +101,11 @@ export class AdminComponent implements OnInit {
           }
         })
         .add(() => {
-          this.indicators[1] = 'Editar Programa';
-          this.selected = this.indicators[1];
+          if (this.programInfo) {
+            this.indicators[1] = 'Editar Programa';
+            this.selected = this.indicators[1];
+          }
+
           this.loading = false;
         });
     });

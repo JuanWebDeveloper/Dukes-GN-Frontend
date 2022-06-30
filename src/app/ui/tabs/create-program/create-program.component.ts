@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 /**
@@ -28,7 +22,7 @@ import { Module } from '../../../core/models/Module';
   templateUrl: './create-program.component.html',
   styleUrls: ['./create-program.component.scss'],
 })
-export class CreateProgramComponent implements OnInit, OnDestroy {
+export class CreateProgramComponent implements OnInit {
   public courses: any[] = [
     {
       courseName: 'course1',
@@ -78,10 +72,6 @@ export class CreateProgramComponent implements OnInit, OnDestroy {
     this.authenticationService.getInfoUser().then((user: User) => {
       this.userInfo = user;
     });
-  }
-
-  ngOnDestroy(): void {
-    localStorage.removeItem('programInfo');
   }
 
   /**
@@ -143,6 +133,7 @@ export class CreateProgramComponent implements OnInit, OnDestroy {
                   id_course: course.id_course,
                   name: formInfo[`module${j + 1}-${i + 1}`],
                   duration: formInfo[`module${j + 1}-${i + 1}-duration`],
+                  percentage: 100 / this.courses[i].modules.length,
                 };
 
                 this.moduleService

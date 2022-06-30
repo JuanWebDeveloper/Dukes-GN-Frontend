@@ -41,7 +41,6 @@ export class MyInformationComponent implements OnInit {
     availability: false,
     imageBase64: '',
   };
-  public values: any[] = Object.values(this.userInfo);
 
   constructor(
     private toastr: ToastrService,
@@ -72,7 +71,7 @@ export class MyInformationComponent implements OnInit {
                 ? './assets/Default-Profile.png'
                 : user.imageBase64,
           };
-          this.values = Object.values(this.userInfo);
+
           this.loading = false;
         });
       }
@@ -102,7 +101,7 @@ export class MyInformationComponent implements OnInit {
           });
         });
       });
-      this.values = Object.values(this.userInfo);
+
       this.disableForm = true;
     }, 3000);
   }

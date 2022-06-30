@@ -1,1 +1,55 @@
-<p>edit-program works!</p>
+<div class="edit-program">
+  <div class="edit-program_content">
+    <form autocomplete="off" #programEditForm="ngForm">
+      <div class="form-group">
+        <input type="text" disabled="true" [value]="program.name" />
+      </div>
+      <div class="form-group">
+        <input type="text" disabled="true" [value]="program.name_coach" />
+      </div>
+      <div class="form-group">
+        <input type="text" disabled="true" [value]="program.start_date" />
+      </div>
+      <div class="form-group">
+        <input type="text" disabled="true" [value]="program.final_date" />
+      </div>
+      <div class="form-group" *ngFor="let course of courses">
+        <input type="text" disabled="true" class="w-50" [value]="course.name" />
+        <input
+          type="text"
+          disabled="true"
+          class="w-50"
+          value="Valor del curso {{ course.percentage | number: '1.0-0' }}%"
+        />
+        <div class="form-group_child" *ngFor="let module of modules">
+          <input
+            type="text"
+            class="w-50"
+            disabled="true"
+            *ngIf="module.id_course === course.id_course"
+            [value]="module.name"
+          />
+          <input
+            type="text"
+            class="w-50"
+            disabled="true"
+            *ngIf="module.id_course === course.id_course"
+            [value]="'Duración ' + module.duration + ' dias'"
+          />
+          <div
+            class="form-group_child-child"
+            *ngIf="module.id_course === course.id_course"
+          >
+            <input
+              type="text"
+              disabled="true"
+              value="Valor del modulo {{
+                module.percentage | number: '1.0-0'
+              }}%"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

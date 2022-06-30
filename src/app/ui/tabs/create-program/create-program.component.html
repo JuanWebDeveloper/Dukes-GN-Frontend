@@ -1,5 +1,5 @@
 <div class="create-program">
-  <div class="create-loading" *ngIf="loading">
+  <div class="main-loading" *ngIf="loading">
     <dukes-loading></dukes-loading>
   </div>
   <div class="create-program_content">
@@ -128,7 +128,13 @@
         <button type="button" (click)="addCourse()" class="btn-general">
           Agregar otro curso
         </button>
-        <button type="submit" class="btn-general">Crear programa</button>
+        <button
+          type="submit"
+          class="btn-general"
+          [class.disabled]="programForm.invalid"
+        >
+          Crear programa
+        </button>
       </div>
     </form>
   </div>
