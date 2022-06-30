@@ -1,5 +1,6 @@
 <div class="admin">
-  <div class="admin-content">
+  <dukes-loading *ngIf="loading"></dukes-loading>
+  <div class="admin-content" *ngIf="!loading">
     <h2>Panel Usuario Admin</h2>
 
     <div class="tabs">
