@@ -4,17 +4,6 @@
   position: relative;
   width: 100%;
 
-  .create-loading {
-    background-color: rgba(styles.$color-secondary, 0.5);
-    backdrop-filter: brightness(50%);
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: styles.$box-z-10;
-  }
-
   &_content {
     max-height: 70vh;
     margin: 0 auto;
@@ -23,14 +12,10 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 80%;
 
     &::-webkit-scrollbar {
       width: 0;
-    }
-
-    @media (max-width: styles.$bkp-desktop-w) {
-      width: 50%;
     }
 
     @media (max-width: styles.$bkp-mobile-w) {

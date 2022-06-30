@@ -1,5 +1,7 @@
 <div class="admin">
-  <dukes-loading *ngIf="loading"></dukes-loading>
+  <div class="main-loading" *ngIf="loading">
+    <dukes-loading></dukes-loading>
+  </div>
   <div class="admin-content" *ngIf="!loading">
     <h2>Panel Usuario Admin</h2>
 
@@ -23,7 +25,11 @@
         ></dukes-create-program>
       </div>
       <div class="tabs-tab" *ngIf="selected === 'Editar Programa'">
-        <dukes-edit-program></dukes-edit-program>
+        <dukes-edit-program
+          [program]="programInfo"
+          [courses]="courseInfo"
+          [modules]="moduleInfo"
+        ></dukes-edit-program>
       </div>
       <div class="tabs-tab" *ngIf="selected === 'Progreso Programa'">
         <dukes-program-progress></dukes-program-progress>

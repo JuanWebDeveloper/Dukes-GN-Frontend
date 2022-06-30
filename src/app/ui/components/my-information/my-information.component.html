@@ -1,6 +1,10 @@
 <h1 style="text-align: center; margin-top: 1cm">Información Personal</h1>
 
-<div *ngIf="!loading" class="create-user">
+<div class="create-user">
+  <div class="main-loading" *ngIf="loading">
+    <dukes-loading></dukes-loading>
+  </div>
+
   <div class="left">
     <h4>Foto de perfil</h4>
     <div class="photo">
@@ -162,4 +166,3 @@
     </div>
   </div>
 </div>
-<dukes-loading *ngIf="loading"></dukes-loading>
