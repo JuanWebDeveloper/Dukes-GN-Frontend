@@ -28,6 +28,7 @@ import { ProgramProgressComponent } from './tabs/program-progress/program-progre
 import { LoadingComponent } from './shared/loading/loading.component';
 import { EditProgramComponent } from './tabs/edit-program/edit-program.component';
 import { MyInformationComponent } from './components/my-information/my-information.component';
+import { NgxTypedJsModule } from 'ngx-typed-js';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { MyInformationComponent } from './components/my-information/my-informati
     LoadingComponent,
     EditProgramComponent,
     MyInformationComponent,
+
   ],
-  imports: [BrowserModule, CommonModule, RouterModule, FormsModule],
+  imports: [BrowserModule, CommonModule, RouterModule, FormsModule, NgxTypedJsModule],
 })
-export class ComponentsModule {}
+export class ComponentsModule { }

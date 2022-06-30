@@ -1,8 +1,18 @@
 <div class="home">
-  <div class="home-content">
-    <h2>
-      Hola <span>{{ username }}</span>
-    </h2>
+  <div class="home-content" *ngIf="!loading">
+    <ngx-typed-js
+      [showCursor]="false"
+      [typeSpeed]="50"
+      [strings]="['¡Hola! ' + username]"
+      [shuffle]="true"
+      [smartBackspace]="true"
+      [backSpeed]="50"
+    >
+      <h2 class="typing"></h2>
+    </ngx-typed-js>
+  </div>
+  <div class="main-loading" *ngIf="loading">
+    <dukes-loading></dukes-loading>
   </div>
   <div class="animation-area">
     <ul class="box-area">

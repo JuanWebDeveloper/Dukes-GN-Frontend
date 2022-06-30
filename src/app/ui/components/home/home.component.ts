@@ -10,13 +10,14 @@ import { User } from 'src/app/core/models/User';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  public username: string | undefined;
   private userUpated: User | undefined;
+  public username: any;
+  public loading: boolean = true;
 
   constructor(
     private authenticationService: AuthenticationService,
     private userService: UserService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.authenticationService.getInfoUser().then((currentUser: any) => {
@@ -30,8 +31,10 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.userService.updateUser(this.userUpated);
         }
         this.username = user.name;
+        this.loading = false;
       });
     });
+
   }
 
   ngOnDestroy() {
