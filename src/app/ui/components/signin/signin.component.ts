@@ -16,7 +16,7 @@ export class SigninComponent {
   private notificationSettings = {
     progressBar: true,
     positionClass: 'toast-top-right',
-    timeOut: 3000,
+    timeOut: 2000,
     enableHtml: true,
   };
 
@@ -47,7 +47,7 @@ export class SigninComponent {
             this.router.navigate(['dashboard/verification']);
             this.toastr.clear();
             form.reset();
-          }, 3000);
+          }, 2000);
         } else {
           this.toastr.error(
             this.messagesUtil.getMessage(response.code),

@@ -17,7 +17,12 @@
         <dukes-score-user></dukes-score-user>
       </div>
       <div class="tabs-tab" *ngIf="selected === 'Crear Programa'">
-        <dukes-create-program></dukes-create-program>
+        <dukes-create-program
+          (programCreated)="onIndicatorChangeEdit()"
+        ></dukes-create-program>
+      </div>
+      <div class="tabs-tab" *ngIf="selected === 'Editar Programa'">
+        <dukes-edit-program></dukes-edit-program>
       </div>
       <div class="tabs-tab" *ngIf="selected === 'Progreso Programa'">
         <dukes-program-progress></dukes-program-progress>

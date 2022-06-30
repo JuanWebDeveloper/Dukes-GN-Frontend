@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 /**
@@ -58,6 +58,8 @@ export class CreateProgramComponent implements OnInit {
   private programInfo: Program | any;
   private courseInfo: Course | any;
   private moduleInfo: Module | any;
+  public loading: boolean = false;
+  @Output() programCreated: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -99,6 +101,8 @@ export class CreateProgramComponent implements OnInit {
    * Crear un programa.
    */
   public onSubmit(form: NgForm) {
+    this.loading = true;
+
     this.programInfo = {
       name: form.value.name,
       id_coach: this.userInfo.uid,
@@ -120,8 +124,6 @@ export class CreateProgramComponent implements OnInit {
           this.courseService
             .createCourse(this.courseInfo)
             .subscribe((course: Course) => {
-              console.log(course);
-
               for (let j = 0; j < this.courses[i].modules.length; j++) {
                 this.moduleInfo = {
                   id_course: course.id_course,
@@ -131,12 +133,14 @@ export class CreateProgramComponent implements OnInit {
 
                 this.moduleService
                   .createModule(this.moduleInfo)
-                  .subscribe((module: Module) => {
-                    console.log(module);
-                  });
+                  .subscribe((module: Module) => {});
               }
             });
         }
+      })
+      .add(() => {
+        this.loading = false;
+        this.programCreated.emit();
       });
   }
 
