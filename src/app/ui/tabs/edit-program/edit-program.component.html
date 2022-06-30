@@ -51,5 +51,44 @@
         </div>
       </div>
     </form>
+    <div class="edit-program_content-users">
+      <h2>Agregar usuarios</h2>
+      <form #addUserForm="ngForm" (ngSubmit)="addUser(addUserForm)">
+        <div class="form-group">
+          <select
+            name="userSelected"
+            required
+            ngModel
+            #userSelected="ngModel"
+            disabled="{{ usersAvailability.length < 1 }}"
+            [class.invalid]="userSelected.invalid && userSelected.touched"
+            [class.valid]="userSelected.valid"
+          >
+            <option value="">
+              {{
+                usersAvailability.length < 1
+                  ? "No hay usuarios disponibles"
+                  : "Seleccione un usuario"
+              }}
+            </option>
+            <option
+              *ngFor="let user of usersAvailability"
+              [value]="user.userId"
+            >
+              {{ user.name }}
+            </option>
+          </select>
+          <div
+            class="message-error"
+            *ngIf="!userSelected.value && userSelected.touched"
+          >
+            Se debe seleccionar un usuario.
+          </div>
+        </div>
+        <button class="btn-general-form" [class.disabled]="addUserForm.invalid">
+          Agregar usuario
+        </button>
+      </form>
+    </div>
   </div>
 </div>

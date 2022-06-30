@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private authenticationService: AuthenticationService,
     private userService: UserService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.authenticationService.getInfoUser().then((currentUser: any) => {
@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.userUpated = {
             ...user,
             verification: currentUser.emailVerified,
+            availability: true,
           };
           this.userService.updateUser(this.userUpated);
         }
