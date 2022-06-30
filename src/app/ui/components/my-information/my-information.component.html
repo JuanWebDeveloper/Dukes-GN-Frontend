@@ -1,116 +1,165 @@
 <h1 style="text-align: center; margin-top: 1cm">Información Personal</h1>
-<br />
-<br />
-<br />
-<div>
-  <div *ngIf="!loading" class="create-user">
-    <div class="left">
-      <div center="center">
-        <h4>Foto de perfil</h4>
-        <div class="photo">
-          <img [src]="values[7]" alt="Aleq" />
-        </div>
-        <span
-          class="hiddenFileInput"
-          style="margin-top: 0.3cm; margin-right: 0.75cm"
-        >
-          <input
-            (change)="captureFile($event)"
-            type="file"
-            name="cambiar foto de perfil"
-            accept="image/x-png,image/gif,image/jpeg"
-        /></span>
-      </div>
-    </div>
 
-    <div class="right">
-      <div class="create-user_content">
-        <form autocomplete="off">
-          <div *ngIf="disableForm; else notShow">
-            <div class="form-group" *ngFor="let data of values | slice: 1:4">
+<div *ngIf="!loading" class="create-user">
+  <div class="left">
+    <h4>Foto de perfil</h4>
+    <div class="photo">
+      <img [src]="userInfo.imageBase64" [alt]="userInfo.name" />
+    </div>
+    <span
+      class="hiddenFileInput"
+      style="margin-top: 0.3cm; margin-right: 0.75cm"
+    >
+      <input
+        (change)="captureFile($event)"
+        type="file"
+        name="cambiar foto de perfil"
+        accept="image/x-png,image/gif,image/jpeg"
+    /></span>
+  </div>
+
+  <div class="right">
+    <div class="create-user_content">
+      <form autocomplete="off">
+        <div *ngIf="disableForm; else notShow">
+          <div class="form-group">
+            <input
+              type="text"
+              name="name"
+              [(ngModel)]="userInfo.name"
+              disabled="true"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              name="email"
+              [(ngModel)]="userInfo.email"
+              disabled="true"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              name="rol"
+              [(ngModel)]="userInfo.rol"
+              disabled="true"
+            />
+          </div>
+          <div class="form-group">
+            <textarea
+              type="text"
+              placeholder="Descripción"
+              name="description"
+              [(ngModel)]="userInfo.description"
+              disabled="true"
+            ></textarea>
+          </div>
+          <button class="btn-general-form" (click)="enableInformation()">
+            Editar
+          </button>
+        </div>
+
+        <ng-template #notShow>
+          <form
+            autocomplete="off"
+            #signUpForm="ngForm"
+            (ngSubmit)="updateInformation(signUpForm)"
+          >
+            <div class="form-group">
               <input
                 type="text"
-                [placeholder]="data"
-                name=""
+                placeholder="Escribe tu nombre..."
+                name="name"
+                required
                 pattern="^[a-zA-Z\s]{3,50}"
+                [ngModel]="userInfo.name"
+                #name="ngModel"
+                [class.invalid]="name.invalid && name.touched"
+                [class.valid]="name.valid && description.touched"
+              />
+              <div class="message-error" *ngIf="!name.value && name.touched">
+                El nombre de usuario es requerido.
+              </div>
+              <div
+                class="message-error"
+                *ngIf="name.value && name.value.length < 3 && name.dirty"
+              >
+                El nombre del usuario debe tener al menos 3 caracteres.
+              </div>
+              <div
+                class="message-error"
+                *ngIf="name.value && name.value.length > 2 && name.invalid"
+              >
+                No se permiten caracteres especiales o números.
+              </div>
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                placeholder="Correo electrónico"
+                name="email"
+                pattern="^[a-zA-Z\s]{3,50}"
+                [(ngModel)]="userInfo.email"
                 disabled="true"
-                [value]="data"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="email"
+                placeholder="Rol"
+                name="rol"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                [(ngModel)]="userInfo.rol"
+                disabled="true"
               />
             </div>
             <div class="form-group">
               <textarea
                 type="text"
-                [placeholder]=""
-                name="userId"
-                pattern="^[a-zA-Z\s]{3,50}"
-                disabled="true"
-                [value]="userInfo.description"
+                placeholder="Escribe tu biografía..."
+                name="description"
+                pattern="[A-Za-z0-9\s]{5,50}"
+                [ngModel]="userInfo.description"
+                #description="ngModel"
+                [class.invalid]="description.invalid && description.touched"
+                [class.valid]="
+                  description.valid && description.touched && description.value
+                "
               ></textarea>
-            </div>
-            <button class="btn-general-form" (click)="enableInformation()">
-              Editar
-            </button>
-          </div>
-
-          <ng-template #notShow>
-            <form
-              autocomplete="off"
-              #signUpForm="ngForm"
-              (ngSubmit)="updateInformation(signUpForm)"
-            >
-              <div class="form-group">
-                <input
-                  type="text"
-                  placeholder="Escribe tus nombres..."
-                  name="name"
-                  [ngModel]="userInfo.name"
-                  #name="ngModel"
-                  pattern="^[a-zA-Z\s]{3,50}"
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  placeholder="Correo electrónico"
-                  name="email"
-                  pattern="^[a-zA-Z\s]{3,50}"
-                  [(ngModel)]="userInfo.email"
-                  disabled="true"
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="email"
-                  placeholder="Rol"
-                  name="rol"
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-                  [(ngModel)]="userInfo.rol"
-                  disabled="true"
-                />
-              </div>
-              <div class="form-group">
-                <textarea
-                  type="text"
-                  placeholder="Escribe tu biografía..."
-                  name="description"
-                  [ngModel]="userInfo.description"
-                  #description="ngModel"
-                  pattern="^[a-zA-Z\s]{3,50}"
-                ></textarea>
-              </div>
-              <button
-                style="margin-left: 0.3cm"
-                class="btn-general-form"
-                (click)="cancelInformation()"
+              <div
+                class="message-error"
+                *ngIf="
+                  description.value &&
+                  description.value.length < 5 &&
+                  description.dirty
+                "
               >
-                Cancelar
-              </button>
-              <button class="btn-general-form" type="submmit">Guardar</button>
-            </form>
-          </ng-template>
-        </form>
-      </div>
+                La descripción del usuario debe tener al menos 5 caracteres.
+              </div>
+              <div
+                class="message-error"
+                *ngIf="
+                  description.value &&
+                  description.value.length > 4 &&
+                  description.invalid
+                "
+              >
+                No se permiten caracteres especiales.
+              </div>
+            </div>
+            <button
+              style="margin-left: 0.3cm"
+              class="btn-general-form"
+              (click)="cancelInformation()"
+            >
+              Cancelar
+            </button>
+            <button class="btn-general-form" type="submmit">Guardar</button>
+          </form>
+        </ng-template>
+      </form>
     </div>
   </div>
-  <dukes-loading *ngIf="loading"></dukes-loading>
 </div>
+<dukes-loading *ngIf="loading"></dukes-loading>
