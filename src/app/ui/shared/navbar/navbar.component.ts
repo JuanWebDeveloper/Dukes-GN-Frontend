@@ -26,13 +26,16 @@ export class NavbarComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private router: Router,
     private userService: UserService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.authenticationService.getInfoUser().then((user: User) => {
-      this.userInfo = user.displayName;
-      this.userPhoto = user.photoURL ? user.photoURL : './assets/ifuwp.jpg';
-      this.rol = this.userService.retrieveRol;
+    this.authenticationService.getInfoUser().then((currentUser: User) => {
+      this.userService.getUser(currentUser.uid).subscribe(user => {
+        this.userInfo = user.name;
+        this.userPhoto = user.imageBase64 == undefined ? './assets/Default-Profile.png' : user.imageBase64;
+        this.rol = this.userService.retrieveRol;
+      })
+
     });
   }
 

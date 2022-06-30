@@ -15,19 +15,28 @@
         <img [src]="userPhoto" [alt]="userInfo" />
       </div>
       <span>{{ userInfo }} </span><span class="sp">|</span>
-      <span class="rol" (click)="showAndHideOptions($event)"
-        > <span class="capitalize">{{rol}}</span> <i class="fas fa-angle-down"></i
+      <span class="rol" (click)="showAndHideOptions($event)">
+        <span class="capitalize">{{ rol }}</span>
+        <i class="fas fa-angle-down"></i
       ></span>
 
       <ul class="options" id="options">
         <!-- Usuario -->
-        <li><i class="fas fa-address-card"></i> Mi información</li>
+        <li [routerLink]="['/dashboard/my-information']">
+          <i class="fas fa-address-card"></i> Mi información
+        </li>
         <!-- Usuario -->
-        <li *ngIf="rol === 'user'" [routerLink]="['/dashboard/user']"><i class="fas fa-tasks"></i> Mi progreso</li>
+        <li *ngIf="rol === 'user'" [routerLink]="['/dashboard/user']">
+          <i class="fas fa-tasks"></i> Mi progreso
+        </li>
         <!-- Super Admin - Root -->
-        <li *ngIf="rol === 'root'" [routerLink]="['/dashboard/root']"><i class="fas fa-users-cog"></i> Super Admin</li>
+        <li *ngIf="rol === 'root'" [routerLink]="['/dashboard/root']">
+          <i class="fas fa-users-cog"></i> Super Admin
+        </li>
         <!-- Admin -->
-        <li *ngIf="rol === 'admin'" [routerLink]="['/dashboard/admin']"><i class="fas fa-user-cog"></i> Admin</li>
+        <li *ngIf="rol === 'admin'" [routerLink]="['/dashboard/admin']">
+          <i class="fas fa-user-cog"></i> Admin
+        </li>
       </ul>
     </div>
     <li class="navbar-public_navigation-item" (click)="logout()">
