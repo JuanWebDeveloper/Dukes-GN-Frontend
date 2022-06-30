@@ -34,4 +34,18 @@ export class CourseService {
         map((response: Course) => this.apiToCourseMapper.mapCourse(response))
       );
   }
+
+  /**
+   * Servicio para obtener un curso
+   * @param programId
+   **/
+  public getCourse(programId: string): Observable<Course[]> {
+    return this.http
+      .get<Course[]>(`${environment.baseURL}course/program/${programId}`, {
+        headers: this.headers,
+      })
+      .pipe(
+        map((response: Course[]) => this.apiToCourseMapper.mapCourses(response))
+      );
+  }
 }

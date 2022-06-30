@@ -41,11 +41,13 @@ export class ProgramService {
    **/
   public getProgram(coachId: string): Observable<Program> {
     return this.http
-      .get<Program>(`${environment.baseURL}program/coach/${coachId}`, {
+      .get<Program[]>(`${environment.baseURL}program/coach/${coachId}`, {
         headers: this.headers,
       })
       .pipe(
-        map((response: Program) => this.apiToProgramMapper.mapProgram(response))
+        map((response: Program[]) => {
+          return this.apiToProgramMapper.mapProgram(response[0]);
+        })
       );
   }
 }

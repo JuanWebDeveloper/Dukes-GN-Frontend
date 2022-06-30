@@ -13,6 +13,8 @@ import { User } from 'src/app/core/models/User';
  */
 import { ProgramService } from 'src/app/core/services/program.service';
 import { Program } from 'src/app/core/models/Program';
+import { CourseService } from 'src/app/core/services/course.service';
+import { Course } from 'src/app/core/models/Course';
 
 @Component({
   selector: 'dukes-admin',
@@ -24,25 +26,18 @@ export class AdminComponent implements OnInit {
   public selected: string | undefined;
   public loading: boolean = true;
   public programInfo: Program | undefined;
+  public courseInfo: Course[] | undefined;
 
   constructor(
     private toastr: ToastrService,
     private authenticationService: AuthenticationService,
-    private programService: ProgramService
+    private programService: ProgramService,
+    private courseService: CourseService
   ) {}
 
   ngOnInit(): void {
     this.selected = this.indicators[1];
-    this.authenticationService.getInfoUser().then((user: UserF) => {
-      this.programService.getProgram(user.uid).subscribe((program: Program) => {
-        if (program) {
-          this.programInfo = program;
-          this.indicators[1] = 'Editar Programa';
-          this.selected = this.indicators[1];
-          this.loading = false;
-        }
-      });
-    });
+    this.recoverProgramDate();
   }
 
   /**
@@ -57,16 +52,7 @@ export class AdminComponent implements OnInit {
    * Metodo para cambiar la pestaña de crear programa por la de editar programa.
    **/
   public onIndicatorChangeEdit(): void {
-    this.authenticationService.getInfoUser().then((user: UserF) => {
-      this.programService.getProgram(user.uid).subscribe((program: Program) => {
-        if (program) {
-          this.programInfo = program;
-          this.indicators[1] = 'Editar Programa';
-          this.selected = this.indicators[1];
-          this.loading = false;
-        }
-      });
-    });
+    this.recoverProgramDate();
 
     this.toastr.success(
       'El programa se ha creado correctamente.',
@@ -78,5 +64,26 @@ export class AdminComponent implements OnInit {
         enableHtml: true,
       }
     );
+  }
+
+  /**
+   * Metodo para recuperar los datos del programa con sus correspondientes cursos y modulos.
+   **/
+  private recoverProgramDate(): void {
+    this.authenticationService.getInfoUser().then((user: UserF) => {
+      this.programService.getProgram(user.uid).subscribe((program: Program) => {
+        if (program) {
+          this.courseService
+            .getCourse(program.id_program)
+            .subscribe((courses: Course[]) => {
+              this.programInfo = program;
+              this.courseInfo = courses;
+              this.indicators[1] = 'Editar Programa';
+              this.selected = this.indicators[1];
+              this.loading = false;
+            });
+        }
+      });
+    });
   }
 }
