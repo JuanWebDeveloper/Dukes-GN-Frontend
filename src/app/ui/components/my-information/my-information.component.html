@@ -44,7 +44,7 @@
                 name="userId"
                 pattern="^[a-zA-Z\s]{3,50}"
                 disabled="true"
-                [value]="user.description"
+                [value]="userInfo.description"
               ></textarea>
             </div>
             <button class="btn-general-form" (click)="enableInformation()">
@@ -63,9 +63,8 @@
                   type="text"
                   placeholder="Escribe tus nombres..."
                   name="name"
-                  [ngModel]
+                  [ngModel]="userInfo.name"
                   #name="ngModel"
-                  value="{{ user.name }}"
                   pattern="^[a-zA-Z\s]{3,50}"
                 />
               </div>
@@ -75,7 +74,7 @@
                   placeholder="Correo electrónico"
                   name="email"
                   pattern="^[a-zA-Z\s]{3,50}"
-                  [(ngModel)]="user.email"
+                  [(ngModel)]="userInfo.email"
                   disabled="true"
                 />
               </div>
@@ -85,7 +84,7 @@
                   placeholder="Rol"
                   name="rol"
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-                  [(ngModel)]="user.rol"
+                  [(ngModel)]="userInfo.rol"
                   disabled="true"
                 />
               </div>
@@ -94,7 +93,7 @@
                   type="text"
                   placeholder="Escribe tu biografía..."
                   name="description"
-                  [ngModel]
+                  [ngModel]="userInfo.description"
                   #description="ngModel"
                   pattern="^[a-zA-Z\s]{3,50}"
                 ></textarea>

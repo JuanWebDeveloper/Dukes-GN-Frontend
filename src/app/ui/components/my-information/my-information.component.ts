@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { NgForm } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from 'src/app/core/models/User';
+import { BehaviorSubject } from 'rxjs';
+import { User as UserF } from '@firebase/auth';
+
+/**
+ * Servicios para obtener y actualizar la informacion de usuarios.
+ */
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { UserService } from 'src/app/core/services/user.service';
-
+import { User } from 'src/app/core/models/User';
 
 @Component({
   selector: 'dukes-my-information',
   templateUrl: './my-information.component.html',
-  styleUrls: ['./my-information.component.scss']
+  styleUrls: ['./my-information.component.scss'],
 })
-
 export class MyInformationComponent implements OnInit {
-
   private notificationSettings = {
     progressBar: true,
     positionClass: 'toast-top-right',
@@ -27,118 +27,143 @@ export class MyInformationComponent implements OnInit {
   public disableForm: boolean = true;
   public loading: boolean = false;
   public files: any[] = [];
-  public previsualization: string = "";
-  public previsualization$: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  private previsualization: string = '';
+  private previsualization$: BehaviorSubject<string> =
+    new BehaviorSubject<string>('');
 
-  public user: User = {
-    userId: "",
-    name: "",
-    email: "",
-    rol: "",
-    description: "",
+  public userInfo: User = {
+    userId: '',
+    name: '',
+    email: '',
+    rol: '',
+    description: '',
     verification: false,
     availability: false,
-    imageBase64: ""
+    imageBase64: '',
   };
-  public values: any[] = Object.values(this.user);
-
-  public values$: BehaviorSubject<any> = new BehaviorSubject<any[]>(this.values);
+  public values: any[] = Object.values(this.userInfo);
 
   constructor(
     private toastr: ToastrService,
-    router: Router,
     private userService: UserService,
-    private afAuth: AngularFireAuth,
     private sanitizer: DomSanitizer,
-    private authenticationService: AuthenticationService,) {
-
-    this.previsualization$.subscribe(value => {
+    private authenticationService: AuthenticationService
+  ) {
+    this.previsualization$.subscribe((value) => {
       this.previsualization = value;
     });
   }
 
   ngOnInit(): void {
     this.loading = true;
-    this.afAuth.currentUser.then((user) => {
-      if (user) {
-        this.userService.getUser(user?.uid).subscribe((data) => {
-          this.user.userId = data.userId;
-          this.user.name = data.name;
-          this.user.email = data.email;
-          this.user.rol = data.rol;
-          this.user.description = data.description === undefined ? '-' : data.description;
-          this.user.verification = data.verification;
-          this.user.availability = data.availability;
-          this.user.imageBase64 = data.imageBase64 === undefined ? './assets/Default-Profile.png' : data.imageBase64;
-          this.values = Object.values(this.user);
-          this.loading = false
+    this.authenticationService.getInfoUser().then((currentUser: UserF) => {
+      if (currentUser) {
+        this.userService.getUser(currentUser.uid).subscribe((user: User) => {
+          this.userInfo = {
+            userId: user.userId,
+            name: user.name,
+            email: user.email,
+            description: user.description,
+            rol: user.rol,
+            verification: user.verification,
+            availability: user.availability,
+            imageBase64:
+              user.imageBase64 === undefined
+                ? './assets/Default-Profile.png'
+                : user.imageBase64,
+          };
+          this.values = Object.values(this.userInfo);
+          this.loading = false;
         });
       }
     });
   }
 
-  updateInformation(form: NgForm) {
-    this.toastr.success("Información Actualizada", "", this.notificationSettings);
+  /**
+   * Actualiza los datos del usuario.
+   * @param form
+   */
+  public updateInformation(form: NgForm) {
+    this.toastr.success(
+      'Información Actualizada',
+      '',
+      this.notificationSettings
+    );
 
     setTimeout(() => {
       const { name, description } = form.value;
 
-      this.user.name = name;
-      this.user.description = description;
-      this.userService.updateUser(this.user).then(response => {
-        this.authenticationService.getInfoUser().then(user => {
+      this.userInfo.name = name;
+      this.userInfo.description = description;
+      this.userService.updateUser(this.userInfo).then((response) => {
+        this.authenticationService.getInfoUser().then((user) => {
           user.updateProfile({
-            displayName: name
+            displayName: name,
           });
         });
       });
-      this.values = Object.values(this.user);
+      this.values = Object.values(this.userInfo);
       this.disableForm = true;
     }, 3000);
   }
 
-  enableInformation() {
+  /**
+   * Habilita el formulario para editar los datos del usuario.
+   */
+  public enableInformation() {
     this.disableForm = false;
   }
 
-  cancelInformation() {
+  /**
+   * Desabilita el formulario para editar los datos del usuario.
+   */
+  public cancelInformation() {
     this.disableForm = true;
   }
 
-  captureFile(event: any) {
+  /**
+   * Carga una imagen en base64 para previsualizarla y la almacenarla en firebase.
+   * @param $event
+   **/
+  public captureFile(event: any) {
     const picture = event.target.files[0];
     this.files.push(picture);
     this.blobFile(picture).then((imagen: any) => {
       this.previsualization = imagen.base;
       this.previsualization$.next(this.previsualization);
-      this.user.imageBase64 = imagen.base;
-      this.userService.updateUser(this.user);
-    })
+      this.userInfo.imageBase64 = imagen.base;
+      this.userService.updateUser(this.userInfo);
+    });
   }
 
-  blobFile = async ($event: any) => new Promise((resolve, reject) => {
-    try {
-      const unsafeImg = window.URL.createObjectURL($event);
-      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
-      const reader = new FileReader();
-      reader.readAsDataURL($event);
-      reader.onload = () => {
-        resolve({
-          blob: $event,
-          image,
-          base: reader.result
-        });
-      };
-      reader.onerror = error => {
-        resolve({
-          blob: $event,
-          image,
-          base: null
-        });
-      };
-      return resolve;
-    } catch (e) {
-      return null;
-    }
-  })
+  /**
+   * Convierte un archivo en base64.
+   * @param file
+   **/
+  private blobFile = async ($event: any) =>
+    new Promise((resolve, reject) => {
+      try {
+        const unsafeImg = window.URL.createObjectURL($event);
+        const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
+        const reader = new FileReader();
+        reader.readAsDataURL($event);
+        reader.onload = () => {
+          resolve({
+            blob: $event,
+            image,
+            base: reader.result,
+          });
+        };
+        reader.onerror = (error) => {
+          resolve({
+            blob: $event,
+            image,
+            base: null,
+          });
+        };
+        return resolve;
+      } catch (e) {
+        return null;
+      }
+    });
 }
