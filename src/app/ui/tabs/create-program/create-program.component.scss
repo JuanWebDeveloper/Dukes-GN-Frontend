@@ -4,6 +4,17 @@
   position: relative;
   width: 100%;
 
+  .create-loading {
+    background-color: rgba(styles.$color-secondary, 0.5);
+    backdrop-filter: brightness(50%);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: styles.$box-z-10;
+  }
+
   &_content {
     max-height: 70vh;
     margin: 0 auto;

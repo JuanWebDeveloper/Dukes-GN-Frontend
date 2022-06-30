@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 /**
@@ -6,12 +6,16 @@ import { NgForm } from '@angular/forms';
  **/
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { ProgramService } from 'src/app/core/services/program.service';
+import { CourseService } from 'src/app/core/services/course.service';
+import { ModuleService } from 'src/app/core/services/module.service';
 
 /**
  * Interfaces.
  **/
 import { User } from '@firebase/auth';
 import { Program } from '../../../core/models/Program';
+import { Course } from '../../../core/models/Course';
+import { Module } from '../../../core/models/Module';
 
 @Component({
   selector: 'dukes-create-program',
@@ -52,10 +56,16 @@ export class CreateProgramComponent implements OnInit {
   ];
   private userInfo: User | any;
   private programInfo: Program | any;
+  private courseInfo: Course | any;
+  private moduleInfo: Module | any;
+  public loading: boolean = false;
+  @Output() programCreated: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private authenticationService: AuthenticationService,
-    private programService: ProgramService
+    private programService: ProgramService,
+    private courseService: CourseService,
+    private moduleService: ModuleService
   ) {}
 
   ngOnInit(): void {
@@ -91,22 +101,52 @@ export class CreateProgramComponent implements OnInit {
    * Crear un programa.
    */
   public onSubmit(form: NgForm) {
+    this.loading = true;
+
     this.programInfo = {
       name: form.value.name,
       id_coach: this.userInfo.uid,
       name_coach: this.userInfo.displayName,
       duration_day: this.totalDays(form),
+      course_amount: this.courses.length,
     };
 
     this.programService
       .createProgram(this.programInfo)
-      .subscribe((response: Program) => {
-        console.log(response);
+      .subscribe(({ id_program, course_percentage }: Program) => {
+        for (let i = 0; i < this.courses.length; i++) {
+          this.courseInfo = {
+            id_program: id_program,
+            name: form.value[`course${i + 1}`],
+            percentage: course_percentage,
+          };
+
+          this.courseService
+            .createCourse(this.courseInfo)
+            .subscribe((course: Course) => {
+              for (let j = 0; j < this.courses[i].modules.length; j++) {
+                this.moduleInfo = {
+                  id_course: course.id_course,
+                  name: form.value[`module${j + 1}-${i + 1}`],
+                  duration: form.value[`module${j + 1}-${i + 1}-duration`],
+                };
+
+                this.moduleService
+                  .createModule(this.moduleInfo)
+                  .subscribe((module: Module) => {});
+              }
+            });
+        }
+      })
+      .add(() => {
+        this.loading = false;
+        this.programCreated.emit();
       });
   }
 
   /**
    * Calcular el total de dias de un programa.
+   * @param form
    */
   private totalDays({ value }: NgForm): number {
     let totalDays = 0;

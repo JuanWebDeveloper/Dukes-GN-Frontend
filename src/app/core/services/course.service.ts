@@ -3,17 +3,17 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { ApiToProgramMapper } from '../mappers/api-to-program.mapper';
-import { Program } from '../models/Program';
+import { ApiToCourseMapper } from '../mappers/api-to-course.mapper';
+import { Course } from '../models/Course';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProgramService {
+export class CourseService {
   private headers: HttpHeaders;
   constructor(
     private http: HttpClient,
-    private apiToProgramMapper: ApiToProgramMapper
+    private apiToCourseMapper: ApiToCourseMapper
   ) {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -22,16 +22,16 @@ export class ProgramService {
   }
 
   /**
-   * Servicio para crear un programa
-   * @param program
-   **/
-  public createProgram(program: Program): Observable<Program> {
+   * Servicio para crear un curso
+   * @param course
+   */
+  public createCourse(course: Course): Observable<Course> {
     return this.http
-      .post<Program>(`${environment.baseURL}program/create`, program, {
+      .post<Course>(`${environment.baseURL}course/create`, course, {
         headers: this.headers,
       })
       .pipe(
-        map((response: Program) => this.apiToProgramMapper.mapProgram(response))
+        map((response: Course) => this.apiToCourseMapper.mapCourse(response))
       );
   }
 }

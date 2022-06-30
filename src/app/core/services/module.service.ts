@@ -3,17 +3,17 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { ApiToProgramMapper } from '../mappers/api-to-program.mapper';
-import { Program } from '../models/Program';
+import { ApiToModuleMapper } from '../mappers/api-to-module.mapper';
+import { Module } from '../models/Module';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProgramService {
+export class ModuleService {
   private headers: HttpHeaders;
   constructor(
     private http: HttpClient,
-    private apiToProgramMapper: ApiToProgramMapper
+    private apiToModuleMapper: ApiToModuleMapper
   ) {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -22,16 +22,16 @@ export class ProgramService {
   }
 
   /**
-   * Servicio para crear un programa
-   * @param program
+   * Servicio para crear un módulo
+   * @param module
    **/
-  public createProgram(program: Program): Observable<Program> {
+  public createModule(module: Module): Observable<Module> {
     return this.http
-      .post<Program>(`${environment.baseURL}program/create`, program, {
+      .post<Module>(`${environment.baseURL}module/create`, module, {
         headers: this.headers,
       })
       .pipe(
-        map((response: Program) => this.apiToProgramMapper.mapProgram(response))
+        map((response: Module) => this.apiToModuleMapper.mapModule(response))
       );
   }
 }

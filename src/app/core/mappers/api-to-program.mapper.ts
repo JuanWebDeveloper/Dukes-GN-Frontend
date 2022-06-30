@@ -5,7 +5,11 @@ import { Program } from '../models/Program';
   providedIn: 'root',
 })
 export class ApiToProgramMapper {
-  // Mapea un objeto de la API a un objeto de tipo Program.
+  /**
+   * Mapea un objeto de la API a un objeto de tipo Program.
+   * @param program
+   * @returns programMapped
+   */
   public mapProgram(program: Program): Program {
     const programMapped: Program = {
       id_program: program.id_program,
@@ -15,6 +19,8 @@ export class ApiToProgramMapper {
       id_coach: program.id_coach,
       name_coach: program.name_coach,
       duration_day: program.duration_day,
+      course_amount: program.course_amount,
+      course_percentage: program.course_percentage,
     };
 
     return programMapped;

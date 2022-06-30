@@ -26,6 +26,7 @@ import { ScoreUserComponent } from './tabs/score-user/score-user.component';
 import { CreateProgramComponent } from './tabs/create-program/create-program.component';
 import { ProgramProgressComponent } from './tabs/program-progress/program-progress.component';
 import { LoadingComponent } from './shared/loading/loading.component';
+import { EditProgramComponent } from './tabs/edit-program/edit-program.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { LoadingComponent } from './shared/loading/loading.component';
     CreateProgramComponent,
     ProgramProgressComponent,
     LoadingComponent,
+    EditProgramComponent,
   ],
   imports: [BrowserModule, CommonModule, RouterModule, FormsModule],
 })
