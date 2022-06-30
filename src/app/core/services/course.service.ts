@@ -22,7 +22,7 @@ export class CourseService {
   }
 
   /**
-   * Servicio para crear un curso
+   * Servicio para crear un curso.
    * @param course
    */
   public createCourse(course: Course): Observable<Course> {
@@ -32,6 +32,20 @@ export class CourseService {
       })
       .pipe(
         map((response: Course) => this.apiToCourseMapper.mapCourse(response))
+      );
+  }
+
+  /**
+   * Servicio para obtener los cursos de un programa.
+   * @param programId
+   **/
+  public getCourse(programId: string): Observable<Course[]> {
+    return this.http
+      .get<Course[]>(`${environment.baseURL}course/program/${programId}`, {
+        headers: this.headers,
+      })
+      .pipe(
+        map((response: Course[]) => this.apiToCourseMapper.mapCourses(response))
       );
   }
 }

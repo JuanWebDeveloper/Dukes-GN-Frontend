@@ -22,7 +22,7 @@ export class ProgramService {
   }
 
   /**
-   * Servicio para crear un programa
+   * Servicio para crear un programa.
    * @param program
    **/
   public createProgram(program: Program): Observable<Program> {
@@ -36,16 +36,18 @@ export class ProgramService {
   }
 
   /**
-   * Servicio para obtener un programa
+   * Servicio para obtener un programa.
    * @param id
    **/
   public getProgram(coachId: string): Observable<Program> {
     return this.http
-      .get<Program>(`${environment.baseURL}program/coach/${coachId}`, {
+      .get<Program[]>(`${environment.baseURL}program/coach/${coachId}`, {
         headers: this.headers,
       })
       .pipe(
-        map((response: Program) => this.apiToProgramMapper.mapProgram(response))
+        map((response: Program[]) => {
+          return this.apiToProgramMapper.mapProgram(response[0]);
+        })
       );
   }
 }

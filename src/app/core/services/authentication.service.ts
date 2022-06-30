@@ -28,7 +28,12 @@ export class AuthenticationService {
     });
   }
 
-  // Servicio para el registro de usuarios.
+  /**
+   * Servicio para el registro de usuarios.
+   * @param email
+   * @param password
+   * @returns
+   */
   async register(email: string, password: string) {
     return await this.auth
       .createUserWithEmailAndPassword(email, password)
@@ -41,14 +46,22 @@ export class AuthenticationService {
       });
   }
 
-  //Servicio para enviar el correo de autenticación al correo registrado.
+  /**
+   * Servicio para enviar el correo de autenticación al correo registrado.
+   * @returns
+   */
   async SendVerificationMail() {
     return await this.auth.currentUser.then(
       (user) => user && user.sendEmailVerification()
     );
   }
 
-  // Servicio para el inicio de sesión del usuario.
+  /**
+   * Servicio para el inicio de sesión del usuario.
+   * @param email
+   * @param password
+   * @returns
+   */
   async login(email: string, password: string) {
     return await this.auth
       .signInWithEmailAndPassword(email, password)
@@ -60,12 +73,19 @@ export class AuthenticationService {
       });
   }
 
-  // Servicio para el cierre de sesión del usuario.
+  /**
+   * Servicio para el cierre de sesión del usuario.
+   * @returns
+   */
   async logout() {
     return await this.auth.signOut();
   }
 
-  // Servicio para restablecer la contraseña.
+  /**
+   * Servicio para restablecer la contraseña.
+   * @param email
+   * @returns
+   */
   async resetPassword(email: string) {
     return await this.auth
       .sendPasswordResetEmail(email)
@@ -77,12 +97,17 @@ export class AuthenticationService {
       });
   }
 
-  // Servicio para obtener la información de un usuario registrado.
+  /**
+   * Servicio para obtener la información de un usuario registrado.
+   * @returns
+   */
   async getInfoUser(): Promise<any> {
     return await this.auth.currentUser.then((user: any) => user);
   }
 
-  //Servicio para verificar que el correo del usuario está verificado.
+  /**
+   * Servicio para verificar que el correo del usuario está verificado.
+   */
   get verifyEmail(): boolean {
     return JSON.parse(localStorage.getItem('isVerificated')!);
   }
