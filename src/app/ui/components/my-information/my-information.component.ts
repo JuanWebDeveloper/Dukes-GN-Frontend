@@ -63,8 +63,8 @@ export class MyInformationComponent implements OnInit {
             userId: user.userId,
             name: user.name,
             email: user.email,
-            description: user.description,
             rol: user.rol,
+            description: user.description,
             verification: user.verification,
             availability: user.availability,
             imageBase64:

@@ -8,6 +8,23 @@
   position: relative;
   justify-content: center;
 
+  @include styles.animation-animation-bg;
+
+  .animation-area {
+    position: absolute;
+  }
+
+  &::after {
+    background: url("../../../../assets/texture/dashboard.png");
+    background-size: cover;
+    content: "";
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    z-index: -1;
+  }
+
   &-content {
     background-color: rgba(styles.$color-secondary, 0.5);
     backdrop-filter: brightness(90%);
@@ -17,6 +34,7 @@
     flex-direction: column;
     padding: styles.$box-pad-half;
     width: 40%;
+    z-index: 1;
 
     h2,
     p {
