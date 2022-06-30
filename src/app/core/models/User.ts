@@ -6,4 +6,5 @@ export interface User {
   verification: boolean;
   availability: boolean;
   rol: string;
+  imageBase64?: string;
 }
