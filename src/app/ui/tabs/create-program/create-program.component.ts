@@ -1,4 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 /**
@@ -22,7 +28,7 @@ import { Module } from '../../../core/models/Module';
   templateUrl: './create-program.component.html',
   styleUrls: ['./create-program.component.scss'],
 })
-export class CreateProgramComponent implements OnInit {
+export class CreateProgramComponent implements OnInit, OnDestroy {
   public courses: any[] = [
     {
       courseName: 'course1',
@@ -74,6 +80,10 @@ export class CreateProgramComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    localStorage.removeItem('programInfo');
+  }
+
   /**
    * Agregar un curso a un programa.
    */
@@ -111,6 +121,8 @@ export class CreateProgramComponent implements OnInit {
       course_amount: this.courses.length,
     };
 
+    localStorage.setItem('programInfo', JSON.stringify(form.value));
+
     this.programService
       .createProgram(this.programInfo)
       .subscribe(({ id_program, course_percentage }: Program) => {
@@ -125,10 +137,12 @@ export class CreateProgramComponent implements OnInit {
             .createCourse(this.courseInfo)
             .subscribe((course: Course) => {
               for (let j = 0; j < this.courses[i].modules.length; j++) {
+                let formInfo = JSON.parse(localStorage.getItem('programInfo')!);
+
                 this.moduleInfo = {
                   id_course: course.id_course,
-                  name: form.value[`module${j + 1}-${i + 1}`],
-                  duration: form.value[`module${j + 1}-${i + 1}-duration`],
+                  name: formInfo[`module${j + 1}-${i + 1}`],
+                  duration: formInfo[`module${j + 1}-${i + 1}-duration`],
                 };
 
                 this.moduleService
