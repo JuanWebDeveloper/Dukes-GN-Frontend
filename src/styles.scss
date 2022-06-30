@@ -86,7 +86,8 @@ form {
     width: 100%;
 
     input,
-    select {
+    select,
+    textarea {
       background-color: rgba(styles.$color-secondary, 0.5);
       backdrop-filter: brightness(90%);
       border-radius: 5px;
@@ -110,7 +111,12 @@ form {
         outline-color: styles.$color-success;
       }
     }
-
+    textarea {
+      max-height: 300px;
+      min-height: 170px;
+      resize: vertical;
+      font-family: "inter", sans-serif;
+    }
     select {
       appearance: none;
       -moz-appearance: none;

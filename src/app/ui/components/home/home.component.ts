@@ -16,11 +16,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private authenticationService: AuthenticationService,
     private userService: UserService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.authenticationService.getInfoUser().then((currentUser: any) => {
-      this.username = currentUser.displayName;
       this.userService.getUser(currentUser.uid).subscribe((user: User) => {
         if (!user.verification) {
           this.userUpated = {
@@ -29,6 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           };
           this.userService.updateUser(this.userUpated);
         }
+        this.username = user.name;
       });
     });
   }

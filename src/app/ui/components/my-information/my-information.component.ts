@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/app/core/models/User';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { UserService } from 'src/app/core/services/user.service';
 
 
@@ -48,7 +49,8 @@ export class MyInformationComponent implements OnInit {
     router: Router,
     private userService: UserService,
     private afAuth: AngularFireAuth,
-    private sanitizer: DomSanitizer) {
+    private sanitizer: DomSanitizer,
+    private authenticationService: AuthenticationService,) {
 
     this.previsualization$.subscribe(value => {
       this.previsualization = value;
@@ -83,7 +85,13 @@ export class MyInformationComponent implements OnInit {
 
       this.user.name = name;
       this.user.description = description;
-      this.userService.updateUser(this.user);
+      this.userService.updateUser(this.user).then(response => {
+        this.authenticationService.getInfoUser().then(user => {
+          user.updateProfile({
+            displayName: name
+          });
+        });
+      });
       this.values = Object.values(this.user);
       this.disableForm = true;
     }, 3000);
