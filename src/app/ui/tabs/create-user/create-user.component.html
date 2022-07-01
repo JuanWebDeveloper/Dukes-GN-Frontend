@@ -10,7 +10,7 @@
           type="text"
           placeholder="Nombre completo"
           name="name"
-          pattern="^[a-zA-Z\s]{3,50}"
+          pattern="[A-Za-z\s\u00C0-\u017F\u00f1\u00d1]{3,50}"
           required
           [ngModel]
           #name="ngModel"
