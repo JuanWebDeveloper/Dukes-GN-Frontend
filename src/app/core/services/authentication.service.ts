@@ -34,7 +34,7 @@ export class AuthenticationService {
    * @param password
    * @returns
    */
-  async register(email: string, password: string) {
+  public async register(email: string, password: string) {
     return await this.auth
       .createUserWithEmailAndPassword(email, password)
       .then((response: any) => {
@@ -50,7 +50,7 @@ export class AuthenticationService {
    * Servicio para enviar el correo de autenticación al correo registrado.
    * @returns
    */
-  async SendVerificationMail() {
+  public async SendVerificationMail() {
     return await this.auth.currentUser.then(
       (user) => user && user.sendEmailVerification()
     );
@@ -62,7 +62,7 @@ export class AuthenticationService {
    * @param password
    * @returns
    */
-  async login(email: string, password: string) {
+  public async login(email: string, password: string) {
     return await this.auth
       .signInWithEmailAndPassword(email, password)
       .then((response: any) => {
@@ -77,7 +77,7 @@ export class AuthenticationService {
    * Servicio para el cierre de sesión del usuario.
    * @returns
    */
-  async logout() {
+  public async logout() {
     return await this.auth.signOut();
   }
 
@@ -86,7 +86,7 @@ export class AuthenticationService {
    * @param email
    * @returns
    */
-  async resetPassword(email: string) {
+  public async resetPassword(email: string) {
     return await this.auth
       .sendPasswordResetEmail(email)
       .then((result) => {
@@ -101,14 +101,14 @@ export class AuthenticationService {
    * Servicio para obtener la información de un usuario registrado.
    * @returns
    */
-  async getInfoUser(): Promise<any> {
+  public async getInfoUser(): Promise<any> {
     return await this.auth.currentUser.then((user: any) => user);
   }
 
   /**
    * Servicio para verificar que el correo del usuario está verificado.
    */
-  get verifyEmail(): boolean {
+  public get verifyEmail(): boolean {
     return JSON.parse(localStorage.getItem('isVerificated')!);
   }
 }

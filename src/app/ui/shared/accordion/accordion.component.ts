@@ -82,10 +82,10 @@ export class AccordionComponent implements OnInit {
    * @param form
    **/
   public onSubmit(form: NgForm): void {
-    const { courseId, moduleName, moduleId, moduleNote, user } = form.value;
+    const { courseId, moduleName, moduleId, moduleNote, userId } = form.value;
 
     this.userService
-      .assignNotes(courseId, moduleName, moduleId, moduleNote, user)
+      .assignNotes(courseId, moduleName, moduleId, moduleNote, userId)
       .then(() => {
         this.toastr.success('', 'Nota asignada correctamente', {
           progressBar: true,
@@ -93,6 +93,7 @@ export class AccordionComponent implements OnInit {
           timeOut: 3000,
           enableHtml: true,
         });
+
         form.resetForm();
       });
   }
