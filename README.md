@@ -18,11 +18,11 @@ Firebase url: https://dukes-9be6f.web.app/
 
 
 ## Tabla de Contenido 
-[· Empezar](#Inicio)  
-[· Página de inicio](#Inicio)  
-[· Página de Usuario](#Usuario)  
-[· Página de Administrador](#Administrador)  
-[· Página de Super administrador](#Super)  
+[· Empezar](##Empezar)  
+[· Página de inicio](##Inicio)  
+[· Página de Usuario](## Página de Usuario)  
+[· Página de Administrador](## Página de Administrador)  
+[· Página de Super administrador](## Página de Super Administrador)  
 
 ## Empezar 🏄
 Prerequisitos: [Node (v16 LTS)](https://nodejs.org/en/download/) y [Git](https://git-scm.com/downloads)
