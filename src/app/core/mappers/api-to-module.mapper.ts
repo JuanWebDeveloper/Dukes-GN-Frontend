@@ -12,6 +12,7 @@ export class ApiToModuleMapper {
    */
   public mapModule(module: Module): Module {
     const moduleMapped: Module = {
+      id_module: module.id_module,
       id_course: module.id_course,
       name: module.name,
       percentage: module.percentage,

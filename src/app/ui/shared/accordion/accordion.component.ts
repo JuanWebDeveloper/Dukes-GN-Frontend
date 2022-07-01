@@ -18,6 +18,7 @@ export class AccordionComponent implements OnInit {
   @Input() modules: Module[] | undefined;
   @Input() userId: string | undefined;
   public programUsers: User[] | any;
+  public loading: boolean = true;
 
   constructor(private userService: UserService) {}
 
@@ -26,6 +27,7 @@ export class AccordionComponent implements OnInit {
       this.programUsers = users.filter(
         (user: User) => user.programId === this.program!.id_program
       );
+      this.loading = false;
     });
   }
 
@@ -75,5 +77,15 @@ export class AccordionComponent implements OnInit {
    * Método para asignar una nota a un usuario.
    * @param form
    **/
-  public onSubmit(form: NgForm): void {}
+  public onSubmit({ value }: NgForm): void {
+    const { courseId, moduleName, moduleId, moduleNote, user } = value;
+
+    this.userService.assignNotes(
+      courseId,
+      moduleName,
+      moduleId,
+      moduleNote,
+      user
+    );
+  }
 }
