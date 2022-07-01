@@ -25,4 +25,13 @@ export class ApiToProgramMapper {
 
     return programMapped;
   }
+
+  /**
+   * Mapea un array de objetos de la API a un array de objetos de tipo Program.
+   * @param programs
+   * @returns programsMapped
+   */
+  public mapPrograms(programs: Program[]): Program[] {
+    return programs.map((program) => this.mapProgram(program));
+  }
 }
