@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import { UserService } from '../../../core/services/user.service';
 import { Program } from '../../../core/models/Program';
 import { Course } from 'src/app/core/models/Course';
 import { Module } from 'src/app/core/models/Module';
@@ -14,7 +15,8 @@ export class AccordionComponent implements OnInit {
   @Input() courses: Course[] | any;
   @Input() modules: Module[] | any;
   @Input() userId: string | undefined;
-  constructor() {}
+
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {}
 

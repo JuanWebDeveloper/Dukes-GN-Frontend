@@ -4,7 +4,8 @@ import { map, Observable } from 'rxjs';
 
 import { FirestoreToUserMapper } from '../mappers/firestore-to-users.mapper';
 import { User } from '../models/User';
-import { Program } from '../models/Program';
+import { Course } from '../models/Course';
+import { Module } from '../models/Module';
 
 @Injectable({
   providedIn: 'root',
@@ -77,17 +78,43 @@ export class UserService {
   async createProgramData(
     programId: string,
     programName: string,
+    courses: Course[],
+    modules: Module[],
     userId: string
   ) {
     const userRef = this.angularFirestore.collection('users');
 
-    return await this.getUser(userId).subscribe((user: User) => {
+    await this.getUser(userId).subscribe((user: User) => {
       userRef.doc(userId).update({
         ...user,
         availability: false,
         programId: programId,
         programName: programName,
       });
+    });
+
+    courses.map(async (course: Course) => {
+      const courseModules = modules.filter(
+        (module: Module) => module.id_course === course.id_course
+      );
+
+      const moduleNoteReferences = courseModules.map((module: Module) => {
+        return {
+          [module.name]: module.name,
+          [`${module.name}Note`]: 0,
+        };
+      });
+
+      const courseDate = {
+        courseNote: 0,
+        ...moduleNoteReferences,
+      };
+
+      await userRef
+        .doc(userId)
+        .collection('courses')
+        .doc(course.id_course)
+        .set(courseDate);
     });
   }
 }
