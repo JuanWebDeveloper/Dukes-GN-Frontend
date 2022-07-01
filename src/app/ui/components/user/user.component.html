@@ -23,11 +23,28 @@
         </button>
       </div>
       <div class="tabs-tab" *ngIf="selected === 'Gráfica'">
-        <dukes-graph-progress></dukes-graph-progress>
+        <dukes-graph-progress
+          [program]="programInfo"
+          [courses]="courseInfo"
+          [modules]="moduleInfo"
+        ></dukes-graph-progress>
       </div>
       <div class="tabs-tab" *ngIf="selected === 'Tabla'">
         <dukes-table-progress></dukes-table-progress>
       </div>
     </div>
+  </div>
+  <div class="animation-area_two">
+    <ul class="box-area_two">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
   </div>
 </div>
