@@ -64,6 +64,7 @@ export class ListUserComponent implements OnInit, OnDestroy {
   @ViewChild('pdfTable')
   pdfTable!: ElementRef;
 
+  
   public downloadAsPDF() {
     const pdfTable = this.pdfTable.nativeElement;
     let spans: any = document.querySelectorAll('#pdfTable span');

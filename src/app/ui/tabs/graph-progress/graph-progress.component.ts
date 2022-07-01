@@ -1,27 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
-import firebase from "firebase/compat";
+import firebase from 'firebase/compat';
 import User = firebase.User;
-import {AuthenticationService} from "../../../core/services/authentication.service";
+import { AuthenticationService } from '../../../core/services/authentication.service';
+import { UserService } from 'src/app/core/services/user.service';
+import { Program } from 'src/app/core/models/Program';
+import { Course } from 'src/app/core/models/Course';
+import { Module } from 'src/app/core/models/Module';
 
 @Component({
   selector: 'dukes-graph-progress',
   templateUrl: './graph-progress.component.html',
-  styleUrls: ['./graph-progress.component.scss']
+  styleUrls: ['./graph-progress.component.scss'],
 })
 export class GraphProgressComponent implements OnInit {
-
-  chart: any;
+  @Input() program: Program | any;
+  @Input() courses: Course[] | any;
+  @Input() modules: Module[] | any;
+  public chart: any;
   public userName: any;
+  public id_user: string | undefined;
+  private moduleInfoNote: any[] | undefined;
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(
+    private authenticationService: AuthenticationService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.chart = document.getElementById('line_chart');
     Chart.register(...registerables);
     this.loadChart();
+
     this.authenticationService.getInfoUser().then((user: User) => {
       this.userName = user.displayName;
+    });
+
+    this.modules.map((module: Module) => {
+      this.getNotes(
+        this.id_user!,
+        module.id_course,
+        module.name,
+        module.id_module!
+      ).then((notes: any) => {
+        this.moduleInfoNote?.push(notes);
+        console.log(notes);
+      });
     });
   }
 
@@ -34,47 +58,41 @@ export class GraphProgressComponent implements OnInit {
          */
         datasets: [
           {
-            data: [65, 59, 80, 81, 56, 55, 40, 100, 98, 100], //Notas por módulo
-            label: 'juan', //Nombre del estudiante
-            backgroundColor: [
-
-              'rgba(200, 102, 255, 1)',
-
-            ],
+            data: this.moduleInfoNote!.map((note) => note.values()[0]), //Notas por módulo
+            label: this.userName, //Nombre del estudiante
+            backgroundColor: ['rgba(200, 102, 255, 1)'],
             borderColor: [
               'rgba(200, 102, 255, 1)',
               'rgba(255, 206, 86, 1)',
               'rgba(75, 192, 192, 1)',
-              'rgba(255, 159, 64, 1)'
+              'rgba(255, 159, 64, 1)',
             ],
-            borderWidth: 1.5
+            borderWidth: 1.5,
           },
         ],
         /**
          * Aquí son los nombres de cada uno de los módulos calificados
          */
-        labels: [
-          'Fundamentos de Diseño',
-          'DDD',
-          'Spring Boot 2.0',
-          'Fundamentos de Angular',
-          'Diseño Web 2.0',
-          'RxJs',
-          'Reactor Core 3.0',
-          'Spring Boot Destilado',
-          'Aplicaciones Empresariales',
-          'Arquitecturas Limpias'
-        ],
+        labels: this.moduleInfoNote!.map((note) => note.values()[1]),
       },
       options: {
         responsive: true,
         scales: {
           y: {
             beginAtZero: true,
-          }
-        }
-      }
+          },
+        },
+      },
     });
   }
 
+  getNotes(
+    userId: string,
+    courseId: string,
+    moduleName: string,
+    moduleId: string
+  ): any {
+    this.userService.getModuleNoteData(userId, courseId, moduleName, moduleId)
+    .subscribe((response) => console.log(response));
+  }
 }
