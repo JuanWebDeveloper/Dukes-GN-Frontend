@@ -1,6 +1,11 @@
 <div class="list-users">
   <dukes-loading *ngIf="loading"></dukes-loading>
-  <div class="list-users_content" *ngIf="!loading">
+  <div
+    class="list-users_content"
+    *ngIf="!loading"
+    id="pdfTable"
+    #pdfTable
+  >
     <table id="excel-table">
       <thead>
         <tr>
@@ -51,6 +56,9 @@
         </tr>
       </tbody>
     </table>
+    <button class="btn-general" (click)="downloadAsPDF()">
+      Exportar a PDF
+    </button>
     <button class="btn-general" (click)="exportToExcel()">
       Exportar a Excel
     </button>
