@@ -17,16 +17,64 @@
               <span>{{ module.name }}</span> <i class="fas fa-plus"></i>
             </div>
             <div class="accordion-c-itemC_contentC">
-              <form>
+              <form
+                #noteAssignmentForm="ngForm"
+                (ngSubmit)="onSubmit(noteAssignmentForm)"
+              >
                 <div class="form-group">
-                  <input type="number" placeholder="Asignar nota" />
+                  <input
+                    type="number"
+                    placeholder="Asignar nota"
+                    name="note"
+                    required
+                    [ngModel]
+                    #note="ngModel"
+                    [class.invalid]="note.invalid && note.touched"
+                    [class.valid]="note.valid"
+                  />
+                  <div
+                    class="message-error"
+                    *ngIf="!note.value && note.touched"
+                  >
+                    La nota es requerida.
+                  </div>
                 </div>
                 <div class="form-group">
-                  <select>
-                    <option value="">Seleccionar Usuario</option>
+                  <select
+                    name="user"
+                    required
+                    [ngModel]
+                    #user="ngModel"
+                    [class.invalid]="user.invalid && user.touched"
+                    [class.valid]="user.valid"
+                    [disabled]="programUsers.length < 1"
+                  >
+                    <option value="" *ngIf="programUsers.length < 1">
+                      No hay usuarios asignados a este programa
+                    </option>
+                    <option value="" *ngIf="programUsers.length >= 1">
+                      Seleccione un usuario
+                    </option>
+                    <option
+                      *ngFor="let pUser of programUsers"
+                      [value]="pUser.userId"
+                    >
+                      {{ pUser.name }}
+                    </option>
                   </select>
+                  <div
+                    class="message-error"
+                    *ngIf="!user.value && user.touched"
+                  >
+                    El usuario es requerido.
+                  </div>
                 </div>
-                <button class="btn-general-form">Asignar Nota</button>
+                <button
+                  class="btn-general-form"
+                  [class.disabled]="noteAssignmentForm.invalid"
+                >
+                  Asignar Nota
+                </button>
               </form>
             </div>
           </div>

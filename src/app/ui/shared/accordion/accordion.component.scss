@@ -45,8 +45,6 @@
       backdrop-filter: brightness(70%);
       display: none;
       justify-content: center;
-      overflow: hidden;
-      overflow-y: auto;
       position: relative;
       padding: styles.$box-pad-half;
       transition: styles.$animation-bezier;
@@ -95,19 +93,16 @@
           }
 
           &_contentC {
+            @include styles.animation-scale-in_X;
             align-items: center;
             background-color: rgba(styles.$color-secondary, 0.4);
             backdrop-filter: brightness(40%);
-
-            display: flex;
-            height: 0;
-            overflow: hidden;
-            overflow-y: auto;
+            display: none;
+            padding: styles.$box-pad-half;
             transition: styles.$animation-bezier;
 
             &.active {
-              height: 150px;
-              padding: styles.$box-pad-half;
+              display: flex;
             }
 
             &::-webkit-scrollbar {
