@@ -26,6 +26,50 @@
       text-align: center;
     }
 
+    &-users {
+      background-color: rgba(styles.$color-tertiary, 0.4);
+      backdrop-filter: brightness(30%);
+      border-radius: 5px;
+      position: relative;
+      padding: styles.$box-pad-half;
+      width: 100%;
+
+      h2 {
+        text-align: center;
+      }
+
+      &_availability {
+        position: relative;
+        width: 100%;
+
+        &-item {
+          align-items: center;
+          border-radius: 5px;
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: styles.$box-mrg-half;
+          padding: styles.$box-pad-quarter;
+
+          width: 100%;
+
+          h3 {
+            line-height: 0;
+          }
+
+          button {
+            &:hover {
+              transform: scale(1);
+
+              &::before {
+                animation: none;
+                background: none;
+              }
+            }
+          }
+        }
+      }
+    }
+
     @media (max-width: styles.$bkp-tablet-w) {
       max-height: 55vh;
       width: 90%;

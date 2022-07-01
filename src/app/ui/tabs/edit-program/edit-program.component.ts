@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 /**
  * Servicio para obtener los usuarios disponibles.
@@ -23,16 +23,20 @@ export class EditProgramComponent implements OnInit {
   @Input() program: Program | any;
   @Input() courses: Course[] | any;
   @Input() modules: Module[] | any;
-  public usersAvailability: User[] = [];
+  public users: User[] | any;
+  public loading = true;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.userService.getAllUsers().subscribe((users: User[]) => {
-      this.usersAvailability = users.filter(
-        (user: User) =>
-          user.rol === 'user' && user.verification && user.availability
+      this.users = users.filter(
+        (user: User) => user.rol === 'user' && user.availability
       );
+      this.loading = false;
     });
   }
 
@@ -40,11 +44,18 @@ export class EditProgramComponent implements OnInit {
    * Método para agregar un usuario a un programa.
    * @param user
    **/
-  public addUser(form: NgForm): void {
-    this.userService
-      .createProgramData(this.program, form.value.userSelected)
-      .then(() => {
-        window.location.reload();
-      });
+  public addUser(userId: string, username: string): void {
+    this.userService.createProgramData(this.program, userId).then(() => {
+      this.toastr.success(
+        `El usuario ${username} ha sido agregado al programa ${this.program.name}`,
+        'Usuario agregado',
+        {
+          progressBar: true,
+          positionClass: 'toast-top-right',
+          timeOut: 3000,
+          enableHtml: true,
+        }
+      );
+    });
   }
 }
