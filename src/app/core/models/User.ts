@@ -7,4 +7,5 @@ export interface User {
   availability: boolean;
   rol: string;
   imageBase64?: string;
+  programId?: string;
 }

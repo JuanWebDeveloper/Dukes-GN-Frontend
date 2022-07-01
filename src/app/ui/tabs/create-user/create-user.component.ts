@@ -74,7 +74,7 @@ export class CreateUserComponent {
             this.notificationSettings
           );
 
-          form.reset();
+          form.resetForm();
         } else {
           this.toastr.error(
             this.messagesUtil.getMessage(response.code),

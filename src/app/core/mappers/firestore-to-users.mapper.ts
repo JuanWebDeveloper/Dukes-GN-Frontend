@@ -19,7 +19,8 @@ export class FirestoreToUserMapper {
       verification: user.verification,
       availability: user.availability,
       rol: user.rol,
-      imageBase64: user.imageBase64
+      imageBase64: user.imageBase64,
+      programId: user.programId,
     };
 
     return userMapped;

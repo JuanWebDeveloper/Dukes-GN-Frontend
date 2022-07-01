@@ -13,7 +13,7 @@
           type="text"
           placeholder="Nombre del programa"
           name="name"
-          pattern="[A-Za-z0-9\s]{3,50}"
+          pattern="[A-Za-z0-9\s\u00C0-\u017F\,\.\¿\?\u00f1\u00d1]{3,100}"
           required
           [ngModel]
           #name="ngModel"
@@ -41,7 +41,7 @@
           type="text"
           placeholder="Nombre del curso {{ ic + 1 }}"
           name="course{{ ic + 1 }}"
-          pattern="[A-Za-z0-9\s]{3,50}"
+          pattern="[A-Za-z0-9\s\u00C0-\u017F\,\.\¿\?\u00f1\u00d1]{3,100}"
           required
           [ngModel]
           #cours="ngModel"
@@ -72,7 +72,7 @@
             type="text"
             placeholder="Nombre del modulo {{ im + 1 }}"
             name="module{{ im + 1 }}-{{ ic + 1 }}"
-            pattern="[A-Za-z0-9\s]{3,50}"
+            pattern="[A-Za-z0-9\s\u00C0-\u017F\,\.\¿\?\u00f1\u00d1]{3,100}"
             class="w-50"
             required
             [ngModel]
