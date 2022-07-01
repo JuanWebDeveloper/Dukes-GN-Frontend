@@ -74,7 +74,11 @@ export class UserService {
    * @param program
    * @param userId
    **/
-  async createProgramData(programId: string, userId: string) {
+  async createProgramData(
+    programId: string,
+    programName: string,
+    userId: string
+  ) {
     const userRef = this.angularFirestore.collection('users');
 
     return await this.getUser(userId).subscribe((user: User) => {
@@ -82,6 +86,7 @@ export class UserService {
         ...user,
         availability: false,
         programId: programId,
+        programName: programName,
       });
     });
   }

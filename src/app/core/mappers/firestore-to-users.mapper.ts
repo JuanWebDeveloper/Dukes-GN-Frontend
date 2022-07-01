@@ -21,6 +21,7 @@ export class FirestoreToUserMapper {
       rol: user.rol,
       imageBase64: user.imageBase64,
       programId: user.programId,
+      programName: user.programName,
     };
 
     return userMapped;

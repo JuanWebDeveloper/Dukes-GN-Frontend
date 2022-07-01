@@ -1,0 +1,31 @@
+@use "../../styles/index" as styles;
+
+.list-programs {
+  position: relative;
+  width: 100%;
+
+  &_content {
+    max-height: 70vh;
+    margin: 0 auto;
+    overflow: hidden;
+    overflow-y: scroll;
+    position: relative;
+    width: 95%;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+
+    button {
+      float: right;
+      margin-top: styles.$box-mrg-half;
+      &:hover {
+        transform: scale(1.0);
+      }
+    }
+
+    @media (max-width: styles.$bkp-mobile-w) {
+      max-height: 55vh;
+    }
+  }
+}

@@ -16,6 +16,14 @@
       width: 0;
     }
 
+    button {
+      float: right;
+      margin-top: styles.$box-mrg-half;
+      &:hover {
+        transform: scale(1.0);
+      }
+    }
+
     @media (max-width: styles.$bkp-mobile-w) {
       max-height: 55vh;
     }

@@ -1,1 +1,8 @@
-<p>program-progress works!</p>
+<div class="progress">
+  <div class="progress-message" *ngIf="!create">
+    <h2>No hay ningun programa creado</h2>
+  </div>
+  <div class="progress-body" *ngIf="create">
+    <h2>Si Hay un programa</h2>
+  </div>
+</div>
