@@ -1,0 +1,57 @@
+@use "../../styles/index" as styles;
+
+.accordion {
+  position: relative;
+  width: 100%;
+
+  &-item {
+    margin: styles.$box-mrg-half styles.$box-mrg-onehalf;
+    position: relative;
+    width: 100%;
+
+    &_label {
+      background: styles.$color-blue;
+      border-radius: 5px;
+      color: styles.$color-white;
+      cursor: pointer;
+      font-size: 1.5rem;
+      font-weight: 500;
+      font-family: "Noto Sans JP", sans-serif;
+      position: relative;
+      padding: styles.$box-pad-base;
+
+      &::before {
+        content: "+";
+        font-size: 2.5rem;
+        right: calc(25px + styles.$box-pad-base);
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &.active {
+        &::before {
+          content: "-";
+        }
+      }
+    }
+
+    &_content {
+      background-color: rgba(styles.$color-secondary, 0.5);
+      backdrop-filter: brightness(90%);
+      height: 0;
+      overflow: hidden;
+      overflow-y: auto;
+      transition: styles.$animation-bezier;
+
+      &.active {
+        height: 150px;
+        padding: styles.$box-pad-half;
+      }
+
+      &::-webkit-scrollbar {
+        width: 0;
+      }
+    }
+  }
+}

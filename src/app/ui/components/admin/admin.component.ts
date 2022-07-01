@@ -40,7 +40,7 @@ export class AdminComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.selected = this.indicators[1];
+    this.selected = this.indicators[0];
     this.recoverProgramDate();
   }
 
@@ -103,7 +103,7 @@ export class AdminComponent implements OnInit {
         .add(() => {
           if (this.programInfo) {
             this.indicators[1] = 'Editar Programa';
-            this.selected = this.indicators[1];
+            this.selected = this.indicators[0];
           }
 
           this.loading = false;
