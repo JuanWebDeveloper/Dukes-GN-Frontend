@@ -45,17 +45,19 @@ export class EditProgramComponent implements OnInit {
    * @param user
    **/
   public addUser(userId: string, username: string): void {
-    this.userService.createProgramData(this.program, userId).then(() => {
-      this.toastr.success(
-        `El usuario ${username} ha sido agregado al programa ${this.program.name}`,
-        'Usuario agregado',
-        {
-          progressBar: true,
-          positionClass: 'toast-top-right',
-          timeOut: 3000,
-          enableHtml: true,
-        }
-      );
-    });
+    this.userService
+      .createProgramData(this.program.id_program, userId)
+      .then(() => {
+        this.toastr.success(
+          `El usuario ${username} ha sido agregado al programa ${this.program.name}`,
+          'Usuario agregado',
+          {
+            progressBar: true,
+            positionClass: 'toast-top-right',
+            timeOut: 3000,
+            enableHtml: true,
+          }
+        );
+      });
   }
 }

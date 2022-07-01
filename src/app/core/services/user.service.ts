@@ -74,16 +74,15 @@ export class UserService {
    * @param program
    * @param userId
    **/
-  async createProgramData(program: Program, userId: string) {
+  async createProgramData(programId: string, userId: string) {
     const userRef = this.angularFirestore.collection('users');
 
-    this.getUser(userId).subscribe((user: User) => {
-      userRef.doc(userId).update({
+    return await this.getUser(userId).subscribe(async (user: User) => {
+      await userRef.doc(userId).update({
         ...user,
         availability: false,
+        programId: programId,
       });
     });
-
-    return await userRef.doc(userId).collection('programs').add(program);
   }
 }
