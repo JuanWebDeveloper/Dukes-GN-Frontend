@@ -320,6 +320,11 @@ table {
   border-spacing: 0;
   width: 100%;
 
+  .th-hide,
+  .td-hide {
+    display: none;
+  }
+
   thead {
     tr {
       th {
@@ -383,6 +388,10 @@ table {
           text-transform: uppercase;
           top: 0px;
           width: 80px;
+        }
+
+        small {
+          display: none;
         }
 
         @media (max-width: styles.$bkp-desktop-w) {

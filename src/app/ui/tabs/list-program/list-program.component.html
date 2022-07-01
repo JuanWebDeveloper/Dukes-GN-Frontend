@@ -1,40 +1,47 @@
 <div class="list-programs">
   <dukes-loading *ngIf="loading"></dukes-loading>
   <div class="list-programs_content" *ngIf="!loading">
-    <table>
+    <table id="excel-table">
       <thead>
-      <tr>
-        <th>Nombre Programa</th>
-        <th>Nombre Creador</th>
-        <th>Total Cursos</th>
-        <th>Fecha Inicio</th>
-        <th>Fecha Finalización</th>
-      </tr>
+        <tr>
+          <th>Nombre Programa</th>
+          <th>Nombre Creador</th>
+          <th>Total Cursos</th>
+          <th class="th-hide">Porcentaje Por Curso</th>
+          <th>Fecha Inicio</th>
+          <th>Fecha Finalización</th>
+        </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let program of programs">
-        <td>
-          <span>NP</span>
-          {{ program.name }}
-        </td>
-        <td>
-          <span>NC</span>
-          {{ program.name_coach }}
-        </td>
-        <td>
-          <span>TC</span>
-          {{ program.course_amount }}
-        </td>
-        <td>
-          <span>FI</span>
-          {{ program.start_date }}
-        </td>
-        <td>
-          <span>FF</span>
-          {{ program.final_date }}
-        </td>
-      </tr>
+        <tr *ngFor="let program of programs">
+          <td>
+            <span>NP</span>
+            {{ program.name }}
+          </td>
+          <td>
+            <span>NC</span>
+            {{ program.name_coach }}
+          </td>
+          <td>
+            <span>TC</span>
+            {{ program.course_amount }}
+          </td>
+          <td class="td-hide">
+            {{ program.course_percentage | number: "1.0-0" }}%
+          </td>
+          <td>
+            <span>FI</span>
+            {{ program.start_date }}
+          </td>
+          <td>
+            <span>FF</span>
+            {{ program.final_date }}
+          </td>
+        </tr>
       </tbody>
     </table>
+    <button class="btn-general" (click)="exportToExcel()">
+      Exportar a Excel
+    </button>
   </div>
 </div>

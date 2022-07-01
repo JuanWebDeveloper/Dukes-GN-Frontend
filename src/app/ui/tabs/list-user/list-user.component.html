@@ -1,13 +1,14 @@
 <div class="list-users">
   <dukes-loading *ngIf="loading"></dukes-loading>
   <div class="list-users_content" *ngIf="!loading">
-    <table>
+    <table id="excel-table">
       <thead>
         <tr>
           <th>Nombre</th>
           <th>Correo</th>
           <th>Verificación</th>
           <th>Disponibilidad</th>
+          <th>Programa</th>
           <th>Rol</th>
         </tr>
       </thead>
@@ -23,11 +24,25 @@
           </td>
           <td>
             <span>VR</span>
+            <small>{{
+              user.verification ? "Correo Verificado" : "Correo sin verificar"
+            }}</small>
             <i [class]="showIcon(user.verification)"></i>
           </td>
           <td>
             <span>DP</span>
+            <small>
+              {{
+                user.availability
+                  ? "Disponible para agregar a un programa"
+                  : "Ya tiene un programa asignado"
+              }}
+            </small>
             <i [class]="showIcon(user.availability)"></i>
+          </td>
+          <td>
+            <span>NP</span>
+            {{ !user.programName ? "Sin programa" : user.programName }}
           </td>
           <td>
             <span>Rol</span>
@@ -36,5 +51,8 @@
         </tr>
       </tbody>
     </table>
+    <button class="btn-general" (click)="exportToExcel()">
+      Exportar a Excel
+    </button>
   </div>
 </div>
