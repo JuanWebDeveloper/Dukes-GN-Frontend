@@ -1,0 +1,117 @@
+<div class="accordion">
+  <dukes-loading *ngIf="loading"></dukes-loading>
+  <ng-container *ngIf="!loading">
+    <div class="accordion-item" *ngFor="let course of courses">
+      <div class="accordion-item_label" (click)="toggleAccordion($event)">
+        <span>{{ course.name }}</span> <i class="fas fa-plus"></i>
+      </div>
+      <div class="accordion-item_content">
+        <div class="accordion-c">
+          <ng-container *ngFor="let module of modules">
+            <div
+              class="accordion-c-itemC"
+              *ngIf="module.id_course === course.id_course"
+            >
+              <div
+                class="accordion-c-itemC_label"
+                (click)="toggleAccordionC($event)"
+              >
+                <span>{{ module.name }}</span> <i class="fas fa-plus"></i>
+              </div>
+              <div class="accordion-c-itemC_contentC">
+                <form
+                  #noteAssignmentForm="ngForm"
+                  (ngSubmit)="onSubmit(noteAssignmentForm)"
+                >
+                  <input
+                    type="hidden"
+                    name="courseId"
+                    [ngModel]="course.id_course"
+                  />
+                  <input
+                    type="hidden"
+                    name="moduleName"
+                    [ngModel]="module.name"
+                  />
+                  <input
+                    type="hidden"
+                    name="moduleId"
+                    [ngModel]="module.id_module"
+                  />
+                  <div class="form-group">
+                    <input
+                      type="number"
+                      placeholder="Asignar nota"
+                      name="moduleNote"
+                      required
+                      min="0"
+                      max="100"
+                      [ngModel]
+                      #moduleNote="ngModel"
+                      [class.invalid]="moduleNote.invalid && moduleNote.touched"
+                      [class.valid]="moduleNote.valid"
+                    />
+                    <div
+                      class="message-error"
+                      *ngIf="!moduleNote.value && moduleNote.touched"
+                    >
+                      La nota es requerida.
+                    </div>
+                    <div
+                      class="message-error"
+                      *ngIf="moduleNote.value && moduleNote.value < 0"
+                    >
+                      La nota no puede ser menor a 0.
+                    </div>
+                    <div
+                      class="message-error"
+                      *ngIf="moduleNote.value && moduleNote.value > 100"
+                    >
+                      La nota no puede ser mayor a 100.
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <select
+                      name="user"
+                      required
+                      [ngModel]
+                      #user="ngModel"
+                      [class.invalid]="user.invalid && user.touched"
+                      [class.valid]="user.valid"
+                      [disabled]="programUsers.length < 1"
+                    >
+                      <option value="" *ngIf="programUsers.length < 1">
+                        No hay usuarios asignados a este programa
+                      </option>
+                      <option value="" *ngIf="programUsers.length >= 1">
+                        Seleccione un usuario
+                      </option>
+                      <option
+                        *ngFor="let pUser of programUsers"
+                        [value]="pUser.userId"
+                      >
+                        {{ pUser.name }}
+                      </option>
+                    </select>
+                    <div
+                      class="message-error"
+                      *ngIf="!user.value && user.touched"
+                    >
+                      El usuario es requerido.
+                    </div>
+                  </div>
+                  <button
+                    class="btn-general-form"
+                    [class.disabled]="noteAssignmentForm.invalid"
+                  >
+                    Asignar Nota
+                  </button>
+                </form>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
