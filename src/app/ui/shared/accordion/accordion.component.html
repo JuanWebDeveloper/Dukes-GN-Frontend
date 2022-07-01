@@ -1,24 +1,37 @@
 <div class="accordion">
-  <div class="accordion-item">
+  <div class="accordion-item" *ngFor="let course of courses">
     <div class="accordion-item_label" (click)="toggleAccordion($event)">
-      Label one
+      {{ course.name }}
     </div>
     <div class="accordion-item_content">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam corrupti,
-      ea debitis consequatur aliquid sequi provident, id quidem magnam,
-      recusandae nostrum expedita numquam fuga eligendi nulla molestias odit
-      sunt voluptatum.
-    </div>
-  </div>
-  <div class="accordion-item">
-    <div class="accordion-item_label" (click)="toggleAccordion($event)">
-      Label one
-    </div>
-    <div class="accordion-item_content">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam corrupti,
-      ea debitis consequatur aliquid sequi provident, id quidem magnam,
-      recusandae nostrum expedita numquam fuga eligendi nulla molestias odit
-      sunt voluptatum.
+      <div class="accordion-c">
+        <ng-container *ngFor="let module of modules">
+          <div
+            class="accordion-c-itemC"
+            *ngIf="module.id_course === course.id_course"
+          >
+            <div
+              class="accordion-c-itemC_label"
+              (click)="toggleAccordionC($event)"
+            >
+              {{ module.name }}
+            </div>
+            <div class="accordion-c-itemC_contentC">
+              <form>
+                <div class="form-group">
+                  <input type="number" placeholder="Asignar nota" />
+                </div>
+                <div class="form-group">
+                  <select>
+                    <option value="">Seleccionar Usuario</option>
+                  </select>
+                </div>
+                <button class="btn-general-form">Asignar Nota</button>
+              </form>
+            </div>
+          </div>
+        </ng-container>
+      </div>
     </div>
   </div>
 </div>
