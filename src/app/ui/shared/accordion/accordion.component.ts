@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 import { UserService } from '../../../core/services/user.service';
 import { Program } from '../../../core/models/Program';
@@ -20,7 +21,10 @@ export class AccordionComponent implements OnInit {
   public programUsers: User[] | any;
   public loading: boolean = true;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.userService.getAllUsers().subscribe((users: User[]) => {
@@ -77,15 +81,19 @@ export class AccordionComponent implements OnInit {
    * Método para asignar una nota a un usuario.
    * @param form
    **/
-  public onSubmit({ value }: NgForm): void {
-    const { courseId, moduleName, moduleId, moduleNote, user } = value;
+  public onSubmit(form: NgForm): void {
+    const { courseId, moduleName, moduleId, moduleNote, user } = form.value;
 
-    this.userService.assignNotes(
-      courseId,
-      moduleName,
-      moduleId,
-      moduleNote,
-      user
-    );
+    this.userService
+      .assignNotes(courseId, moduleName, moduleId, moduleNote, user)
+      .then(() => {
+        this.toastr.success('', 'Nota asignada correctamente', {
+          progressBar: true,
+          positionClass: 'toast-top-right',
+          timeOut: 3000,
+          enableHtml: true,
+        });
+        form.resetForm();
+      });
   }
 }
