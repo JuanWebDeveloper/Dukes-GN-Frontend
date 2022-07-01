@@ -46,7 +46,13 @@ export class EditProgramComponent implements OnInit {
    **/
   public addUser(userId: string, username: string): void {
     this.userService
-      .createProgramData(this.program.id_program, this.program.name, userId)
+      .createProgramData(
+        this.program.id_program,
+        this.program.name,
+        this.courses,
+        this.modules,
+        userId
+      )
       .then(() => {
         this.toastr.success(
           `El usuario ${username} ha sido agregado al programa ${this.program.name}`,

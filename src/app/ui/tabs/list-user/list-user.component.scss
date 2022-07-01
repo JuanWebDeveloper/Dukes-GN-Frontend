@@ -19,8 +19,13 @@
     button {
       float: right;
       margin-top: styles.$box-mrg-half;
+
       &:hover {
-        transform: scale(1.0);
+        transform: scale(1);
+      }
+
+      &:last-child {
+        margin-left: styles.$box-mrg-quarter;
       }
     }
 

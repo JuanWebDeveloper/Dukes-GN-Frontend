@@ -1,0 +1,120 @@
+@use "../../styles/index" as styles;
+
+.accordion {
+  position: relative;
+  width: 100%;
+
+  &-item {
+    margin: styles.$box-mrg-half styles.$box-mrg-onehalf;
+    position: relative;
+    width: 100%;
+
+    &_label {
+      align-items: center;
+      background: rgba(styles.$color-blue, 0.5);
+      backdrop-filter: brightness(20%);
+      border-radius: 5px;
+      color: styles.$color-white;
+      cursor: pointer;
+      display: flex;
+      font-size: 1.5rem;
+      font-weight: 500;
+      font-family: "Noto Sans JP", sans-serif;
+      justify-content: space-between;
+      position: relative;
+      padding: styles.$box-pad-base;
+
+      i {
+        margin-top: 5px;
+        margin-right: calc(10px + styles.$box-pad-base);
+        pointer-events: none;
+        transition: styles.$animation-bezier;
+      }
+
+      &.active {
+        i {
+          transform: rotate(45deg);
+        }
+      }
+    }
+
+    &_content {
+      @include styles.animation-scale-in_X;
+      align-items: center;
+      background-color: rgba(styles.$color-tertiary, 0.5);
+      backdrop-filter: brightness(70%);
+      display: none;
+      justify-content: center;
+      position: relative;
+      padding: styles.$box-pad-half;
+      transition: styles.$animation-bezier;
+      width: 100%;
+
+      &.active {
+        display: flex;
+      }
+
+      .accordion-c {
+        position: relative;
+        width: 90%;
+
+        &-itemC {
+          margin-bottom: styles.$box-mrg-half;
+          position: relative;
+          width: 100%;
+
+          &_label {
+            align-items: center;
+            background-color: rgba(styles.$color-blue-1, 0.5);
+            backdrop-filter: brightness(20%);
+            border-radius: 5px;
+            color: styles.$color-white;
+            cursor: pointer;
+            display: flex;
+            font-size: 1.5rem;
+            font-weight: 500;
+            font-family: "Noto Sans JP", sans-serif;
+            justify-content: space-between;
+            position: relative;
+            padding: styles.$box-pad-base;
+
+            i {
+              margin-top: 5px;
+              margin-right: calc(10px + styles.$box-pad-base);
+              pointer-events: none;
+              transition: styles.$animation-bezier;
+            }
+
+            &.active {
+              i {
+                transform: rotate(45deg);
+              }
+            }
+          }
+
+          &_contentC {
+            @include styles.animation-scale-in_X;
+            align-items: center;
+            background-color: rgba(styles.$color-secondary, 0.4);
+            backdrop-filter: brightness(40%);
+            display: none;
+            padding: styles.$box-pad-half;
+            transition: styles.$animation-bezier;
+
+            &.active {
+              display: flex;
+            }
+
+            &::-webkit-scrollbar {
+              width: 0;
+            }
+          }
+        }
+      }
+
+      &::-webkit-scrollbar {
+        width: 0;
+      }
+    }
+  }
+}

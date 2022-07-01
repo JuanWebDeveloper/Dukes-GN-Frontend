@@ -17,6 +17,7 @@ import { CourseService } from 'src/app/core/services/course.service';
 import { Course } from 'src/app/core/models/Course';
 import { ModuleService } from 'src/app/core/services/module.service';
 import { Module } from 'src/app/core/models/Module';
+import { typeWithParameters } from '@angular/compiler/src/render3/util';
 
 @Component({
   selector: 'dukes-admin',
@@ -30,6 +31,7 @@ export class AdminComponent implements OnInit {
   public programInfo: Program | undefined;
   public courseInfo: Course[] | undefined;
   public moduleInfo: Module[] = [];
+  public userId: string | undefined;
 
   constructor(
     private toastr: ToastrService,
@@ -40,7 +42,7 @@ export class AdminComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.selected = this.indicators[1];
+    this.selected = this.indicators[0];
     this.recoverProgramDate();
   }
 
@@ -75,6 +77,8 @@ export class AdminComponent implements OnInit {
    **/
   private recoverProgramDate(): void {
     this.authenticationService.getInfoUser().then((user: UserF) => {
+      this.userId = user.uid;
+
       this.programService
         .getProgram(user.uid)
         .subscribe((program: Program) => {
@@ -103,7 +107,7 @@ export class AdminComponent implements OnInit {
         .add(() => {
           if (this.programInfo) {
             this.indicators[1] = 'Editar Programa';
-            this.selected = this.indicators[1];
+            this.selected = this.indicators[0];
           }
 
           this.loading = false;
