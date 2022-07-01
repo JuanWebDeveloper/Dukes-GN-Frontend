@@ -12,13 +12,10 @@
     transform: translate(-50%, -50%);
     width: 90%;
     z-index: 1;
+    text-align: center;
 
-    h2 {
-      text-align: center;
-
-      span {
-        text-transform: capitalize;
-      }
+    .typing {
+      @include styles.font-title;
     }
   }
 }

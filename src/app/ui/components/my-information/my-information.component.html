@@ -67,8 +67,8 @@
         <ng-template #notShow>
           <form
             autocomplete="off"
-            #signUpForm="ngForm"
-            (ngSubmit)="updateInformation(signUpForm)"
+            #updateInformationForm="ngForm"
+            (ngSubmit)="updateInformation(updateInformationForm)"
           >
             <div class="form-group">
               <input
@@ -159,7 +159,13 @@
             >
               Cancelar
             </button>
-            <button class="btn-general-form" type="submmit">Guardar</button>
+            <button
+              class="btn-general-form"
+              type="submmit"
+              [class.disabled]="updateInformationForm.invalid"
+            >
+              Guardar
+            </button>
           </form>
         </ng-template>
       </form>

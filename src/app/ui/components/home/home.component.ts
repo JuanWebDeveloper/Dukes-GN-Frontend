@@ -11,13 +11,18 @@ import { User } from 'src/app/core/models/User';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   private userUpated: User | undefined;
-  public username: any;
   public loading: boolean = true;
+  public texts: string[] = [
+    '¿Como estás?',
+    'Sabemos que estás muy bien',
+    'Bienvenid@ a Dukes-GN',
+    'Tu gestor de notas es tu amigo',
+  ];
 
   constructor(
     private authenticationService: AuthenticationService,
     private userService: UserService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.authenticationService.getInfoUser().then((currentUser: any) => {
@@ -30,15 +35,13 @@ export class HomeComponent implements OnInit, OnDestroy {
           };
           this.userService.updateUser(this.userUpated);
         }
-        this.username = user.name;
         this.loading = false;
+        this.texts.unshift(`Hola ${user.name}`);
       });
     });
-
   }
 
   ngOnDestroy() {
-    this.username = undefined;
     this.userUpated = undefined;
   }
 }
