@@ -83,5 +83,4 @@ información [3] y uno segundo que enlista los programas creados por los usuario
 
 ---
 
-..
 ![Screen Shot 2022-07-01 at 10 42 55 AM](https://user-images.githubusercontent.com/90350943/176927048-51da3319-3356-4748-a9bc-a811ccb78a42.png)
