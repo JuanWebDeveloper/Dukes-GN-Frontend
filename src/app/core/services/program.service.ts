@@ -50,4 +50,17 @@ export class ProgramService {
         })
       );
   }
+
+  /**
+   * Servicio para obtener el listado de programas.
+   */
+  public listAllPrograms(): Observable<Program[]>{
+    return this.http
+      .get<Program[]>(`${environment.baseURL}program/list`, {
+        headers: this.headers,
+      })
+      .pipe(
+        map((response: Program[]) => this.apiToProgramMapper.mapPrograms(response))
+      );
+  }
 }

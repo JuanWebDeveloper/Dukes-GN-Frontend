@@ -1,1 +1,40 @@
-<p>list-program works!</p>
+<div class="list-programs">
+  <dukes-loading *ngIf="loading"></dukes-loading>
+  <div class="list-programs_content" *ngIf="!loading">
+    <table>
+      <thead>
+      <tr>
+        <th>Nombre Programa</th>
+        <th>Nombre Creador</th>
+        <th>Total Cursos</th>
+        <th>Fecha Inicio</th>
+        <th>Fecha Finalización</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let program of programs">
+        <td>
+          <span>NP</span>
+          {{ program.name }}
+        </td>
+        <td>
+          <span>NC</span>
+          {{ program.name_coach }}
+        </td>
+        <td>
+          <span>TC</span>
+          {{ program.course_amount }}
+        </td>
+        <td>
+          <span>FI</span>
+          {{ program.start_date }}
+        </td>
+        <td>
+          <span>FF</span>
+          {{ program.final_date }}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
