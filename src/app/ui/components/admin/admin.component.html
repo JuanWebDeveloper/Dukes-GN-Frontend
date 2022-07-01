@@ -17,7 +17,12 @@
         </button>
       </div>
       <div class="tabs-tab" *ngIf="selected === 'Asignar Notas'">
-        <dukes-score-user></dukes-score-user>
+        <dukes-score-user
+          [program]="programInfo"
+          [courses]="courseInfo"
+          [modules]="moduleInfo"
+          [userId]="userId"
+        ></dukes-score-user>
       </div>
       <div class="tabs-tab" *ngIf="selected === 'Crear Programa'">
         <dukes-create-program
