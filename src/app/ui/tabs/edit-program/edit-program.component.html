@@ -52,43 +52,32 @@
       </div>
     </form>
     <div class="edit-program_content-users">
-      <h2>Agregar usuarios</h2>
-      <form #addUserForm="ngForm" (ngSubmit)="addUser(addUserForm)">
-        <div class="form-group">
-          <select
-            name="userSelected"
-            required
-            ngModel
-            #userSelected="ngModel"
-            disabled="{{ usersAvailability.length < 1 }}"
-            [class.invalid]="userSelected.invalid && userSelected.touched"
-            [class.valid]="userSelected.valid"
-          >
-            <option value="">
-              {{
-                usersAvailability.length < 1
-                  ? "No hay usuarios disponibles"
-                  : "Seleccione un usuario"
-              }}
-            </option>
-            <option
-              *ngFor="let user of usersAvailability"
-              [value]="user.userId"
-            >
-              {{ user.name }}
-            </option>
-          </select>
+      <dukes-loading *ngIf="loading"></dukes-loading>
+      <ng-container *ngIf="!loading">
+        <ng-container *ngIf="users.length < 1">
+          <h2>No hay usuarios disponibles</h2>
+        </ng-container>
+        <div
+          class="edit-program_content-users_availability"
+          *ngIf="users.length >= 1"
+        >
+          <h2>Agregar usuarios</h2>
           <div
-            class="message-error"
-            *ngIf="!userSelected.value && userSelected.touched"
+            class="edit-program_content-users_availability-item"
+            *ngFor="let user of users"
           >
-            Se debe seleccionar un usuario.
+            <h3>
+              <span>{{ user.name }}</span>
+            </h3>
+            <button
+              class="btn-general-form"
+              (click)="addUser(user.userId, user.name)"
+            >
+              Agregar
+            </button>
           </div>
         </div>
-        <button class="btn-general-form" [class.disabled]="addUserForm.invalid">
-          Agregar usuario
-        </button>
-      </form>
+      </ng-container>
     </div>
   </div>
 </div>
