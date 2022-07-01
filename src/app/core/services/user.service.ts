@@ -21,7 +21,7 @@ export class UserService {
    * @param user
    * @returns
    */
-  async saveUser(user: User) {
+  public async saveUser(user: User) {
     const userRef = this.angularFirestore.collection('users');
 
     return await userRef.doc(user.userId).set(user);
@@ -32,7 +32,7 @@ export class UserService {
    * @param userId
    * @returns
    */
-  getUser(userId: string): Observable<User> {
+  public getUser(userId: string): Observable<User> {
     const userRef = this.angularFirestore.collection('users');
 
     return userRef.doc(userId).valueChanges() as Observable<User>;
@@ -42,7 +42,7 @@ export class UserService {
    * Servicio para obtener la información de todos los usuario.
    * @returns
    */
-  getAllUsers(): Observable<User[]> {
+  public getAllUsers(): Observable<User[]> {
     const userRef = this.angularFirestore.collection('users');
 
     return userRef
@@ -57,7 +57,7 @@ export class UserService {
    * @param user
    * @returns
    */
-  async updateUser(user: User) {
+  public async updateUser(user: User) {
     const userRef = this.angularFirestore.collection('users');
 
     return await userRef.doc(user.userId).update(user);
@@ -66,7 +66,7 @@ export class UserService {
   /**
    * Servicio para obtener el rol del usuario.
    **/
-  get retrieveRol(): string {
+  public get retrieveRol(): string {
     return JSON.parse(localStorage.getItem('rol')!);
   }
 
@@ -77,7 +77,7 @@ export class UserService {
    * @param modules
    * @param userId
    **/
-  async createProgramData(
+  public async createProgramData(
     programId: string,
     programName: string,
     courses: Course[],
@@ -119,7 +119,14 @@ export class UserService {
     });
   }
 
-  getModuleNoteData(
+  /**
+   * Servicio para obtener la información de las notas de un modulo.
+   * @param userId
+   * @param courseId
+   * @param moduleName
+   * @param moduleId
+   **/
+  public getModuleNoteData(
     userId: string,
     courseId: string,
     moduleName: string,
@@ -137,27 +144,32 @@ export class UserService {
   }
 
   /**
-   * Servicio para asignar las notas de los cursos y módulos.
+   * Servicio para asignar las notas de los módulos.
+   * @param courseId
+   * @param moduleName
+   * @param moduleId
+   * @param moduleNote
+   * @param userId
    **/
-  async assignNotes(
+  public async assignNotes(
     courseId: string,
     moduleName: string,
     moduleId: string,
     moduleNote: string,
-    user: string
+    userId: string
   ) {
     const userRef = this.angularFirestore.collection('users');
 
-    this.getModuleNoteData(user, courseId, moduleName, moduleId).subscribe(
-      async (course: any) => {
+    this.getModuleNoteData(userId, courseId, moduleName, moduleId).subscribe(
+      async (module: any) => {
         await userRef
-          .doc(user)
+          .doc(userId)
           .collection('courses')
           .doc(courseId)
           .collection(moduleName)
           .doc(moduleId)
           .update({
-            ...course,
+            ...module,
             [`${moduleName}Note`]: moduleNote,
           });
       }
