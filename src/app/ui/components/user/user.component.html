@@ -1,5 +1,15 @@
 <div class="user">
-  <div class="user-content">
+  <div class="user-content-na" *ngIf="!assigned">
+    <ngx-typed-js
+      [stringsElement]="'#typeds'"
+      [typeSpeed]="100"
+      [backSpeed]="100"
+      [strings]="texts"
+    >
+      <span class="typing"></span>
+    </ngx-typed-js>
+  </div>
+  <div class="user-content" *ngIf="assigned">
     <h2>Panel Usuario - {{ userName }}</h2>
     <div class="tabs">
       <div class="tabs-indicators">

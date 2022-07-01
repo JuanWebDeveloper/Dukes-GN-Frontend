@@ -1,9 +1,12 @@
+@use "../../styles/index.scss" as styles;
+
 .user {
   min-height: 100vh;
   position: relative;
   width: 100%;
 
-  &-content {
+  &-content,
+  &-content-na {
     left: 50%;
     position: absolute;
     top: 50%;
@@ -13,5 +16,12 @@
     h2 {
       text-align: center;
     }
+    .typing {
+      @include styles.font-title;
+    }
+  }
+  
+  &-content-na {
+    text-align: center;
   }
 }
