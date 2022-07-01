@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { NgxTypedJsModule } from 'ngx-typed-js';
 
 /**
  * Importación de los componentes usados en la aplicación.
@@ -28,7 +29,6 @@ import { ProgramProgressComponent } from './tabs/program-progress/program-progre
 import { LoadingComponent } from './shared/loading/loading.component';
 import { EditProgramComponent } from './tabs/edit-program/edit-program.component';
 import { MyInformationComponent } from './components/my-information/my-information.component';
-import { NgxTypedJsModule } from 'ngx-typed-js';
 
 @NgModule({
   declarations: [
@@ -53,8 +53,13 @@ import { NgxTypedJsModule } from 'ngx-typed-js';
     LoadingComponent,
     EditProgramComponent,
     MyInformationComponent,
-
   ],
-  imports: [BrowserModule, CommonModule, RouterModule, FormsModule, NgxTypedJsModule],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    NgxTypedJsModule,
+  ],
 })
-export class ComponentsModule { }
+export class ComponentsModule {}

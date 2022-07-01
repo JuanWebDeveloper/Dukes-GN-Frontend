@@ -1,14 +1,13 @@
 <div class="home">
   <div class="home-content" *ngIf="!loading">
     <ngx-typed-js
-      [showCursor]="false"
-      [typeSpeed]="50"
-      [strings]="['¡Hola! ' + username]"
-      [shuffle]="true"
-      [smartBackspace]="true"
-      [backSpeed]="50"
+      [stringsElement]="'#typeds'"
+      [loop]="true"
+      [typeSpeed]="100"
+      [backSpeed]="100"
+      [strings]="texts"
     >
-      <h2 class="typing"></h2>
+      <span class="typing"></span>
     </ngx-typed-js>
   </div>
   <div class="main-loading" *ngIf="loading">
