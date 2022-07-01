@@ -27,15 +27,18 @@ export class AccordionComponent implements OnInit {
     const target = event.target;
     const parent = target.parentElement;
     const contents = document.querySelectorAll('.accordion-item_content');
+    const labels = document.querySelectorAll('.accordion-item_label');
     const content = parent.querySelector('.accordion-item_content');
 
     for (let i = 0; i < contents.length; i++) {
-      contents[i] == content
-        ? content.classList.toggle('active')
-        : contents[i].classList.remove('active');
+      if (contents[i] == content) {
+        content.classList.toggle('active');
+        target.classList.toggle('active');
+      } else {
+        contents[i].classList.remove('active');
+        labels[i].classList.remove('active');
+      }
     }
-
-    target.classList.toggle('active');
   }
 
   /**
@@ -45,14 +48,17 @@ export class AccordionComponent implements OnInit {
     const target = event.target;
     const parent = target.parentElement;
     const contents = document.querySelectorAll('.accordion-c-itemC_contentC');
+    const labels = document.querySelectorAll('.accordion-c-itemC_label');
     const content = parent.querySelector('.accordion-c-itemC_contentC');
 
     for (let i = 0; i < contents.length; i++) {
-      contents[i] == content
-        ? content.classList.toggle('active')
-        : contents[i].classList.remove('active');
+      if (contents[i] == content) {
+        content.classList.toggle('active');
+        target.classList.toggle('active');
+      } else {
+        contents[i].classList.remove('active');
+        labels[i].classList.remove('active');
+      }
     }
-
-    target.classList.toggle('active');
   }
 }
