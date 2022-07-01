@@ -8,4 +8,5 @@ export interface User {
   rol: string;
   imageBase64?: string;
   programId?: string;
+  programName?: string;
 }
